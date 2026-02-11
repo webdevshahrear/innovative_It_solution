@@ -1,0 +1,187 @@
+@extends('layouts.admin')
+
+@section('content')
+<div class="page-header d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1 class="page-title">Deploy Project</h1>
+        <p class="page-subtitle">Configure the metadata and assets for a new portfolio deployment.</p>
+    </div>
+    <a href="{{ route('admin.projects.index') }}" class="btn-tech-outline">
+        <i class="fas fa-arrow-left me-2"></i> Back to Hub
+    </a>
+</div>
+
+<div class="tech-card">
+    <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="row g-4">
+            <div class="col-md-8">
+                <div class="mb-4">
+                    <label for="title" class="v3-form-label">PROJECT TITLE</label>
+                    <input type="text" class="v3-form-control" id="title" name="title" value="{{ old('title') }}" placeholder="e.g. Cyber Security Dashboard" required>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="description" class="v3-form-label">INTEL / DESCRIPTION</label>
+                    <textarea class="v3-form-control" id="description" name="description" rows="6" placeholder="Project technical summary and highlights...">{{ old('description') }}</textarea>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <label for="client_name" class="v3-form-label">ENTITY / CLIENT</label>
+                        <input type="text" class="v3-form-control" id="client_name" name="client_name" value="{{ old('client_name') }}" placeholder="Client organization name">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="project_url" class="v3-form-label">LIVE SECTOR URL</label>
+                        <input type="url" class="v3-form-control" id="project_url" name="project_url" value="{{ old('project_url') }}" placeholder="https://project-link.com">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="display_order" class="v3-form-label">SEQUENCE ORDER</label>
+                        <input type="number" class="v3-form-control" id="display_order" name="display_order" value="{{ old('display_order', 0) }}">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                 <div class="mb-4">
+                    <label for="status" class="v3-form-label">AVAILABILITY STATUS</label>
+                    <select class="v3-form-control" id="status" name="status">
+                        <option value="active" {{ old('status') == 'active' ? 'selected' : '' }}>Active</option>
+                        <option value="inactive" {{ old('status') == 'inactive' ? 'selected' : '' }}>Inactive</option>
+                    </select>
+                </div>
+
+                <div class="mb-4">
+                    <label class="v3-form-label">CAPABILITIES / CATEGORIES</label>
+                    <div class="v3-checkbox-group">
+                        @foreach($categories as $category)
+                            <div class="v3-checkbox-item">
+                                <input class="v3-checkbox-input" type="checkbox" name="categories[]" value="{{ $category->id }}" id="cat_{{ $category->id }}"
+                                {{ in_array($category->id, old('categories', [])) ? 'checked' : '' }}>
+                                <label class="v3-checkbox-label" for="cat_{{ $category->id }}">
+                                    {{ $category->name }}
+                                </label>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label for="desktop_image" class="v3-form-label">PRIMARY ASSET (DESKTOP)</label>
+                    <div class="v3-file-upload">
+                        <input type="file" id="desktop_image" name="desktop_image">
+                        <div class="v3-file-info"><i class="fas fa-upload me-2"></i> Uplink Assets</div>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label for="mobile_image" class="v3-form-label">MOBILE ASSET (PORTRAIT)</label>
+                    <div class="v3-file-upload">
+                        <input type="file" id="mobile_image" name="mobile_image">
+                        <div class="v3-file-info"><i class="fas fa-upload me-2"></i> Uplink Assets</div>
+                    </div>
+                </div>
+
+                <div class="v3-switch-item">
+                    <div class="v3-switch">
+                        <input type="checkbox" id="featured" name="featured" value="1" {{ old('featured') ? 'checked' : '' }}>
+                        <label for="featured"></label>
+                    </div>
+                    <label class="v3-form-label mb-0" for="featured">PRIORITIZE AS FEATURED</label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="d-flex justify-content-end mt-5">
+            <button type="submit" class="btn-tech-primary px-5 py-3">
+                <i class="fas fa-rocket me-2"></i> ACTIVATE DEPLOYMENT
+            </button>
+        </div>
+    </form>
+</div>
+
+<style>
+    .v3-form-label {
+        display: block;
+        font-size: 0.65rem;
+        font-weight: 800;
+        letter-spacing: 0.1rem;
+        color: var(--v3-text-muted);
+        margin-bottom: 0.75rem;
+        text-transform: uppercase;
+    }
+
+    .v3-form-control {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--v3-border);
+        border-radius: 12px;
+        padding: 0.75rem 1rem;
+        color: white;
+        font-size: 0.9rem;
+        transition: all 0.3s;
+    }
+    .v3-form-control:focus {
+        outline: none;
+        background: rgba(255, 255, 255, 0.05);
+        border-color: var(--v3-accent);
+        box-shadow: 0 0 15px rgba(99, 102, 241, 0.1);
+    }
+    .v3-form-control::placeholder { color: rgba(255,255,255,0.2); }
+
+    .v3-checkbox-group {
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid var(--v3-border);
+        border-radius: 12px;
+        padding: 1rem;
+        max-height: 200px;
+        overflow-y: auto;
+    }
+    .v3-checkbox-item { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; }
+    .v3-checkbox-input { cursor: pointer; accent-color: var(--v3-accent); }
+    .v3-checkbox-label { color: rgba(255,255,255,0.7); font-size: 0.85rem; cursor: pointer; }
+
+    .v3-file-upload {
+        position: relative;
+        height: 45px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px dashed var(--v3-border);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.3s;
+    }
+    .v3-file-upload:hover { border-color: var(--v3-accent); background: rgba(255, 255, 255, 0.05); }
+    .v3-file-upload input { position: absolute; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+    .v3-file-info { font-size: 0.8rem; color: var(--v3-text-muted); font-weight: 600; }
+
+    .v3-switch-item { display: flex; align-items: center; gap: 1rem; background: rgba(255,255,255,0.02); padding: 1rem; border-radius: 12px; border: 1px solid var(--v3-border); }
+    .v3-switch { position: relative; width: 44px; height: 22px; }
+    .v3-switch input { opacity: 0; width: 0; height: 0; }
+    .v3-switch label { 
+        position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; 
+        background-color: rgba(255,255,255,0.1); transition: .4s; border-radius: 22px; 
+    }
+    .v3-switch label:before { 
+        position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; 
+        background-color: white; transition: .4s; border-radius: 50%;
+    }
+    .v3-switch input:checked + label { background: var(--v3-gradient); }
+    .v3-switch input:checked + label:before { transform: translateX(22px); }
+
+    .btn-tech-outline {
+        display: inline-flex;
+        padding: 0.6rem 1.2rem;
+        background: transparent;
+        border: 1px solid var(--v3-border);
+        color: var(--v3-text-muted);
+        text-decoration: none;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 0.8rem;
+        transition: 0.3s;
+    }
+    .btn-tech-outline:hover { border-color: white; color: white; background: rgba(255,255,255,0.05); }
+</style>
+@endsection
