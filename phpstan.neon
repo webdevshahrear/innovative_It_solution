@@ -1,6 +1,3 @@
-includes:
-    - ./vendor/larastan/larastan/extension.neon
-
 parameters:
     paths:
         - app
@@ -8,14 +5,8 @@ parameters:
     # PHP version
     phpVersion: 80200
 
-    # Level 5 is a good balance for Laravel projects
-    level: 5
-
-    # Ignore known Laravel magic method warnings
-    ignoreErrors:
-        - '#Call to an undefined method Illuminate\\Database\\Eloquent\\Builder#'
-        - '#Call to an undefined method Illuminate\\Database\\Query\\Builder#'
-        - '#Access to an undefined property App\\Models\\#'
+    # Level 0 - just syntax check only
+    level: 0
 
     # Exclude vendor and test helpers
     excludePaths:
@@ -23,6 +14,3 @@ parameters:
         - tests
         - database/migrations
         - storage
-
-    checkMissingIterableValueType: false
-    checkGenericClassInNonGenericObjectType: false

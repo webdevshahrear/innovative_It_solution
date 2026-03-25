@@ -18,65 +18,65 @@
         <div class="row g-4">
             <div class="col-md-8">
                 <div class="mb-4">
-                    <label for="title" class="v3-form-label">SLIDE IDENTIFIER (TITLE)</label>
-                    <input type="text" class="v3-form-control" id="title" name="title" value="{{ old('title', $heroSlide->title) }}" placeholder="Primary headline" required>
+                    <label for="title" class="v2-form-label">SLIDE IDENTIFIER (TITLE)</label>
+                    <input type="text" class="v2-form-control" id="title" name="title" value="{{ old('title', $heroSlide->title) }}" placeholder="Primary headline" required>
                 </div>
 
                 <div class="mb-4">
-                    <label for="subtitle" class="v3-form-label">CAPTION LOGIC (SUBTITLE)</label>
-                    <textarea class="v3-form-control" id="subtitle" name="subtitle" rows="3" placeholder="Secondary technical briefing...">{{ old('subtitle', $heroSlide->subtitle) }}</textarea>
+                    <label for="subtitle" class="v2-form-label">CAPTION LOGIC (SUBTITLE)</label>
+                    <textarea class="v2-form-control" id="subtitle" name="subtitle" rows="3" placeholder="Secondary technical briefing...">{{ old('subtitle', $heroSlide->subtitle) }}</textarea>
                 </div>
 
                 <div class="row g-4">
                     <div class="col-md-6">
-                        <label for="button_text" class="v3-form-label">ACTION LABEL</label>
-                        <input type="text" class="v3-form-control" id="button_text" name="button_text" value="{{ old('button_text', $heroSlide->button_text) }}" placeholder="Button Text">
+                        <label for="button_text" class="v2-form-label">ACTION LABEL</label>
+                        <input type="text" class="v2-form-control" id="button_text" name="button_text" value="{{ old('button_text', $heroSlide->button_text) }}" placeholder="Button Text">
                     </div>
                     <div class="col-md-6">
-                        <label for="button_link" class="v3-form-label">TARGET UPLINK (URL)</label>
-                        <input type="text" class="v3-form-control" id="button_link" name="button_link" value="{{ old('button_link', $heroSlide->button_link) }}" placeholder="e.g. /services">
+                        <label for="button_link" class="v2-form-label">TARGET UPLINK (URL)</label>
+                        <input type="text" class="v2-form-control" id="button_link" name="button_link" value="{{ old('button_link', $heroSlide->button_link) }}" placeholder="e.g. /services">
                     </div>
                 </div>
             </div>
             
             <div class="col-md-4">
                 <div class="mb-4">
-                    <label for="status" class="v3-form-label">DEPLOYMENT STATUS</label>
-                    <select class="v3-form-control" id="status" name="status">
+                    <label for="status" class="v2-form-label">DEPLOYMENT STATUS</label>
+                    <select class="v2-form-control" id="status" name="status">
                         <option value="active" {{ old('status', $heroSlide->status) == 'active' ? 'selected' : '' }}>Active</option>
                         <option value="inactive" {{ old('status', $heroSlide->status) == 'inactive' ? 'selected' : '' }}>Inactive</option>
                     </select>
                 </div>
 
                 <div class="mb-4">
-                    <label for="display_order" class="v3-form-label">SEQUENCE PRIORITY</label>
-                    <input type="number" class="v3-form-control" id="display_order" name="display_order" value="{{ old('display_order', $heroSlide->display_order) }}">
+                    <label for="display_order" class="v2-form-label">SEQUENCE PRIORITY</label>
+                    <input type="number" class="v2-form-control" id="display_order" name="display_order" value="{{ old('display_order', $heroSlide->display_order) }}">
                 </div>
 
                 <div class="mb-4">
-                    <label class="v3-form-label">VISUAL ASSET SELECTION</label>
+                    <label class="v2-form-label">VISUAL ASSET SELECTION</label>
                     @php
                         $isUrl = filter_var($heroSlide->image_path, FILTER_VALIDATE_URL);
                     @endphp
                     @if($heroSlide->image_path)
-                        <div class="asset-preview-v3 banner mb-3">
+                        <div class="asset-preview-v2 banner mb-3">
                              <img src="{{ $isUrl ? $heroSlide->image_path : asset('uploads/slider/'.$heroSlide->image_path) }}" alt="Preview">
                         </div>
                     @endif
 
                     <div class="mb-3">
-                        <label for="image_path" class="small text-v3-muted mb-2 d-block">OPTION A: UPLOAD LOCAL MEDIA</label>
-                        <div class="v3-file-upload">
+                        <label for="image_path" class="small text-v2-muted mb-2 d-block">OPTION A: UPLOAD LOCAL MEDIA</label>
+                        <div class="v2-file-upload">
                             <input type="file" id="image_path" name="image_path">
-                            <div class="v3-file-info"><i class="fas fa-upload me-2"></i> Update Media</div>
+                            <div class="v2-file-info"><i class="fas fa-upload me-2"></i> Update Media</div>
                         </div>
                     </div>
 
                     <div class="mb-0">
-                        <label for="image_url" class="small text-v3-muted mb-2 d-block">OPTION B: REMOTE SIGNAL (IMAGE URL)</label>
-                        <input type="url" class="v3-form-control" id="image_url" name="image_url" value="{{ old('image_url', $isUrl ? $heroSlide->image_path : '') }}" placeholder="https://external-host.io/image.png">
+                        <label for="image_url" class="small text-v2-muted mb-2 d-block">OPTION B: REMOTE SIGNAL (IMAGE URL)</label>
+                        <input type="url" class="v2-form-control" id="image_url" name="image_url" value="{{ old('image_url', $isUrl ? $heroSlide->image_path : '') }}" placeholder="https://external-host.io/image.png">
                     </div>
-                    <small class="text-v3-muted mt-2 d-block">System prioritizes Uploaded Media if both are provided.</small>
+                    <small class="text-v2-muted mt-2 d-block">System prioritizes Uploaded Media if both are provided.</small>
                 </div>
             </div>
         </div>
@@ -90,20 +90,22 @@
 </div>
 
 <style>
-    .v3-form-label { display: block; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.1rem; color: var(--v3-text-muted); margin-bottom: 0.75rem; text-transform: uppercase; }
-    .v3-form-control { width: 100%; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--v3-border); border-radius: 12px; padding: 0.75rem 1rem; color: white; font-size: 0.9rem; transition: all 0.3s; }
-    .v3-form-control:focus { outline: none; background: rgba(255, 255, 255, 0.05); border-color: var(--v3-accent); box-shadow: 0 0 15px rgba(99, 102, 241, 0.1); }
-    .v3-form-control::placeholder { color: rgba(255,255,255,0.2); }
+<style>
+    .v2-form-label { display: block; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.1rem; color: var(--v2-text-muted); margin-bottom: 0.75rem; text-transform: uppercase; }
+    .v2-form-control { width: 100%; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--v2-border); border-radius: 12px; padding: 0.75rem 1rem; color: white; font-size: 0.9rem; transition: all 0.3s; }
+    .v2-form-control:focus { outline: none; background: rgba(255, 255, 255, 0.05); border-color: var(--v2-primary); box-shadow: 0 0 15px rgba(240, 82, 35, 0.1); }
+    .v2-form-control::placeholder { color: rgba(255,255,255,0.2); }
 
-    .v3-file-upload { position: relative; height: 45px; background: rgba(255, 255, 255, 0.03); border: 1px dashed var(--v3-border); border-radius: 12px; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
-    .v3-file-upload:hover { border-color: var(--v3-accent); background: rgba(255, 255, 255, 0.05); }
-    .v3-file-upload input { position: absolute; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
-    .v3-file-info { font-size: 0.8rem; color: var(--v3-text-muted); font-weight: 600; }
+    .v2-file-upload { position: relative; height: 45px; background: rgba(255, 255, 255, 0.03); border: 1px dashed var(--v2-border); border-radius: 12px; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
+    .v2-file-upload:hover { border-color: var(--v2-primary); background: rgba(255, 255, 255, 0.05); }
+    .v2-file-upload input { position: absolute; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+    .v2-file-info { font-size: 0.8rem; color: var(--v2-text-muted); font-weight: 600; }
 
-    .asset-preview-v3.banner { width: 100%; height: 180px; border-radius: 12px; border: 1px solid var(--v3-border); overflow: hidden; background: rgba(0,0,0,0.2); }
-    .asset-preview-v3.banner img { width: 100%; height: 100%; object-fit: cover; }
+    .asset-preview-v2.banner { width: 100%; height: 180px; border-radius: 12px; border: 1px solid var(--v2-border); overflow: hidden; background: rgba(0,0,0,0.2); }
+    .asset-preview-v2.banner img { width: 100%; height: 100%; object-fit: cover; }
 
-    .btn-tech-outline { display: inline-flex; padding: 0.6rem 1.2rem; background: transparent; border: 1px solid var(--v3-border); color: var(--v3-text-muted); text-decoration: none; border-radius: 10px; font-weight: 700; font-size: 0.8rem; transition: 0.3s; }
+    .btn-tech-outline { display: inline-flex; padding: 0.6rem 1.2rem; background: transparent; border: 1px solid var(--v2-border); color: var(--v2-text-muted); text-decoration: none; border-radius: 10px; font-weight: 700; font-size: 0.8rem; transition: 0.3s; }
     .btn-tech-outline:hover { border-color: white; color: white; background: rgba(255,255,255,0.05); }
+</style>
 </style>
 @endsection

@@ -11,7 +11,7 @@ $app = require_once __DIR__.'/bootstrap/app.php';
 $kernel = $app->make(Illuminate\Contracts\Console\Kernel::class);
 $kernel->bootstrap();
 
-echo "=== WebBoost Lab - Website Testing ===\n\n";
+echo "=== Innovative It Solutions - Website Testing ===\n\n";
 
 $routes = [
     ['GET', '/', 'Homepage'],

@@ -33,4 +33,15 @@ class InquiryController extends Controller
         $inquiry->update(['status' => 'read']);
         return back()->with('success', 'Marked as read.');
     }
+
+    public function duplicate(ContactSubmission $inquiry)
+    {
+        $newInquiry = $inquiry->replicate();
+        $newInquiry->subject = $inquiry->subject . ' (Copy)';
+        $newInquiry->status = 'new';
+        $newInquiry->created_at = now();
+        $newInquiry->save();
+
+        return redirect()->route('admin.inquiries.index')->with('success', 'Inquiry packets cloned successfully.');
+    }
 }

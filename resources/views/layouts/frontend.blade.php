@@ -8,7 +8,7 @@
 
     @php
         use App\Models\SiteSetting;
-        $page_title = $page_title ?? SiteSetting::getValue('site_title', 'Webboomers');
+        $page_title = $page_title ?? SiteSetting::getValue('site_title', 'Innovative It Solutions');
         $page_description = $page_description ?? SiteSetting::getValue('site_description', 'Professional Web Development Agency');
         $page_keywords = $page_keywords ?? SiteSetting::getValue('site_keywords', 'web design, web development');
         $favicon = SiteSetting::getValue('site_favicon');
@@ -56,7 +56,6 @@
     
     <!-- Local Assets -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}?v=1.5">
-    <link rel="stylesheet" href="{{ asset('assets/css/clean-cards-fix.css') }}?v=1.0">
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}?v=2.0">
 
     @php
@@ -90,278 +89,107 @@
 
     <style>
         :root {
-            --primary: {{ $primary }};
-            --primary-dark: {{ $primary }}cc;
-            --primary-light: {{ $primary }}1a;
-            --secondary: {{ $secondary }};
-            --accent: {{ $accent }};
-            --orange: {{ $accent }};
-            --text-main: {{ $text_main }};
-            --text-muted: {{ $text_muted }};
+            /* Website V2: Modern Design System Tokens */
+            --navy: #0d0b28;
+            --navy-dark: #070719;
+            --navy-light: #161642;
+            --card-bg: rgba(20, 20, 58, 0.6);
+            --border: rgba(255, 255, 255, 0.1);
+            --border-glow: rgba(240, 82, 35, 0.2);
 
-            /* Fonts */
-            --body-font: {!! $body_font !!};
-            --heading-font: {!! $heading_font !!};
+            --primary: #f05223; /* Logo Vibrant Orange */
+            --primary-glow: rgba(240, 82, 35, 0.4);
+            --primary-dark: #cc3f1a;
+            --primary-light: rgba(240, 82, 35, 0.1);
+            
+            --secondary: #3b82f6; /* Logo Blue Accent */
+            --accent: #ff8c42;
+            
+            --text-main: #f0eeff;
+            --text-muted: #94a3b8;
+            --white: #ffffff;
+
+            /* Elevation & Blur */
+            --glass-blur: 16px;
+            --glass-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            --inner-glow: inset 0 0 20px rgba(255, 255, 255, 0.05);
 
             /* Gradients */
-            --gradient-primary: linear-gradient(135deg, {{ $primary }} 0%, {{ $secondary }} 100%);
-            --gradient-hero: radial-gradient(circle at 0% 0%, {{ $primary }} 0%, {{ $secondary }} 100%);
+            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, #ff7b54 100%);
+            --gradient-heading: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+            --v2-mesh: radial-gradient(circle at 10% 10%, rgba(240, 82, 35, 0.1) 0%, transparent 40%),
+                       radial-gradient(circle at 90% 90%, rgba(59, 130, 246, 0.08) 0%, transparent 40%);
 
-            /* Button Overrides */
-            --btn-bg: {{ $btn_bg }};
-            --btn-text: {{ $btn_text }};
-            --btn-hover: {{ $btn_hover }};
+            /* Spacing */
+            --section-padding: 140px;
+            --transition-theme: background 0.5s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
 
-            /* Logo dimensions */
-            --logo-width: {{ $logo_width }}px;
-            --logo-height: {{ $logo_height }}px;
-
-            /* Section Colors */
-            --banner-bg: {{ $banner_bg }};
-            --team-bg: {{ $team_bg }};
-            --service-bg: {{ $service_bg }};
-            --footer-bg: {{ $footer_bg }};
-            --gradient-heading: linear-gradient(135deg, {{ $grad_start }} 0%, {{ $grad_end }} 100%);
+        /* ── Premium Light Mode (Specific Fixes Only) ── */
+        body.light-mode {
+            --navy-dark: #f8fafc;
+            --navy: #ffffff;
+            --navy-light: #f1f5f9;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --border: rgba(0, 0, 0, 0.05);
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --white: #0f172a;
+            --v2-mesh: radial-gradient(circle at 10% 10%, rgba(240, 82, 35, 0.05) 0%, transparent 40%),
+                       radial-gradient(circle at 90% 90%, rgba(59, 130, 246, 0.05) 0%, transparent 40%);
         }
 
         body {
-            font-family: var(--body-font) !important;
+            font-family: 'Inter', sans-serif !important;
+            background-color: var(--navy-dark) !important;
+            color: var(--text-main) !important;
+            background-image: var(--v2-mesh) !important;
+            background-attachment: fixed;
+            min-height: 100vh;
+            overflow-x: hidden;
+            transition: var(--transition-theme);
         }
 
         h1, h2, h3, h4, h5, h6 {
-            font-family: var(--heading-font) !important;
-        }
-        
-        /* ... existing styles ... */
-        .btn-purple-gradient, .btn-primary, .btn-pill-primary, .btn-quote {
-            background: var(--btn-bg) !important;
-            color: var(--btn-text) !important;
-            border: none !important;
-            transition: all 0.3s ease !important;
-        }
-        
-        .btn-purple-gradient:hover, .btn-primary:hover, .btn-pill-primary:hover, .btn-quote:hover {
-            background: var(--btn-hover) !important;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            font-family: 'Outfit', sans-serif !important;
+            font-weight: 800 !important;
+            color: var(--white) !important;
+            transition: var(--transition-theme);
         }
 
-        .text-gradient-purple, .text-gradient-primary, .text-gradient {
-            background: var(--gradient-heading) !important;
-            -webkit-background-clip: text !important;
-            background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
+        /* ── Light Mode Toggle Switch ── */
+        .theme-switch-wrap {
+            position: fixed; bottom: 30px; left: 30px; z-index: 9999;
+            width: 50px; height: 50px; border-radius: 15px;
+            background: var(--navy-light); border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; color: var(--primary); font-size: 1.2rem;
+            box-shadow: var(--glass-shadow); transition: 0.3s;
         }
+        .theme-switch-wrap:hover { transform: scale(1.1) rotate(15deg); background: var(--primary); color: #fff; }
+        .theme-switch-wrap i { transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        body.light-mode .theme-switch-wrap .fa-moon { display: none; }
+        body:not(.light-mode) .theme-switch-wrap .fa-sun { display: none; }
 
-        .team-section-light {
-            background-color: var(--team-bg) !important;
-            @if ($team_style === 'glass')
-                background: rgba(255, 255, 255, 0.05) !important;
-                backdrop-filter: blur(10px);
-                border-top: 1px solid rgba(255, 255, 255, 0.1);
-            @elseif ($team_style === 'modern')
-                background-color: #10101f !important;
-            @elseif ($team_style === 'gradient')
-                background: linear-gradient(135deg, {{ $grad_start }}0a 0%, {{ $grad_end }}0a 100%) !important;
-            @endif
-        }
 
-        .hero-section, .banner-section {
-            background-color: var(--banner-bg) !important;
-        }
-
-        .navbar-brand img, .logo img, .footer-img-logo {
-            max-width: var(--logo-width) !important;
-            max-height: var(--logo-height) !important;
-        }
-        
-        .footer-premium {
-            background-color: var(--footer-bg) !important;
-        }
-
-        #services {
-            background-color: var(--service-bg) !important;
-        }
 
         {!! $custom_css !!}
     </style>
+    @stack('styles')
 </head>
 <body>
+    <x-header />
 
-    <!-- Top Bar -->
-    <div class="top-bar d-none d-lg-block">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-8">
-                    <div class="top-info">
-                        @php
-                            $email = SiteSetting::getValue('contact_email', 'hello@webboomers.tech');
-                            $phone = SiteSetting::getValue('contact_phone', '+880 1736 111122');
-                        @endphp
-                        <a href="mailto:{{ $email }}"><i class="fas fa-envelope"></i> {{ $email }}</a>
-                        <a href="tel:{{ $phone }}"><i class="fas fa-phone-alt"></i> {{ $phone }}</a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="top-social-quote d-flex align-items-center justify-content-end">
-                        <div class="top-social me-4">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                        <a href="{{ route('contact') }}" class="btn-quote">Get A Free Quote</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="theme-switch-wrap" id="themeToggle" title="Toggle Theme">
+        <i class="fas fa-sun"></i>
+        <i class="fas fa-moon"></i>
     </div>
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
-                @php
-                    $logo = SiteSetting::getValue('site_logo');
-                    $site_name = SiteSetting::getValue('site_name', 'Webboomers');
-                @endphp
-
-                @if (!empty($logo))
-                    <div class="brand-logo me-2">
-                        <img src="{{ asset('uploads/settings/' . $logo) }}"
-                            alt="{{ $site_name }}"
-                            class="img-fluid"
-                            onerror="this.style.display='none'">
-                    </div>
-                @endif
-
-                <div class="brand-text">
-                    <span class="text-dark fw-bold fs-4 tracking-tight">{{ $site_name }}</span>
-                </div>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}" href="{{ route('about') }}">About Us</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle {{ request()->routeIs('services') ? 'active' : '' }}" href="{{ route('services') }}" id="servicesDropdown" role="button" data-bs-toggle="dropdown">
-                            Services +
-                        </a>
-                        <ul class="dropdown-menu border-0 shadow-sm">
-                            <li><a class="dropdown-item" href="{{ route('services') }}">All Services</a></li>
-                            @foreach(\App\Models\Service::where('status', 'active')->take(5)->get() as $navService)
-                                <li><a class="dropdown-item" href="{{ route('services') }}#service-{{ $navService->id }}">{{ $navService->title }}</a></li>
-                            @endforeach
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('team') ? 'active' : '' }}" href="{{ route('team') }}">Our Team</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('blog.*') ? 'active' : '' }}" href="{{ route('blog.index') }}">Blog</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle {{ request()->routeIs('portfolio.*') ? 'active' : '' }}" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown">
-                            Portfolio +
-                        </a>
-                        <ul class="dropdown-menu border-0 shadow-sm">
-                            <li><a class="dropdown-item" href="{{ route('portfolio.index') }}">Elite Portfolio</a></li>
-                            @auth
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="{{ route('profile.edit') }}">My Profile</a></li>
-                            @endauth
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}" href="{{ route('contact') }}">Contact Us</a>
-                    </li>
-                    @auth
-                        <li class="nav-item ms-lg-3">
-                            <a href="{{ route('dashboard') }}" class="btn btn-sm btn-primary rounded-pill px-3">Dashboard</a>
-                        </li>
-                    @else
-                        <li class="nav-item ms-lg-3">
-                            <a href="{{ route('login') }}" class="nav-link">Login</a>
-                        </li>
-                    @endauth
-                </ul>
-            </div>
-        </div>
-    </nav>
 
     <div class="main-content">
         @yield('content')
     </div>
 
-    <!-- Footer -->
-    <footer class="footer-premium">
-        <div class="container">
-            <div class="row g-5">
-                <div class="col-lg-3">
-                    <a href="{{ url('/') }}" class="d-block mb-4">
-                        @php
-                            $footer_logo = SiteSetting::getValue('footer_logo');
-                            $display_logo = !empty($footer_logo) ? $footer_logo : $logo;
-                        @endphp
-                        @if (!empty($display_logo))
-                            <div class="footer-logo mb-3">
-                                <img src="{{ asset('uploads/settings/' . $display_logo) }}"
-                                    alt="{{ $site_name }}"
-                                    class="footer-img-logo"
-                                    onerror="this.style.display='none'">
-                            </div>
-                        @endif
-                        <h3 class="text-white fw-bold m-0">{{ $site_name }}</h3>
-                    </a>
-                    <p class="mb-4">Elevating brands through high-impact design and innovative technology.</p>
-                    <div class="d-flex gap-3">
-                        <a href="{{ SiteSetting::getValue('facebook_url', '#') }}" class="footer-social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="{{ SiteSetting::getValue('twitter_url', '#') }}" class="footer-social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="{{ SiteSetting::getValue('linkedin_url', '#') }}" class="footer-social-link"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <h5 class="footer-title">Agency</h5>
-                    <ul class="list-unstyled footer-links">
-                        <li><a href="{{ url('/#portfolio') }}">Projects</a></li>
-                        <li><a href="{{ url('/#services') }}">Services</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="{{ route('team') }}">Team</a></li>
-                        <li><a href="{{ route('contact') }}">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-3">
-                    <h5 class="footer-title">Support</h5>
-                    <ul class="list-unstyled footer-links">
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Use</a></li>
-                        <li><a href="#">Help Center</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-3">
-                    <h5 class="footer-title">Contact Us</h5>
-                    <div class="footer-contact-item mb-3">
-                        <a href="mailto:{{ $email }}" class="text-white-50 small d-block mb-1">Email</a>
-                        <a href="mailto:{{ $email }}" class="fw-bold">{{ $email }}</a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <div class="row align-items-center">
-                    <div class="col-md-6 text-center text-md-start">
-                        &copy; {{ date('Y') }} {{ $site_name }}. All rights reserved.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <x-footer />
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -374,6 +202,37 @@
         AOS.init({
             duration: 800,
             once: true
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Theme Toggle Persistence
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        // Check for saved theme
+        if (localStorage.getItem('theme') === 'light') {
+            body.classList.add('light-mode');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            const isLight = body.classList.contains('light-mode');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            
+            // Animation Feedback
+            themeToggle.querySelector('i:visible')?.classList.add('fa-spin');
+            setTimeout(() => {
+                themeToggle.querySelector('i')?.classList.remove('fa-spin');
+            }, 500);
         });
     </script>
     @stack('scripts')

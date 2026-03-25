@@ -98,4 +98,15 @@ class HeroSlideController extends Controller
         $heroSlide->delete();
         return redirect()->route('admin.hero-slides.index')->with('success', 'Slide deleted successfully.');
     }
+
+    public function duplicate(HeroSlide $heroSlide)
+    {
+        $newSlide = $heroSlide->replicate();
+        $newSlide->title = $heroSlide->title . ' (Copy)';
+        $newSlide->display_order = HeroSlide::max('display_order') + 1;
+        $newSlide->created_at = now();
+        $newSlide->save();
+
+        return redirect()->route('admin.hero-slides.index')->with('success', 'Banner signal duplicated successfully.');
+    }
 }

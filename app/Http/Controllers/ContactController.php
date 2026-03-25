@@ -10,8 +10,8 @@ class ContactController extends Controller
 {
     public function index()
     {
-        $pageTitle = 'Contact Us - WebBoost Lab';
-        $contactEmail = SiteSetting::where('setting_key', 'contact_email')->value('setting_value') ?? 'info@webboost.com';
+        $pageTitle = 'Contact Us - ' . SiteSetting::getValue('site_title', 'Innovative IT Solutions');
+        $contactEmail = SiteSetting::where('setting_key', 'contact_email')->value('setting_value') ?? 'hello@innovativeitsolutions.com';
         $contactPhone = SiteSetting::where('setting_key', 'contact_phone')->value('setting_value') ?? '+1 (555) 123-4567';
         $contactAddress = SiteSetting::where('setting_key', 'contact_address')->value('setting_value') ?? '123 Web St, Tech City';
 

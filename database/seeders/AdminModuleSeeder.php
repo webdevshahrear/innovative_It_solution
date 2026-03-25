@@ -11,69 +11,92 @@ class AdminModuleSeeder extends Seeder
 {
     public function run(): void
     {
-        // Contact Submissions
-        ContactSubmission::updateOrCreate(
-            ['email' => 'john@example.com', 'subject' => 'Website Redesign Inquiry'],
+        // Contact Submissions (Inquiries)
+        $inquiries = [
             [
-                'name' => 'John Doe',
-                'message' => 'I would like to inquire about redesigning my business website.',
+                'name' => 'Dr. Aris Thorne',
+                'email' => 'thorne@cyberia.io',
+                'subject' => 'Quantum Encryption Protocol Inquiry',
+                'message' => 'Seeking detailed specifications on your latest secure communication uplinks for deep-space telemetry.',
                 'status' => 'new'
-            ]
-        );
-
-        ContactSubmission::updateOrCreate(
-            ['email' => 'jane@example.com', 'subject' => 'SEO Services'],
+            ],
             [
-                'name' => 'Jane Smith',
-                'message' => 'Do you provide monthly SEO maintenance?',
+                'name' => 'Sarah Jenkins',
+                'email' => 'sarah.j@techflow.net',
+                'subject' => 'V3 System Integration',
+                'message' => 'We are interested in integrating your new V3 design language into our modular dashboard system.',
+                'status' => 'new'
+            ],
+            [
+                'name' => 'Marco Valti',
+                'email' => 'm.valti@nexus.it',
+                'subject' => 'Partnership Uplink',
+                'message' => 'The Nexus group is looking for strategic partners in the agile development sector. Your portfolio is impressive.',
                 'status' => 'read'
-            ]
-        );
+            ],
+            [
+                'name' => 'Elena Rossi',
+                'email' => 'elena@vivid-designs.com',
+                'subject' => 'Bento Grid Implementation',
+                'message' => 'How do you handle the responsive collapse of your bento grid layouts? I\'d love to compare notes.',
+                'status' => 'read'
+            ],
+        ];
+
+        foreach ($inquiries as $inquiry) {
+            ContactSubmission::updateOrCreate(
+                ['email' => $inquiry['email'], 'subject' => $inquiry['subject']],
+                $inquiry
+            );
+        }
 
         // Subscribers
-        Subscriber::updateOrCreate(['email' => 'user1@example.com'], ['status' => 'active']);
-        Subscriber::updateOrCreate(['email' => 'user2@example.com'], ['status' => 'active']);
+        $emails = [
+            'tech-enthusiast@gmail.com',
+            'dev-ops-guru@cloud.com',
+            'ux-master@framer.io',
+            'startup-founder@horizon.vc',
+            'ai-researcher@deepmind.ai'
+        ];
+
+        foreach ($emails as $email) {
+            Subscriber::updateOrCreate(['email' => $email], ['status' => 'active']);
+        }
 
         // Statistics
-        Statistic::updateOrCreate(
-            ['stat_key' => 'happy_clients'],
+        $metrics = [
             [
-                'stat_label' => 'Happy Clients',
-                'stat_value' => '500+',
-                'icon_class' => 'fas fa-smile',
-                'status' => 'active',
+                'stat_key' => 'global_users',
+                'stat_label' => 'Global Operatives',
+                'stat_value' => '25k+',
+                'icon_class' => 'fas fa-globe-americas',
                 'display_order' => 1
-            ]
-        );
-        Statistic::updateOrCreate(
-            ['stat_key' => 'projects_completed'],
+            ],
             [
-                'stat_label' => 'Projects Completed',
-                'stat_value' => '1.2k',
-                'icon_class' => 'fas fa-check-circle',
-                'status' => 'active',
+                'stat_key' => 'uplinks_established',
+                'stat_label' => 'Uplinks Established',
+                'stat_value' => '1.2M',
+                'icon_class' => 'fas fa-satellite-dish',
                 'display_order' => 2
-            ]
-        );
-        Statistic::updateOrCreate(
-            ['stat_key' => 'coffee_cups'],
+            ],
             [
-                'stat_label' => 'Coffee Cups',
-                'stat_value' => '5k+',
-                'icon_class' => 'fas fa-coffee',
-                'status' => 'active',
+                'stat_key' => 'data_processed',
+                'stat_label' => 'Data Processed',
+                'stat_value' => '8.4 PB',
+                'icon_class' => 'fas fa-microchip',
                 'display_order' => 3
-            ]
-        );
-        Statistic::updateOrCreate(
-            ['stat_key' => 'years_experience'],
+            ],
             [
-                'stat_label' => 'Years Experience',
-                'stat_value' => '10+',
-                'icon_class' => 'fas fa-calendar',
-                'status' => 'active',
+                'stat_key' => 'uptime_status',
+                'stat_label' => 'System Uptime',
+                'stat_value' => '99.99%',
+                'icon_class' => 'fas fa-server',
                 'display_order' => 4
-            ]
-        );
+            ],
+        ];
+
+        foreach ($metrics as $metric) {
+            Statistic::updateOrCreate(['stat_key' => $metric['stat_key']], $metric);
+        }
     }
 }

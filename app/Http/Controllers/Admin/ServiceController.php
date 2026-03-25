@@ -70,4 +70,16 @@ class ServiceController extends Controller
         $service->delete();
         return redirect()->route('admin.services.index')->with('success', 'Service deleted successfully.');
     }
+
+    public function duplicate(Service $service)
+    {
+        $newService = $service->replicate();
+        $newService->title = $service->title . ' (Copy)';
+        $newService->slug = Str::slug($newService->title);
+        $newService->display_order = Service::max('display_order') + 1;
+        $newService->created_at = now();
+        $newService->save();
+
+        return redirect()->route('admin.services.index')->with('success', 'Service node cloned successfully.');
+    }
 }

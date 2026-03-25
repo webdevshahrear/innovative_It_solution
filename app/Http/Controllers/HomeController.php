@@ -38,10 +38,13 @@ class HomeController extends Controller
         $heroTitle = SiteSetting::where('setting_key', 'hero_title')->value('setting_value');
         $heroSubtitle = SiteSetting::where('setting_key', 'hero_subtitle')->value('setting_value');
 
+        $contactEmail = SiteSetting::where('setting_key', 'contact_email')->value('setting_value') ?? 'hello@innovativeitsolutions.com';
+        $contactPhone = SiteSetting::where('setting_key', 'contact_phone')->value('setting_value') ?? '+880 1XXX-XXXXXX';
+
         return \view('home.index', compact(
             'pageTitle', 'heroSlides', 'heroMode',
             'services', 'projects', 'portfolioStyle', 'testimonials', 'stats', 'teamMembers', 
-            'posts', 'mission', 'vision', 'heroTitle', 'heroSubtitle'
+            'posts', 'mission', 'vision', 'heroTitle', 'heroSubtitle', 'contactEmail', 'contactPhone'
         ));
     }
 }

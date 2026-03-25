@@ -30,9 +30,12 @@ class ProjectController extends Controller
             'client_name' => 'nullable|string|max:255',
             'project_url' => 'nullable|url|max:255',
             'desktop_image' => 'nullable|image|max:2048',
+            'desktop_image_url' => 'nullable|url|max:2048',
             'description' => 'nullable|string',
+            'tags' => 'nullable|string|max:255',
             'status' => 'required|in:active,inactive',
             'mobile_image' => 'nullable|image|max:2048',
+            'mobile_image_url' => 'nullable|url|max:2048',
             'featured' => 'boolean',
             'display_order' => 'integer',
             'categories' => 'array'
@@ -43,11 +46,15 @@ class ProjectController extends Controller
         if ($request->hasFile('desktop_image')) {
             $path = $request->file('desktop_image')->store('projects', 'public');
             $validated['desktop_image'] = basename($path);
+        } elseif ($request->filled('desktop_image_url')) {
+            $validated['desktop_image'] = $request->desktop_image_url;
         }
 
         if ($request->hasFile('mobile_image')) {
             $path = $request->file('mobile_image')->store('projects', 'public');
             $validated['mobile_image'] = basename($path);
+        } elseif ($request->filled('mobile_image_url')) {
+            $validated['mobile_image'] = $request->mobile_image_url;
         }
 
         $project = Project::create($validated);
@@ -73,9 +80,12 @@ class ProjectController extends Controller
             'client_name' => 'nullable|string|max:255',
             'project_url' => 'nullable|url|max:255',
             'desktop_image' => 'nullable|image|max:2048',
+            'desktop_image_url' => 'nullable|url|max:2048',
             'description' => 'nullable|string',
+            'tags' => 'nullable|string|max:255',
             'status' => 'required|in:active,inactive',
             'mobile_image' => 'nullable|image|max:2048',
+            'mobile_image_url' => 'nullable|url|max:2048',
             'featured' => 'boolean',
             'display_order' => 'integer',
             'categories' => 'array'
@@ -86,22 +96,29 @@ class ProjectController extends Controller
         }
 
         if ($request->hasFile('desktop_image')) {
-            // Delete old image if exists
             if ($project->desktop_image && Storage::disk('public')->exists('projects/' . $project->desktop_image)) {
                 Storage::disk('public')->delete('projects/' . $project->desktop_image);
             }
-            
             $path = $request->file('desktop_image')->store('projects', 'public');
             $validated['desktop_image'] = basename($path);
+        } elseif ($request->filled('desktop_image_url')) {
+            if ($project->desktop_image && Storage::disk('public')->exists('projects/' . $project->desktop_image)) {
+                Storage::disk('public')->delete('projects/' . $project->desktop_image);
+            }
+            $validated['desktop_image'] = $request->desktop_image_url;
         }
 
         if ($request->hasFile('mobile_image')) {
-            // Delete old image if exists
             if ($project->mobile_image && Storage::disk('public')->exists('projects/' . $project->mobile_image)) {
                 Storage::disk('public')->delete('projects/' . $project->mobile_image);
             }
             $path = $request->file('mobile_image')->store('projects', 'public');
             $validated['mobile_image'] = basename($path);
+        } elseif ($request->filled('mobile_image_url')) {
+            if ($project->mobile_image && Storage::disk('public')->exists('projects/' . $project->mobile_image)) {
+                Storage::disk('public')->delete('projects/' . $project->mobile_image);
+            }
+            $validated['mobile_image'] = $request->mobile_image_url;
         }
 
         $project->update($validated);
@@ -121,5 +138,20 @@ class ProjectController extends Controller
         
         $project->delete();
         return redirect()->route('admin.projects.index')->with('success', 'Project deleted successfully.');
+    }
+
+    public function duplicate(Project $project)
+    {
+        $newProject = $project->replicate();
+        $newProject->title = $project->title . ' (Copy)';
+        $newProject->slug = Str::slug($newProject->title);
+        $newProject->display_order = Project::max('display_order') + 1;
+        $newProject->created_at = now();
+        $newProject->save();
+
+        // Duplicate categories
+        $newProject->categories()->sync($project->categories->pluck('id'));
+
+        return redirect()->route('admin.projects.index')->with('success', 'Project instance replicated successfully.');
     }
 }

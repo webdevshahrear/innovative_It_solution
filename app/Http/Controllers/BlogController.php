@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\BlogPost;
+use App\Models\SiteSetting;
 
 class BlogController extends Controller
 {
     public function index(Request $request)
     {
-        $pageTitle = 'Blog - WebBoost Lab';
+        $pageTitle = 'Blog - ' . SiteSetting::getValue('site_title', 'Innovative IT Solutions');
         $query = BlogPost::where('status', 'published')->orderBy('created_at', 'desc');
 
         // TODO: Add category column to blog_posts table
@@ -33,7 +34,7 @@ class BlogController extends Controller
     public function show($slug)
     {
         $post = BlogPost::where('slug', $slug)->where('status', 'published')->firstOrFail();
-        $pageTitle = $post->title . ' - WebBoost Lab Blog';
+        $pageTitle = $post->title . ' - ' . SiteSetting::getValue('site_title', 'Innovative IT Solutions');
         $recentPosts = BlogPost::where('status', 'published')
             ->where('id', '!=', $post->id)
             ->orderBy('created_at', 'desc')

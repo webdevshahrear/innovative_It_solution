@@ -16,7 +16,7 @@ class ContentSeeder extends Seeder
         // 1. Site Settings
         $settings = [
             // General
-            ['setting_key' => 'site_title', 'setting_value' => 'WebBoost Lab', 'group' => 'general'],
+            ['setting_key' => 'site_title', 'setting_value' => 'Innovative It Solutions', 'group' => 'general'],
             ['setting_key' => 'site_description', 'setting_value' => 'Premium Web Development Agency', 'group' => 'general'],
             ['setting_key' => 'site_logo', 'setting_value' => 'logo.png', 'group' => 'general'],
             ['setting_key' => 'company_mission', 'setting_value' => 'To empower businesses with cutting-edge digital solutions.', 'group' => 'general'],
@@ -28,7 +28,7 @@ class ContentSeeder extends Seeder
             ['setting_key' => 'hero_subtitle', 'setting_value' => 'We build scalable, high-performance web applications.', 'group' => 'hero'],
 
             // Contact
-            ['setting_key' => 'contact_email', 'setting_value' => 'hello@webboostlab.com', 'group' => 'contact'],
+            ['setting_key' => 'contact_email', 'setting_value' => 'hello@innovativeitsolutions.com', 'group' => 'contact'],
             ['setting_key' => 'contact_phone', 'setting_value' => '+1 (555) 123-4567', 'group' => 'contact'],
 
             // Colors (Defaults)
@@ -48,10 +48,10 @@ class ContentSeeder extends Seeder
         DB::table('hero_slides')->truncate();
         DB::table('hero_slides')->insert([
             [
-                'title' => 'Next-Gen Web Solutions',
-                'subtitle' => 'Elevate your business with our premium web development services.',
-                'image_path' => 'hero1.jpg',
-                'button_text' => 'Get Started',
+                'title' => 'Quantum Architecture',
+                'subtitle' => 'Building the foundational layers of the modular digital future.',
+                'image_path' => 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop',
+                'button_text' => 'Initiate Uplink',
                 'button_link' => '/contact',
                 'display_order' => 1,
                 'status' => 'active',
@@ -59,10 +59,10 @@ class ContentSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
-                'title' => 'Digital Marketing Mastery',
-                'subtitle' => 'Drive traffic and convert leads with our expert marketing strategies.',
-                'image_path' => 'hero2.jpg',
-                'button_text' => 'Learn More',
+                'title' => 'Nexus Node Integration',
+                'subtitle' => 'Seamless data synchronization across global operative networks.',
+                'image_path' => 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop',
+                'button_text' => 'Decode Protocols',
                 'button_link' => '/services',
                 'display_order' => 2,
                 'status' => 'active',
@@ -75,30 +75,30 @@ class ContentSeeder extends Seeder
         DB::table('services')->truncate();
         DB::table('services')->insert([
             [
-                'title' => 'Web Development',
-                'slug' => 'web-development',
-                'short_description' => 'Custom websites built with modern technologies like Laravel and React.',
-                'icon_class' => 'fas fa-code',
+                'title' => 'Cyber-Core Engineering',
+                'slug' => 'cyber-core-engineering',
+                'short_description' => 'Architecting resilient backend matrices for mission-critical operations.',
+                'icon_class' => 'fas fa-shield-halved',
                 'display_order' => 1,
                 'status' => 'active',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
-                'title' => 'UI/UX Design',
-                'slug' => 'ui-ux-design',
-                'short_description' => 'User-centric designs that provide exceptional digital experiences.',
-                'icon_class' => 'fas fa-paint-brush',
+                'title' => 'Neural interface Design',
+                'slug' => 'neural-interface-design',
+                'short_description' => 'Synthesizing organic UX with high-frequency digital interactions.',
+                'icon_class' => 'fas fa-brain',
                 'display_order' => 2,
                 'status' => 'active',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
-                'title' => 'SEO Optimization',
-                'slug' => 'seo-optimization',
-                'short_description' => 'Improve your search engine rankings and drive organic traffic.',
-                'icon_class' => 'fas fa-search',
+                'title' => 'Signal Optimization',
+                'slug' => 'signal-optimization',
+                'short_description' => 'Maximizing telemetry throughput and reducing architectural latency.',
+                'icon_class' => 'fas fa-tower-broadcast',
                 'display_order' => 3,
                 'status' => 'active',
                 'created_at' => Carbon::now(),
@@ -110,10 +110,10 @@ class ContentSeeder extends Seeder
         DB::table('testimonials')->truncate();
         DB::table('testimonials')->insert([
             [
-                'client_name' => 'John Doe',
-                'client_position' => 'CEO, TechCorp',
-                'client_image' => 'client1.jpg',
-                'content' => 'WebBoost Lab transformed our online presence. Highly recommended!',
+                'client_name' => 'Commander Vector',
+                'client_position' => 'Ops Director, Aegis Labs',
+                'client_image' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop',
+                'content' => 'The system throughput has increased by 400% since the V3 deployment. Absolute technical brilliance.',
                 'rating' => 5,
                 'display_order' => 1,
                 'status' => 'active',
@@ -121,10 +121,10 @@ class ContentSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
-                'client_name' => 'Jane Smith',
-                'client_position' => 'Marketing Director, CreativeStudio',
-                'client_image' => 'client2.jpg',
-                'content' => 'Professional, creative, and timely. A pleasure to work with.',
+                'client_name' => 'Agent K-7',
+                'client_position' => 'Strategic Analyst',
+                'client_image' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop',
+                'content' => 'Their neural-interface designs are indistinguishable from organic flow. The future of interaction is here.',
                 'rating' => 5,
                 'display_order' => 2,
                 'status' => 'active',
@@ -137,18 +137,18 @@ class ContentSeeder extends Seeder
         DB::table('team_members')->truncate();
         DB::table('team_members')->insert([
             [
-                'name' => 'Michael Scott',
-                'position' => 'Regional Manager',
-                'image' => 'team1.jpg',
+                'name' => 'Elias Thorne',
+                'position' => 'Chief Architect',
+                'image' => 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=1974&auto=format&fit=crop',
                 'display_order' => 1,
                 'status' => 'active',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
-                'name' => 'Dwight Schrute',
-                'position' => 'Assistant to the Regional Manager',
-                'image' => 'team2.jpg',
+                'name' => 'Anya Vostova',
+                'position' => 'Neural Interface Lead',
+                'image' => 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop',
                 'display_order' => 2,
                 'status' => 'active',
                 'created_at' => Carbon::now(),
@@ -156,31 +156,29 @@ class ContentSeeder extends Seeder
             ],
         ]);
 
-        // 6. Statistics
+        // 6. Statistics (Redundant, handled by AdminModuleSeeder or kept for legacy)
         DB::table('statistics')->truncate();
         DB::table('statistics')->insert([
-            ['stat_key' => 'projects_completed', 'stat_label' => 'Projects Completed', 'stat_value' => '500+', 'icon_class' => 'fas fa-project-diagram', 'display_order' => 1, 'status' => 'active', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-            ['stat_key' => 'happy_clients', 'stat_label' => 'Happy Clients', 'stat_value' => '300+', 'icon_class' => 'fas fa-smile', 'display_order' => 2, 'status' => 'active', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-            ['stat_key' => 'awards_won', 'stat_label' => 'Awards Won', 'stat_value' => '25', 'icon_class' => 'fas fa-trophy', 'display_order' => 3, 'status' => 'active', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-            ['stat_key' => 'years_experience', 'stat_label' => 'Years Experience', 'stat_value' => '10+', 'icon_class' => 'fas fa-calendar-alt', 'display_order' => 4, 'status' => 'active', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['stat_key' => 'uplinks_active', 'stat_label' => 'Uplinks Active', 'stat_value' => '99.9%', 'icon_class' => 'fas fa-wifi', 'display_order' => 1, 'status' => 'active', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['stat_key' => 'encrypted_bytes', 'stat_label' => 'Encrypted Bytes', 'stat_value' => '12.4 ZB', 'icon_class' => 'fas fa-lock', 'display_order' => 2, 'status' => 'active', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
         ]);
         
         // 7. Projects (Dummy)
         DB::table('projects')->truncate();
         DB::table('projects')->insert([
             [
-                'title' => 'E-Commerce Platform',
-                'slug' => 'e-commerce-platform',
-                'desktop_image' => 'project1.jpg',
+                'title' => 'Project: Obsidian Core',
+                'slug' => 'project-obsidian-core',
+                'desktop_image' => 'https://images.unsplash.com/photo-1558494949-ef010cbdcc48?q=80&w=2070&auto=format&fit=crop',
                 'featured' => 1,
                 'status' => 'active',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
-                'title' => 'Corporate Portfolio',
-                'slug' => 'corporate-portfolio',
-                'desktop_image' => 'project2.jpg',
+                'title' => 'Holographic Matrix Hub',
+                'slug' => 'holographic-matrix-hub',
+                'desktop_image' => 'https://images.unsplash.com/photo-1544256718-3bcf237f3974?q=80&w=2071&auto=format&fit=crop',
                 'featured' => 1,
                 'status' => 'active',
                 'created_at' => Carbon::now(),
@@ -188,25 +186,25 @@ class ContentSeeder extends Seeder
             ]
         ]);
 
-         // 8. Blog Posts (Dummy)
+        // 8. Blog Posts (Dummy)
         DB::table('blog_posts')->truncate();
         DB::table('blog_posts')->insert([
              [
-                'title' => 'The Future of Web Design',
-                'slug' => 'future-of-web-design',
-                'excerpt' => 'Discover the trends shaping the digital landscape in 2026.',
-                'content' => 'Full content here...',
-                'featured_image' => 'blog1.jpg',
+                'title' => 'The Singularity of UI',
+                'slug' => 'singularity-of-ui',
+                'excerpt' => 'When interfaces become extensions of cognitive function.',
+                'content' => 'Full analysis on the convergence of digital and biological interfaces.',
+                'featured_image' => 'https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1470&auto=format&fit=crop',
                 'status' => 'published',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
-                'title' => 'Optimizing Laravel Performance',
-                'slug' => 'optimizing-laravel-performance',
-                'excerpt' => 'Tips and tricks to make your Laravel application fly.',
-                'content' => 'Full content here...',
-                'featured_image' => 'blog2.jpg',
+                'title' => 'Decrypting Zero-Knowledge Proofs',
+                'slug' => 'decrypting-zero-knowledge-proofs',
+                'excerpt' => 'The next frontier of decentralized cryptographic validation.',
+                'content' => 'Deep dive into ZK-Snarks and their role in the V3 privacy layer.',
+                'featured_image' => 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=1470&auto=format&fit=crop',
                 'status' => 'published',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),

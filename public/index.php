@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 
 define('LARAVEL_START', microtime(true));
+file_put_contents(__DIR__.'/../storage/logs/trace.log', date('Y-m-d H:i:s')." Index started\n", FILE_APPEND);
 
 // Determine if the application is in maintenance mode...
 if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php')) {

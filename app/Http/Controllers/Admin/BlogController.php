@@ -26,20 +26,20 @@ class BlogController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'category' => 'required|string|max:255',
-            'image' => 'nullable|image|max:2048',
+            'excerpt' => 'nullable|string|max:255',
+            'featured_image' => 'nullable|image|max:2048',
             'content' => 'required|string',
             'status' => 'required|in:published,draft',
-            'is_featured' => 'boolean',
+            'author' => 'nullable|string|max:255',
+            'published_at' => 'nullable|date',
         ]);
 
         $validated['slug'] = Str::slug($validated['title']);
-        $validated['author_id'] = Auth::id() ?? 1; // Default to admin if auth fails
-        $validated['is_featured'] = $request->has('is_featured');
+        $validated['author'] = $validated['author'] ?? Auth::user()->name ?? 'Admin';
 
-        if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('blog', 'public');
-            $validated['image'] = basename($path);
+        if ($request->hasFile('featured_image')) {
+            $path = $request->file('featured_image')->store('blog', 'public');
+            $validated['featured_image'] = basename($path);
         }
 
         BlogPost::create($validated);
@@ -56,26 +56,25 @@ class BlogController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'category' => 'required|string|max:255',
-            'image' => 'nullable|image|max:2048',
+            'excerpt' => 'nullable|string|max:255',
+            'featured_image' => 'nullable|image|max:2048',
             'content' => 'required|string',
             'status' => 'required|in:published,draft',
-            'is_featured' => 'boolean',
+            'author' => 'nullable|string|max:255',
+            'published_at' => 'nullable|date',
         ]);
 
         if ($blog->title !== $validated['title']) {
             $validated['slug'] = Str::slug($validated['title']);
         }
         
-        $validated['is_featured'] = $request->has('is_featured');
-
-        if ($request->hasFile('image')) {
-            if ($blog->image && Storage::disk('public')->exists('blog/' . $blog->image)) {
-                Storage::disk('public')->delete('blog/' . $blog->image);
+        if ($request->hasFile('featured_image')) {
+            if ($blog->featured_image && Storage::disk('public')->exists('blog/' . $blog->featured_image)) {
+                Storage::disk('public')->delete('blog/' . $blog->featured_image);
             }
             
-            $path = $request->file('image')->store('blog', 'public');
-            $validated['image'] = basename($path);
+            $path = $request->file('featured_image')->store('blog', 'public');
+            $validated['featured_image'] = basename($path);
         }
 
         $blog->update($validated);
@@ -91,5 +90,17 @@ class BlogController extends Controller
 
         $blog->delete();
         return redirect()->route('admin.blog.index')->with('success', 'Blog post deleted successfully.');
+    }
+
+    public function duplicate(BlogPost $blog)
+    {
+        $newPost = $blog->replicate();
+        $newPost->title = $blog->title . ' (Copy)';
+        $newPost->slug = Str::slug($newPost->title);
+        $newPost->status = 'draft'; // Default copies to draft
+        $newPost->created_at = now();
+        $newPost->save();
+
+        return redirect()->route('admin.blog.index')->with('success', 'Intel bulletin cloned and set to draft status.');
     }
 }

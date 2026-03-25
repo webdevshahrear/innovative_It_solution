@@ -26,6 +26,7 @@ class TestimonialController extends Controller
             'client_name' => 'required|string|max:255',
             'client_position' => 'nullable|string|max:255',
             'client_image' => 'nullable|image|max:2048',
+            'client_image_url' => 'nullable|url|max:2048',
             'content' => 'required|string',
             'rating' => 'required|integer|min:1|max:5',
             'status' => 'required|in:active,inactive',
@@ -35,6 +36,8 @@ class TestimonialController extends Controller
         if ($request->hasFile('client_image')) {
             $path = $request->file('client_image')->store('testimonials', 'public');
             $validated['client_image'] = basename($path);
+        } elseif ($request->filled('client_image_url')) {
+            $validated['client_image'] = $request->client_image_url;
         }
 
         Testimonial::create($validated);
@@ -53,6 +56,7 @@ class TestimonialController extends Controller
             'client_name' => 'required|string|max:255',
             'client_position' => 'nullable|string|max:255',
             'client_image' => 'nullable|image|max:2048',
+            'client_image_url' => 'nullable|url|max:2048',
             'content' => 'required|string',
             'rating' => 'required|integer|min:1|max:5',
             'status' => 'required|in:active,inactive',
@@ -66,6 +70,11 @@ class TestimonialController extends Controller
             
             $path = $request->file('client_image')->store('testimonials', 'public');
             $validated['client_image'] = basename($path);
+        } elseif ($request->filled('client_image_url')) {
+            if ($testimonial->client_image && Storage::disk('public')->exists('testimonials/' . $testimonial->client_image)) {
+                Storage::disk('public')->delete('testimonials/' . $testimonial->client_image);
+            }
+            $validated['client_image'] = $request->client_image_url;
         }
 
         $testimonial->update($validated);
@@ -81,5 +90,16 @@ class TestimonialController extends Controller
 
         $testimonial->delete();
         return redirect()->route('admin.testimonials.index')->with('success', 'Testimonial deleted successfully.');
+    }
+
+    public function duplicate(Testimonial $testimonial)
+    {
+        $newTestimonial = $testimonial->replicate();
+        $newTestimonial->client_name = $testimonial->client_name . ' (Copy)';
+        $newTestimonial->display_order = Testimonial::max('display_order') + 1;
+        $newTestimonial->created_at = now();
+        $newTestimonial->save();
+
+        return redirect()->route('admin.testimonials.index')->with('success', 'Feedback signal cloned successfully.');
     }
 }

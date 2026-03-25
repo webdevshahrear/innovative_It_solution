@@ -1,47 +1,65 @@
-<x-guest-layout>
+@extends('layouts.auth')
+
+@use('Illuminate\Support\Facades\Route')
+
+@section('content')
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
+        @if ($errors->any())
+            <div class="error-message">
+                <i class="fas fa-exclamation-triangle me-2"></i> {{ __('Authentication protocol failed.') }}
+            </div>
+        @endif
+
         <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        <div class="form-group">
+            <label for="email" class="form-label">{{ __('Operative Email') }}</label>
+            <div class="input-wrapper">
+                <i class="fas fa-envelope"></i>
+                <input id="email" class="form-control" type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="username" placeholder="name@domain.com" />
+            </div>
+            @error('email')
+                <div class="text-danger mt-1 small">{{ $message }}</div>
+            @enderror
         </div>
 
         <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        <div class="form-group">
+            <label for="password" class="label text-muted small text-uppercase fw-bold mb-2 d-block">{{ __('Security Key') }}</label>
+            <div class="input-wrapper">
+                <i class="fas fa-lock"></i>
+                <input id="password" class="form-control"
+                                type="password"
+                                name="password"
+                                required autocomplete="current-password"
+                                placeholder="••••••••" />
+            </div>
+            @error('password')
+                <div class="text-danger mt-1 small">{{ $message }}</div>
+            @enderror
         </div>
 
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+        <!-- Remember Me & Reset -->
+        <div class="auth-options">
+            <label for="remember_me" class="remember-me">
+                <input id="remember_me" type="checkbox" name="remember">
+                <span>{{ __('Keep Session Active') }}</span>
             </label>
-        </div>
 
-        <div class="flex items-center justify-end mt-4">
             @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
+                <a class="forgot-password" href="{{ route('password.request') }}">
+                    {{ __('Recover Key?') }}
                 </a>
             @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
         </div>
+
+        <button type="submit" class="btn-auth">
+            <i class="fas fa-sign-in-alt"></i>
+            {{ __('INITIALIZE UPLINK') }}
+        </button>
     </form>
-</x-guest-layout>
+@endsection

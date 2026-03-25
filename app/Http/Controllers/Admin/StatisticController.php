@@ -25,7 +25,8 @@ class StatisticController extends Controller
             'stat_label' => 'required',
             'stat_value' => 'required',
             'icon_class' => 'required',
-            'stat_key' => 'required|unique:statistics'
+            'stat_key' => 'required|unique:statistics',
+            'status' => 'required|in:active,inactive'
         ]);
 
         Statistic::create($request->all() + ['display_order' => Statistic::max('display_order') + 1]);
@@ -43,7 +44,8 @@ class StatisticController extends Controller
         $request->validate([
             'stat_label' => 'required',
             'stat_value' => 'required',
-            'icon_class' => 'required'
+            'icon_class' => 'required',
+            'status' => 'required|in:active,inactive'
         ]);
 
         $statistic->update($request->all());
