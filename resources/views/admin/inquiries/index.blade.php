@@ -5,12 +5,12 @@
 @section('content')
 <div class="page-header d-flex justify-content-between align-items-center mb-4">
     <div>
-        <h1 class="page-title">Incoming Transmissions</h1>
-        <p class="page-subtitle">Monitor and analyze communication packets from external sources.</p>
+        <h1 class="page-title text-white">Incoming Transmissions</h1>
+        <p class="page-subtitle text-v2-muted">Monitor and analyze communication packets from external sources.</p>
     </div>
 </div>
 
-<div class="tech-card p-0 overflow-hidden">
+<div class="tech-card-v2 overflow-hidden">
     <div class="table-responsive">
         <table class="table table-v2 mb-0">
             <thead>
@@ -37,7 +37,8 @@
                         </td>
                         <td><span class="text-v2-muted">{{ $inquiry->created_at->format('M d, Y') }}</span></td>
                         <td>
-                            <span class="status-glow {{ $inquiry->status === 'new' ? 'active alert-v2' : 'inactive' }}">
+                            <span class="status-glow-v2 {{ $inquiry->status === 'new' ? 'active alert-v2' : 'inactive' }}">
+                                <span class="status-dot"></span>
                                 {{ strtoupper($inquiry->status) }}
                             </span>
                         </td>
@@ -48,14 +49,14 @@
                                 </a>
                                 <form action="{{ route('admin.inquiries.duplicate', $inquiry->id) }}" method="POST" class="d-inline">
                                     @csrf
-                                    <button type="submit" class="action-btn-v2 duplicate" title="Duplicate Signal">
+                                    <button type="submit" class="action-btn-v2" title="Duplicate Signal">
                                         <i class="fas fa-copy"></i>
                                     </button>
                                 </form>
                                 @if($inquiry->status === 'new')
                                 <form action="{{ route('admin.inquiries.mark-read', $inquiry->id) }}" method="POST" class="d-inline">
                                     @csrf
-                                    <button type="submit" class="action-btn-v2 check" title="Acknowledge">
+                                    <button type="submit" class="action-btn-v2" title="Acknowledge" style="color: #10b981;">
                                         <i class="fas fa-check"></i>
                                     </button>
                                 </form>
@@ -74,9 +75,9 @@
                 @else
                     <tr>
                         <td colspan="5" class="text-center py-5">
-                            <div class="opacity-50">
-                                <i class="fas fa-satellite-dish fs-1 mb-3"></i>
-                                <p>No active transmissions detected on this frequency.</p>
+                            <div class="opacity-30">
+                                <i class="fas fa-satellite-dish fs-1 mb-3 text-v2-muted"></i>
+                                <p class="text-v2-muted">No active transmissions detected on this frequency.</p>
                             </div>
                         </td>
                     </tr>
@@ -87,33 +88,10 @@
 </div>
 
 @if($inquiries->hasPages())
-<div class="mt-4">
-    {{ $inquiries->links() }}
+<div class="pagination-v2 mt-4 d-flex justify-content-center">
+    {{ $inquiries->links('pagination::bootstrap-5') }}
 </div>
 @endif
 
-<style>
-<style>
-    .table-v2 { width: 100%; border-collapse: separate; border-spacing: 0; }
-    .table-v2 th { background: rgba(255, 255, 255, 0.02); padding: 1.25rem 1.5rem; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.1rem; color: var(--v2-text-muted); border-bottom: 1px solid var(--v2-border); }
-    .table-v2 td { padding: 1.25rem 1.5rem; vertical-align: middle; border-bottom: 1px solid var(--v2-border); background: transparent; transition: background 0.3s; }
-    .table-v2 tr:hover td { background: rgba(255, 255, 255, 0.01); }
-
-    .status-glow { font-size: 0.65rem; font-weight: 800; padding: 0.35rem 0.75rem; border-radius: 100px; display: inline-flex; align-items: center; gap: 0.5rem; }
-    .status-glow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; }
-    .status-glow.active { background: rgba(16, 185, 129, 0.1); color: #10b981; }
-    .status-glow.active::before { background: #10b981; box-shadow: 0 0 8px #10b981; }
-    .status-glow.active.alert-v2 { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }
-    .status-glow.active.alert-v2::before { background: #f59e0b; box-shadow: 0 0 8px #f59e0b; }
-    .status-glow.inactive { background: rgba(148, 163, 184, 0.1); color: #94a3b8; }
-    .status-glow.inactive::before { background: #94a3b8; }
-
-    .action-btn-v2 { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--v2-border); background: rgba(255, 255, 255, 0.03); color: var(--v2-text-muted); transition: all 0.3s; text-decoration: none !important; }
-    .action-btn-v2:hover { transform: translateY(-2px); border-color: var(--v2-primary); color: var(--v2-primary); }
-    .action-btn-v2.check:hover { border-color: #10b981; color: #10b981; }
-    .action-btn-v2.duplicate:hover { border-color: #3b82f6; color: #3b82f6; }
-    .action-btn-v2.delete:hover { border-color: #ef4444; color: #ef4444; }
-    .text-v2-muted { color: rgba(255,255,255,0.4); font-size: 0.85rem; }
-</style>
-</style>
+@endsection
 @endsection

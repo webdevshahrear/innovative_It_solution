@@ -11,6 +11,8 @@ use App\Models\Testimonial;
 use App\Models\Statistic;
 use App\Models\TeamMember;
 use App\Models\BlogPost;
+use App\Models\WorkFlow;
+
 
 class HomeController extends Controller
 {
@@ -31,6 +33,8 @@ class HomeController extends Controller
         $stats = Statistic::where('status', 'active')->orderBy('display_order')->get();
         $teamMembers = TeamMember::where('status', 'active')->orderBy('display_order')->take(4)->get();
         $posts = BlogPost::where('status', 'published')->latest()->take(3)->get();
+        $workFlows = WorkFlow::ordered()->take(6)->get();
+
         
         $mission = SiteSetting::where('setting_key', 'company_mission')->value('setting_value');
         $vision = SiteSetting::where('setting_key', 'company_vision')->value('setting_value');
@@ -44,7 +48,8 @@ class HomeController extends Controller
         return \view('home.index', compact(
             'pageTitle', 'heroSlides', 'heroMode',
             'services', 'projects', 'portfolioStyle', 'testimonials', 'stats', 'teamMembers', 
-            'posts', 'mission', 'vision', 'heroTitle', 'heroSubtitle', 'contactEmail', 'contactPhone'
+            'posts', 'mission', 'vision', 'heroTitle', 'heroSubtitle', 'contactEmail', 'contactPhone', 'workFlows'
         ));
+
     }
 }

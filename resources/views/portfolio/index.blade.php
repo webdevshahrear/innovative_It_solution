@@ -24,7 +24,46 @@
       color: var(--v2-text-main);
       min-height: 100vh;
       padding-top: 140px;
+      transition: background 0.5s ease, color 0.3s ease;
     }
+
+    /* ── Light Mode Overrides for Portfolio ── */
+    body.light-mode .portfolio-page-wrapper {
+      --v2-bg: #f8fafc;
+      --v2-card: #ffffff;
+      --v2-glass: rgba(255, 255, 255, 0.8);
+      --v2-border: rgba(0, 0, 0, 0.06);
+      --v2-text-main: #1e293b;
+      --v2-text-muted: #64748b;
+      background-image: 
+        radial-gradient(circle at 20% 0%, rgba(240, 82, 35, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 80% 100%, rgba(59, 130, 246, 0.04) 0%, transparent 40%);
+    }
+
+    body.light-mode .hero-title-v4 {
+      background: #0f172a !important;
+      -webkit-background-clip: unset !important;
+      -webkit-text-fill-color: #0f172a !important;
+      color: #0f172a !important;
+    }
+    body.light-mode .hero-title-v4 .text-white-50 { color: #64748b !important; }
+    body.light-mode .hero-sub-v4 { color: #475569 !important; }
+    body.light-mode .filter-glass-container {
+      background: #ffffff !important;
+      border-color: #e2e8f0 !important;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05) !important;
+    }
+    body.light-mode .filter-btn:hover { color: #0f172a; background: #f1f5f9; }
+    body.light-mode .p-card { background: #ffffff !important; border-color: #e2e8f0 !important; }
+    body.light-mode .p-card:hover { border-color: var(--v2-primary) !important; box-shadow: 0 20px 50px rgba(0,0,0,0.08) !important; }
+    body.light-mode .p-card__title { color: #0f172a !important; }
+    body.light-mode .p-card__title:hover { color: var(--v2-primary) !important; }
+    body.light-mode .p-card__visit-btn { background: #f1f5f9 !important; border-color: #e2e8f0 !important; color: #0f172a !important; }
+    body.light-mode .p-card:hover .p-card__visit-btn { background: var(--v2-primary) !important; color: #fff !important; border-color: transparent !important; }
+    body.light-mode .p-card__visit-btn:hover { background: var(--v2-primary) !important; color: #fff !important; }
+    body.light-mode .pg-btn { background: #ffffff !important; border-color: #e2e8f0 !important; color: #64748b !important; }
+    body.light-mode .pg-btn:hover { border-color: var(--v2-primary) !important; color: var(--v2-primary) !important; }
+    body.light-mode .empty-state { background: #ffffff !important; border-color: #e2e8f0 !important; }
 
     /* HERO */
     .portfolio-hero {

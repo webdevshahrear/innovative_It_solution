@@ -168,6 +168,50 @@
         filter: grayscale(0) invert(0);
         opacity: 1;
     }
+
+    /* ── Light Mode Overrides for Contact ── */
+    body.light-mode .contact-hero-v2 { background: #f8fafc !important; }
+    body.light-mode .hero-title-cinematic { color: #0f172a !important; }
+    body.light-mode .hero-subtitle-cinematic { color: #475569 !important; }
+    body.light-mode .breadcrumb-item a { color: #64748b !important; }
+    body.light-mode .breadcrumb-item.active { color: var(--primary) !important; }
+
+    body.light-mode .glass-contact-card {
+        background: #ffffff !important;
+        border-color: #e2e8f0 !important;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.04) !important;
+    }
+    body.light-mode .glass-contact-card h4 { color: #0f172a !important; }
+    body.light-mode .glass-contact-card .h5 { color: #334155 !important; }
+    body.light-mode .text-v2-muted { color: #64748b !important; }
+    
+    body.light-mode .contact-icon-v2 { 
+        background: #f1f5f9 !important; 
+        border-color: #e2e8f0 !important; 
+    }
+    body.light-mode .glass-contact-card:hover .contact-icon-v2 {
+        background: var(--primary) !important;
+        color: #fff !important;
+    }
+
+    body.light-mode .premium-form-box {
+        background: #ffffff !important;
+        border-color: #e2e8f0 !important;
+        box-shadow: 0 40px 80px rgba(0, 0, 0, 0.06) !important;
+    }
+    body.light-mode .premium-form-box h2 { color: #0f172a !important; }
+    body.light-mode .v2-input-field {
+        background: #f8fafc !important;
+        border-color: #e2e8f0 !important;
+        color: #1e293b !important;
+    }
+    body.light-mode .v2-label { color: #94a3b8 !important; }
+    body.light-mode .v2-input-field:focus ~ .v2-label,
+    body.light-mode .v2-input-field:not(:placeholder-shown) ~ .v2-label { 
+        background: #ffffff !important; 
+        color: var(--primary) !important;
+    }
+    body.light-mode .map-premium { filter: grayscale(0.2) contrast(1); opacity: 1; border-color: #e2e8f0; }
 </style>
 
 <div class="contact-hero-v2">

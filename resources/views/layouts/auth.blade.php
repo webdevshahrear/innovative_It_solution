@@ -21,15 +21,27 @@
             --v3-accent-glow: rgba(99, 102, 241, 0.4);
             --v3-card: rgba(17, 24, 39, 0.7);
             --v3-border: rgba(255, 255, 255, 0.1);
+            --v3-text-main: #ffffff;
             --v3-text-muted: #9ca3af;
+        }
+
+        [data-theme="light"] {
+            --v3-bg: #f8fafc;
+            --v3-accent: #f05223;
+            --v3-accent-glow: rgba(240, 82, 35, 0.15);
+            --v3-card: rgba(255, 255, 255, 0.9);
+            --v3-border: rgba(0, 0, 0, 0.08);
+            --v3-text-main: #0f172a;
+            --v3-text-muted: #64748b;
         }
 
         body {
             margin: 0;
             font-family: 'Inter', sans-serif;
             background-color: var(--v3-bg);
-            color: white;
+            color: var(--v3-text-main);
             overflow: hidden;
+            transition: background 0.3s, color 0.3s;
         }
 
         .auth-grid {
@@ -39,6 +51,9 @@
                 radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0);
             background-size: 40px 40px;
             z-index: 1;
+        }
+        [data-theme="light"] .auth-grid {
+            background-image: radial-gradient(circle at 2px 2px, rgba(0,0,0,0.02) 1px, transparent 0);
         }
 
         .auth-glow-1 {
@@ -57,7 +72,7 @@
             left: -10%;
             width: 60%;
             height: 60%;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
             z-index: 2;
         }
 
@@ -79,28 +94,8 @@
             border: 1px solid var(--v3-border);
             border-radius: 24px;
             padding: 3rem;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
             animation: fadeIn 0.6s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .auth-logo {
-            text-align: center;
-            margin-bottom: 2.5rem;
-        }
-
-        .auth-logo img {
-            height: 48px;
-            margin-bottom: 1rem;
-        }
-
-        .auth-header {
-            text-align: center;
-            margin-bottom: 2.5rem;
         }
 
         .auth-header h1 {
@@ -108,6 +103,9 @@
             font-weight: 800;
             letter-spacing: -0.025em;
             margin-bottom: 0.5rem;
+            color: var(--v3-text-main);
+        }
+        [data-theme="dark"] .auth-header h1 {
             background: linear-gradient(to right, #fff, #9ca3af);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -116,10 +114,6 @@
         .auth-header p {
             color: var(--v3-text-muted);
             font-size: 0.95rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
         }
 
         .form-label {
@@ -132,72 +126,26 @@
             margin-bottom: 0.75rem;
         }
 
-        .input-wrapper {
-            position: relative;
-        }
-
-        .input-wrapper i {
-            position: absolute;
-            left: 1.25rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--v3-text-muted);
-            font-size: 1rem;
-            transition: color 0.3s;
-        }
-
         .form-control {
             width: 100%;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--v3-border);
             border-radius: 14px;
             padding: 0.875rem 1.25rem 0.875rem 3.25rem;
-            color: white;
+            color: var(--v3-text-main);
             font-size: 0.95rem;
             transition: all 0.3s;
             box-sizing: border-box;
         }
+        [data-theme="light"] .form-control {
+            background: #ffffff;
+            border-color: #cbd5e1;
+        }
 
         .form-control:focus {
             outline: none;
-            background: rgba(255, 255, 255, 0.05);
             border-color: var(--v3-accent);
-            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
-        }
-
-        .form-control:focus + i {
-            color: var(--v3-accent);
-        }
-
-        .auth-options {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 2rem;
-            font-size: 0.875rem;
-        }
-
-        .remember-me {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            cursor: pointer;
-            color: var(--v3-text-muted);
-        }
-
-        .remember-me input {
-            accent-color: var(--v3-accent);
-        }
-
-        .forgot-password {
-            color: var(--v3-accent);
-            text-decoration: none;
-            font-weight: 600;
-            transition: opacity 0.3s;
-        }
-
-        .forgot-password:hover {
-            opacity: 0.8;
+            box-shadow: 0 0 0 4px var(--v3-accent-glow);
         }
 
         .btn-auth {
@@ -217,26 +165,29 @@
             gap: 0.75rem;
             box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3);
         }
+        [data-theme="light"] .btn-auth {
+            background: linear-gradient(135deg, #f05223 0%, #ff7b54 100%);
+            box-shadow: 0 10px 15px -3px rgba(240, 82, 35, 0.3);
+        }
 
         .btn-auth:hover {
             transform: translateY(-2px);
-            box-shadow: 0 20px 25px -5px rgba(99, 102, 241, 0.4);
+            opacity: 0.95;
         }
 
-        .btn-auth:active {
-            transform: translateY(0);
-        }
+        .remember-me { color: var(--v3-text-muted); }
+        .forgot-password { color: var(--v3-accent); text-decoration: none; font-weight: 600; }
 
-        .error-message {
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid rgba(239, 68, 68, 0.2);
-            color: #f87171;
-            padding: 0.75rem 1rem;
-            border-radius: 12px;
-            font-size: 0.875rem;
-            margin-bottom: 1.5rem;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
+    <script>
+        // Synchronize with site-wide theme
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
 </head>
 <body>
     <div class="auth-grid"></div>

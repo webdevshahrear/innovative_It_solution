@@ -81,6 +81,20 @@
         .legal-card-v2 { padding: 40px 20px; border-radius: 24px; }
         .legal-hero-v2 { padding: 120px 0 60px; }
     }
+
+    /* ── Light Mode Overrides for Legal ── */
+    body.light-mode .legal-hero-v2 { background: #f8fafc !important; }
+    body.light-mode .legal-content-section { background: #f8fafc !important; }
+    body.light-mode .legal-card-v2 {
+        background: #ffffff !important;
+        border-color: rgba(0, 0, 0, 0.06) !important;
+        color: #334155 !important;
+        box-shadow: 0 40px 80px rgba(0, 0, 0, 0.05) !important;
+    }
+    body.light-mode .legal-card-v2 h2, 
+    body.light-mode .legal-card-v2 h3,
+    body.light-mode .display-3 { color: #0f172a !important; }
+    body.light-mode .legal-meta-v2 { color: #64748b !important; }
 </style>
 
 <div class="legal-hero-v2">

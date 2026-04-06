@@ -6,17 +6,30 @@
         <div class="row g-5">
             <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
                 <a href="{{ url('/') }}" class="d-block mb-4">
-                    @if($footerLogo || $siteLogo)
-                        <div class="footer-logo-box">
-                            <img src="{{ asset('uploads/settings/' . ($footerLogo ?: $siteLogo)) }}"
+                    <div class="footer-logo-box">
+                        @php
+                            $mainLogo = $footerLogo ?: $siteLogo;
+                            $lightLogo = $siteLogoLight;
+                        @endphp
+
+                        @if($mainLogo)
+                            <img src="{{ asset('uploads/settings/' . $mainLogo) }}"
                                  alt="{{ $siteName }}"
-                                 class="footer-img-logo-v2"
-                                 style="width: {{ $footerLogoWidth }}px; height: {{ $footerLogoHeight }}px; object-fit: contain; object-position: left center;"
-                                 onerror="this.style.display='none'">
-                        </div>
-                    @else
-                        <span class="brand-text-v2">{{ $siteName }}</span>
-                    @endif
+                                 class="logo-dark"
+                                 style="width: {{ $footerLogoWidth }}px; height: {{ $footerLogoHeight }}px; object-fit: contain; object-position: left center;">
+                        @endif
+
+                        @if($lightLogo)
+                            <img src="{{ asset('uploads/settings/' . $lightLogo) }}"
+                                 alt="{{ $siteName }}"
+                                 class="logo-light"
+                                 style="width: {{ $footerLogoWidth }}px; height: {{ $footerLogoHeight }}px; object-fit: contain; object-position: left center; display: none;">
+                        @endif
+
+                        @if(!$mainLogo && !$lightLogo)
+                            <span class="brand-text-v2">{{ $siteName }}</span>
+                        @endif
+                    </div>
                 </a>
                 <p class="footer-desc-v2 mb-4">{{ $footerDescription }}</p>
                 <div class="footer-social-group-v2">
@@ -87,7 +100,7 @@
 <style>
 /* Footer V2 - Ultra Premium Styling */
 .footer-v2 {
-    background: #070719;
+    background: var(--navy-dark);
     padding: 120px 0 40px;
     position: relative;
     overflow: hidden;
@@ -115,10 +128,19 @@
     pointer-events: none;
 }
 
+/* Logo Theme Toggling */
+.logo-dark { display: block; }
+.logo-light { display: none; }
+body.light-mode .logo-dark { display: none !important; }
+body.light-mode .logo-light { display: block !important; }
+body:not(.light-mode) .logo-light { display: none !important; }
+
 .footer-logo-box {
     filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
     transition: all 0.3s ease;
 }
+
+body.light-mode .footer-logo-box { filter: none; }
 
 .footer-img-logo-v2 {
     transition: all 0.3s;
@@ -270,11 +292,9 @@
     animation: heartBeat 2s infinite;
 }
 
-}
-
 /* Light Mode Overrides */
 body.light-mode .footer-v2 { background: #f8fafc !important; }
-body.light-mode .footer-glow-top { background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent) !important; box-shadow: none !important; }
+body.light-mode .footer-glow-top { background: linear-gradient(90deg, transparent, rgba(0,0,0,0.05), transparent) !important; box-shadow: none !important; }
 body.light-mode .footer-desc-v2 { color: #475569 !important; }
 body.light-mode .footer-title-v2 { color: #0f172a !important; }
 body.light-mode .footer-links-v2 a { color: #475569 !important; }
@@ -286,6 +306,7 @@ body.light-mode .social-link-v2 { background: rgba(0,0,0,0.03) !important; borde
 body.light-mode .social-link-v2:hover { color: #fff !important; background: var(--primary) !important; }
 body.light-mode .copyright-v2, body.light-mode .crafted-v2 { color: #64748b !important; }
 body.light-mode .highlight-v2 { color: #0f172a !important; }
+body.light-mode .footer-divider-v2 { background: linear-gradient(90deg, rgba(0,0,0,0), rgba(0,0,0,0.05), rgba(0,0,0,0)) !important; }
 
 @keyframes heartBeat {
     0%, 100% { transform: scale(1); }

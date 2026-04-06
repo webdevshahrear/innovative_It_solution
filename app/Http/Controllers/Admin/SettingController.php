@@ -18,7 +18,7 @@ class SettingController extends Controller
     public function update(Request $request)
     {
         // 1. Handle File Uploads
-        $fileKeys = ['site_logo', 'site_favicon', 'footer_logo'];
+        $fileKeys = ['site_logo', 'site_logo_light', 'site_favicon', 'footer_logo'];
 
         foreach ($fileKeys as $key) {
             if ($request->hasFile($key)) {
@@ -44,7 +44,7 @@ class SettingController extends Controller
         }
 
         // 2. Handle Text Inputs
-        $data = $request->except(['_token', '_method', 'site_logo', 'site_favicon', 'footer_logo']);
+        $data = $request->except(['_token', '_method', 'site_logo', 'site_logo_light', 'site_favicon', 'footer_logo']);
 
         foreach ($data as $key => $value) {
             // Skip if value is null (unless we want to clear it, but usually empty string is sent)

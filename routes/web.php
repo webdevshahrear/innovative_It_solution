@@ -64,6 +64,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         
         Route::resource('subscribers', \App\Http\Controllers\Admin\SubscriberController::class)->only(['index', 'update', 'destroy']);
         Route::resource('statistics', \App\Http\Controllers\Admin\StatisticController::class);
+        Route::resource('work-flows', \App\Http\Controllers\Admin\WorkFlowController::class);
+
         
         // Duplication Routes
         Route::post('hero-slides/{hero_slide}/duplicate', [AdminHeroSlideController::class, 'duplicate'])->name('hero-slides.duplicate');
@@ -72,6 +74,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('blog/{blog}/duplicate', [AdminBlogController::class, 'duplicate'])->name('blog.duplicate');
         Route::post('team/{team}/duplicate', [AdminTeamController::class, 'duplicate'])->name('team.duplicate');
         Route::post('testimonials/{testimonial}/duplicate', [AdminTestimonialController::class, 'duplicate'])->name('testimonials.duplicate');
+        Route::post('work-flows/{work_flow}/duplicate', [\App\Http\Controllers\Admin\WorkFlowController::class, 'duplicate'])->name('work-flows.duplicate');
+
 
         // Settings Routes
         Route::get('/settings', [AdminSettingController::class, 'index'])->name('settings.index');

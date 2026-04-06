@@ -127,6 +127,34 @@
     .rel-card-v4:hover .rel-title-v4 { color: var(--v2-primary); }
     .rel-link-v4 { margin-top: auto; color: rgba(255,255,255,0.5); font-weight: 700; text-decoration: none; font-size: 0.85rem; transition: 0.3s; display: flex; align-items: center; gap: 8px; text-transform: uppercase; letter-spacing: 1.5px; }
     .rel-card-v4:hover .rel-link-v4 { color: #fff; gap: 12px; }
+
+    /* ── Light Mode Overrides for Blog Show ── */
+    body.light-mode .blog-hero-v4 { background: #f8fafc !important; }
+    body.light-mode .blog-title-v4 { color: #0f172a !important; }
+    body.light-mode .blog-meta-v4 { color: #64748b !important; }
+    body.light-mode .blog-meta-author { color: #1e293b !important; }
+    body.light-mode .blog-badge-v4 { background: #f1f5f9 !important; border-color: #e2e8f0 !important; }
+    
+    body.light-mode .blog-cover-v4 { box-shadow: 0 30px 60px rgba(0,0,0,0.06) !important; border-color: #e2e8f0 !important; }
+    body.light-mode .blog-content-v4 { color: #334155 !important; }
+    body.light-mode .blog-content-v4 h1, 
+    body.light-mode .blog-content-v4 h2, 
+    body.light-mode .blog-content-v4 h3, 
+    body.light-mode .blog-content-v4 h4 { color: #0f172a !important; }
+    body.light-mode .blog-content-v4 blockquote { background: #f1f5f9 !important; color: #1e293b !important; border-left-color: var(--v2-primary) !important; }
+    
+    body.light-mode .blog-share-v4 { border-color: #e2e8f0 !important; }
+    body.light-mode .share-label { color: #0f172a !important; }
+    body.light-mode .share-btn { background: #f1f5f9 !important; color: #64748b !important; }
+    body.light-mode .share-btn:hover { background: var(--v2-primary) !important; color: #fff !important; }
+    
+    body.light-mode .related-posts-section { background: #ffffff !important; border-top-color: #e2e8f0 !important; }
+    body.light-mode .rel-card-v4 { background: #f8fafc !important; border-color: #e2e8f0 !important; }
+    body.light-mode .rel-card-v4:hover { border-color: var(--v2-primary) !important; box-shadow: 0 20px 40px rgba(0,0,0,0.05) !important; }
+    body.light-mode .rel-title-v4 { color: #0f172a !important; }
+    body.light-mode .rel-link-v4 { color: #64748b !important; }
+    body.light-mode .rel-card-v4:hover .rel-link-v4 { color: #0f172a !important; }
+    body.light-mode .text-glow-primary { color: var(--v2-primary) !important; text-shadow: none !important; }
 </style>
 @endpush
 

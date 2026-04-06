@@ -11,6 +11,7 @@ class Header extends Component
 {
     public $siteName;
     public $logo;
+    public $logoLight;
     public $logoWidth;
     public $logoHeight;
     public $contactEmail;
@@ -27,6 +28,7 @@ class Header extends Component
     {
         $this->siteName = SiteSetting::getValue('site_title', 'Innovative IT Solutions');
         $this->logo = SiteSetting::getValue('site_logo');
+        $this->logoLight = SiteSetting::getValue('site_logo_light');
         $logoWidth = SiteSetting::getValue('logo_width', 180);
         $this->logoWidth = empty($logoWidth) ? 180 : $logoWidth;
         

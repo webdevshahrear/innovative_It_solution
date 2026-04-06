@@ -125,8 +125,8 @@
 
 <div class="page-header d-flex justify-content-between align-items-center mb-4">
     <div>
-        <h1 class="page-title">Global Configuration</h1>
-        <p class="page-subtitle">Adjust core system variables and external communication parameters.</p>
+        <h1 class="page-title text-white">Global Configuration</h1>
+        <p class="page-subtitle text-v2-muted">Adjust core system variables and external communication parameters.</p>
     </div>
 </div>
 
@@ -189,13 +189,24 @@
 
                         <div class="row g-4">
                             <div class="col-md-6">
-                                <label class="v2-form-label">Main Logo</label>
+                                <label class="v2-form-label">Main Logo (Dark Mode)</label>
                                 <div class="file-upload-wrapper">
                                     <input type="file" class="v2-form-control" name="site_logo">
                                 </div>
                                 @if(isset($allSettings['site_logo']))
                                     <div class="mt-3 p-3 text-center rounded-4" style="background: rgba(255,255,255,0.05); border: 1px dashed rgba(255,255,255,0.1);">
                                         <img src="{{ asset('uploads/settings/' . $allSettings['site_logo']) }}" style="max-height: 40px; background: rgba(255,255,255,0.1); padding: 5px; border-radius: 8px;">
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="col-md-6">
+                                <label class="v2-form-label">Light Mode Logo</label>
+                                <div class="file-upload-wrapper">
+                                    <input type="file" class="v2-form-control" name="site_logo_light">
+                                </div>
+                                @if(isset($allSettings['site_logo_light']))
+                                    <div class="mt-3 p-3 text-center rounded-4" style="background: #f8fafc; border: 1px dashed rgba(0,0,0,0.1);">
+                                        <img src="{{ asset('uploads/settings/' . $allSettings['site_logo_light']) }}" style="max-height: 40px; padding: 5px; border-radius: 8px;">
                                     </div>
                                 @endif
                             </div>
@@ -455,8 +466,8 @@
 
             </div>
 
-            <div class="d-flex justify-content-end mt-2 mb-2">
-                <button type="submit" class="btn-tech-primary px-5 py-3 shadow-lg" style="letter-spacing: 0.1rem; font-size: 0.95rem;">
+            <div class="d-flex justify-content-end mt-4 mb-2">
+                <button type="submit" class="btn-v2-primary px-5 py-3 shadow-lg" style="letter-spacing: 0.1rem; font-size: 0.95rem; border: none;">
                     <i class="fas fa-save me-2"></i> COMMIT CHANGES
                 </button>
             </div>

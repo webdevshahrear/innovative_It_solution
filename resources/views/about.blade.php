@@ -121,6 +121,49 @@
         text-align: justify;
         text-justify: inter-word;
     }
+
+    /* ── Light Mode Overrides for About ── */
+    body.light-mode .about-hero-v2,
+    body.light-mode .story-section-v2,
+    body.light-mode .section-padding.bg-navy-dark { background: #f8fafc !important; }
+    
+    body.light-mode .display-3,
+    body.light-mode .display-4,
+    body.light-mode .display-5,
+    body.light-mode h2,
+    body.light-mode h4 { color: #0f172a !important; }
+    
+    body.light-mode .hero-subtitle-cinematic,
+    body.light-mode .lead,
+    body.light-mode .text-v2-muted { color: #475569 !important; }
+
+    body.light-mode .about-image-premium { border-color: rgba(0,0,0,0.06); box-shadow: 0 40px 80px rgba(0,0,0,0.08); }
+    body.light-mode .experience-floating-v2 {
+        background: #ffffff !important;
+        border-color: rgba(0,0,0,0.06) !important;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.04) !important;
+    }
+    body.light-mode .experience-floating-v2 h2 { color: #0f172a !important; }
+    body.light-mode .value-card-v2 {
+        background: #ffffff !important;
+        border-color: rgba(0,0,0,0.06) !important;
+    }
+    body.light-mode .value-card-v2:hover {
+        background: #ffffff !important;
+        border-color: var(--primary) !important;
+        box-shadow: 0 30px 60px rgba(0,0,0,0.06) !important;
+    }
+    body.light-mode .value-card-v2 h4 { color: #0f172a !important; }
+    body.light-mode .check-item-v2 {
+        background: #ffffff !important;
+        border-color: rgba(0,0,0,0.06) !important;
+    }
+    body.light-mode .check-item-v2 span { color: #1e293b !important; }
+
+    /* CTA Refining */
+    body.light-mode .glass-effect .position-absolute[style*="radial-gradient"] {
+        background: radial-gradient(circle at 50% 50%, rgba(240, 82, 35, 0.05) 0%, transparent 70%) !important;
+    }
 </style>
 
 <div class="about-hero-v2">

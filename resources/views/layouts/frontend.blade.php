@@ -139,6 +139,44 @@
                        radial-gradient(circle at 90% 90%, rgba(59, 130, 246, 0.05) 0%, transparent 40%);
         }
 
+        /* ── Banner & Breadcrumb Light Mode Global ── */
+        body.light-mode .about-hero-v2, 
+        body.light-mode .team-hero-v2,
+        body.light-mode .inner-banner,
+        body.light-mode .page-header-premium { background-color: #f8fafc !important; border-bottom: 1px solid rgba(0,0,0,0.05) !important; }
+        
+        body.light-mode .hero-subtitle-cinematic, 
+        body.light-mode .inner-banner p, 
+        body.light-mode .page-header-premium p,
+        body.light-mode .lead { color: #475569 !important; }
+        
+        body.light-mode .breadcrumb-item a { color: #64748b !important; }
+        body.light-mode .breadcrumb-item a:hover { color: var(--primary) !important; }
+        body.light-mode .breadcrumb-item.active { color: var(--primary) !important; }
+        body.light-mode .text-white-50 { color: #64748b !important; }
+        body.light-mode .text-white { color: #0f172a !important; }
+        
+        /* ── Cinematic & Glass Styles Global ── */
+        body.light-mode .hero-badge-cinematic { background: rgba(240, 82, 35, 0.1) !important; border-color: rgba(240, 82, 35, 0.2) !important; color: var(--primary) !important; }
+        body.light-mode .hero-title-cinematic { color: #0f172a !important; }
+        body.light-mode .glass-effect { background: #ffffff !important; border-color: rgba(0,0,0,0.05) !important; box-shadow: 0 20px 40px rgba(0,0,0,0.03) !important; }
+        body.light-mode .glass-effect p { color: #475569 !important; }
+        body.light-mode .glass-effect h2 { color: #0f172a !important; }
+
+        /* ── Global Utility Styles ── */
+        .text-glow-primary { 
+            background: linear-gradient(135deg, var(--primary), #ff8a65); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            text-shadow: 0 0 50px rgba(240, 82, 35, 0.35); 
+        }
+        body.light-mode .text-glow-primary {
+            background: linear-gradient(135deg, var(--primary), #e11d48);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(240, 82, 35, 0.15);
+        }
+
         body {
             font-family: 'Inter', sans-serif !important;
             background-color: var(--navy-dark) !important;

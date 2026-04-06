@@ -5,20 +5,20 @@
 @section('content')
 <div class="page-header d-flex justify-content-between align-items-center mb-4">
     <div>
-        <h1 class="page-title">Broadcast Center</h1>
-        <p class="page-subtitle">Manage and publish your digital transmissions to the outer world.</p>
+        <h1 class="page-title text-white">Broadcast Center</h1>
+        <p class="page-subtitle text-v2-muted">Manage and publish your digital transmissions to the outer world.</p>
     </div>
-    <a href="{{ route('admin.blog.create') }}" class="btn-tech-primary">
+    <a href="{{ route('admin.blog.create') }}" class="btn-v2-primary">
         <i class="fas fa-plus me-2"></i> Write New Post
     </a>
 </div>
 
-<div class="tech-card p-0 overflow-hidden">
+<div class="tech-card-v2 overflow-hidden">
     <div class="table-responsive">
         <table class="table table-v2 mb-0">
             <thead>
                 <tr>
-                    <th>PREVIEW</th>
+                    <th style="width: 100px;">PREVIEW</th>
                     <th>ARTICLE IDENTITY</th>
                     <th>SECTOR</th>
                     <th>SIGNAL STATUS</th>
@@ -43,32 +43,33 @@
                                     $displayUrl = asset('storage/blog/'.$imgPath);
                                 }
                             @endphp
-                            <div class="project-preview-v2" style="background-image: url('{{ $displayUrl }}')"></div>
+                            <div class="post-preview-v2" style="background-image: url('{{ $displayUrl }}')"></div>
                         </td>
                         <td>
                             <div class="d-flex align-items-center gap-2">
                                 <span class="fw-bold text-white">{{ Str::limit($post->title, 40) }}</span>
                                 @if($post->is_featured)
-                                    <span class="badge-v2 indigo" style="font-size: 0.55rem;">PRIORITY</span>
+                                    <span class="badge-v2 indigo" style="font-size: 0.6rem;">PRIORITY</span>
                                 @endif
                             </div>
-                            <div class="small text-muted">{{ $post->slug }}</div>
+                            <div class="small text-v2-muted text-truncate" style="max-width: 250px;">{{ $post->slug }}</div>
                         </td>
                         <td><span class="badge-v2 turquoise">{{ $post->category }}</span></td>
                         <td>
-                            <span class="status-glow {{ $post->status === 'published' ? 'active' : 'inactive' }}">
+                            <span class="status-glow-v2 {{ $post->status === 'published' ? 'active' : 'inactive' }}">
+                                <span class="status-dot"></span>
                                 {{ strtoupper($post->status) }}
                             </span>
                         </td>
-                        <td><span class="small text-muted">{{ $post->created_at->format('M d, Y') }}</span></td>
+                        <td><span class="small text-v2-muted">{{ $post->created_at->format('M d, Y') }}</span></td>
                         <td class="text-end">
                             <div class="d-flex justify-content-end gap-2">
-                                <a href="{{ route('admin.blog.edit', $post) }}" class="action-btn-v2 edit" title="Edit Content">
+                                <a href="{{ route('admin.blog.edit', $post) }}" class="action-btn-v2" title="Edit Content">
                                     <i class="fas fa-pen-nib"></i>
                                 </a>
                                 <form action="{{ route('admin.blog.duplicate', $post->id) }}" method="POST" class="d-inline">
                                     @csrf
-                                    <button type="submit" class="action-btn-v2 duplicate" title="Duplicate Article">
+                                    <button type="submit" class="action-btn-v2" title="Duplicate Article">
                                         <i class="fas fa-copy"></i>
                                     </button>
                                 </form>
@@ -86,9 +87,9 @@
                 @else
                     <tr>
                         <td colspan="6" class="text-center py-5">
-                            <div class="opacity-50">
-                                <i class="fas fa-newspaper fs-1 mb-3"></i>
-                                <p>No transmissions detected in archives.</p>
+                            <div class="opacity-30">
+                                <i class="fas fa-newspaper fs-1 mb-3 text-v2-muted"></i>
+                                <p class="text-v2-muted">No transmissions detected in archives.</p>
                             </div>
                         </td>
                     </tr>
@@ -98,84 +99,22 @@
     </div>
 </div>
 
-<div class="pagination-v2 mt-4">
+<div class="pagination-v2 mt-4 d-flex justify-content-center">
     {{ $posts->links('pagination::bootstrap-5') }}
 </div>
 
 <style>
-    .table-v2 { width: 100%; border-collapse: separate; border-spacing: 0; }
-    .table-v2 th {
-        background: rgba(255, 255, 255, 0.02);
-        padding: 1.25rem 1.5rem;
-        font-size: 0.65rem;
-        font-weight: 800;
-        letter-spacing: 0.1rem;
-        color: var(--v2-text-muted);
-        border-bottom: 1px solid var(--v2-border);
-    }
-    .table-v2 td {
-        padding: 1.25rem 1.5rem;
-        vertical-align: middle;
-        border-bottom: 1px solid var(--v2-border);
-        background: transparent;
-        transition: background 0.3s;
-    }
-    .table-v2 tr:hover td { background: rgba(255, 255, 255, 0.01); }
-    .table-v2 tr:last-child td { border-bottom: none; }
-
-    .project-preview-v2 {
-        width: 48px;
-        height: 48px;
-        border-radius: 12px;
+    .post-preview-v2 {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
         background-size: cover;
         background-position: center;
         border: 2px solid var(--v2-border);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        transition: .3s;
     }
-
-    .badge-v2 {
-        padding: 0.25rem 0.6rem;
-        border-radius: 6px;
-        font-size: 0.65rem;
-        font-weight: 700;
-        text-transform: uppercase;
-    }
-    .badge-v2.turquoise { background: rgba(6, 182, 212, 0.1); color: #06b6d4; border: 1px solid rgba(6, 182, 212, 0.2); }
-    .badge-v2.indigo { background: rgba(99, 102, 241, 0.1); color: #818cf8; border: 1px solid rgba(99, 102, 241, 0.2); }
-
-    .status-glow {
-        font-size: 0.65rem;
-        font-weight: 800;
-        padding: 0.35rem 0.75rem;
-        border-radius: 100px;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-    .status-glow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; }
-    .status-glow.active { background: rgba(16, 185, 129, 0.1); color: #10b981; }
-    .status-glow.active::before { background: #10b981; box-shadow: 0 0 8px #10b981; }
-    .status-glow.inactive { background: rgba(148, 163, 184, 0.1); color: #94a3b8; }
-    .status-glow.inactive::before { background: #94a3b8; }
-
-    .action-btn-v2 {
-        width: 36px;
-        height: 36px;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid var(--v2-border);
-        background: rgba(255, 255, 255, 0.03);
-        color: var(--v2-text-muted);
-        transition: all 0.3s;
-        text-decoration: none !important;
-    }
-    .action-btn-v2:hover { transform: translateY(-2px); border-color: var(--v2-primary); color: var(--v2-primary); }
-    .action-btn-v2.duplicate:hover { border-color: #3b82f6; color: #3b82f6; }
-    .action-btn-v2.delete:hover { border-color: #ef4444; color: #ef4444; }
-
-    .pagination-v2 .pagination { margin-bottom: 0; }
-    .pagination-v2 .page-link { background: rgba(255,255,255,0.03); border: 1px solid var(--v2-border); color: var(--v2-text-muted); border-radius: 8px; margin: 0 3px; }
-    .pagination-v2 .page-item.active .page-link { background: var(--v2-primary); border-color: transparent; color: white; }
+    .post-preview-v2:hover { transform: scale(1.1); border-color: var(--v2-primary); }
 </style>
+
 @endsection

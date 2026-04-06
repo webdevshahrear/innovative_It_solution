@@ -140,8 +140,9 @@
             transition: 0.4s;
             position: relative;
         }
-        
-        /* Pulse Animation */
+        .text-glow-primary { color: var(--v2-primary); text-shadow: 0 0 30px rgba(240, 82, 35, 0.6), 0 0 60px rgba(240, 82, 35, 0.4); }
+        .v2-section-title { font-size: 4.5rem; font-weight: 900; color: #fff; line-height: 1.1; letter-spacing: -2px; }
+
         .v2-stat-icon::before {
             content: ''; position: absolute; inset: -5px; border: 1px solid var(--v2-primary); 
             border-radius: 50%; opacity: 0; animation: icon-pulse 3s infinite;
@@ -189,19 +190,67 @@
         .mv-card-v4 p { font-size: 1.25rem; color: rgba(255,255,255,0.7); line-height: 1.8; margin: 0; font-family: 'Inter', sans-serif; }
 
         /* ── Team ── */
-        .v2-team-wrap { background: var(--v2-bg); padding: 150px 0; position: relative; overflow: hidden; }
-        .team-card-v4 { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 35px; overflow: hidden; position: relative; transition: 0.5s; }
-        .team-card-v4:hover { border-color: var(--v2-primary); transform: translateY(-15px); background: rgba(255,255,255,0.04); }
-        .team-img-v4 { position: relative; aspect-ratio: 4/5; overflow: hidden; }
-        .team-img-v4 img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; }
-        .team-card-v4:hover .team-img-v4 img { transform: scale(1.1); filter: grayscale(1); }
-        .team-social-v4 { position: absolute; bottom: 20px; left: 0; right: 0; justify-content: center; display: flex; gap: 10px; transform: translateY(100px); transition: 0.5s; }
-        .team-card-v4:hover .team-social-v4 { transform: translateY(0); }
-        .team-social-v4 a { width: 40px; height: 40px; background: var(--v2-primary); color: #fff; border-radius: 10px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
-        .team-social-v4 a:hover { background: #fff; color: var(--v2-primary); transform: translateY(-5px); }
-        .team-info-v4 { padding: 30px; }
-        .team-info-v4 h4 { color: #fff; font-weight: 800; margin-bottom: 5px; font-size: 1.4rem; }
-        .team-info-v4 p { color: var(--v2-primary); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin: 0; }
+        .v2-team-wrap { background: var(--v2-bg); padding: 120px 0; position: relative; overflow: hidden; }
+        .team-card-v4 { background: var(--v2-card); border: 1px solid var(--v2-border); border-radius: 30px; overflow: visible; position: relative; transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); height: 100%; }
+        .team-card-v4:hover { transform: translateY(-10px); border-color: rgba(240,82,35,0.35); box-shadow: 0 25px 50px rgba(0,0,0,0.3); }
+        .team-img-v4 { 
+            position: relative; 
+            aspect-ratio: 1/1.1; 
+            background: #ffffff; 
+            border-radius: 26px 26px 0 0; 
+            overflow: hidden;
+        }
+        .team-img-v4 img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: 0.6s ease; display: block; }
+        .team-card-v4:hover .team-img-v4 img { transform: scale(1.06); }
+
+        /* Image overlay on hover */
+        .team-img-v4::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(240, 82, 35, 0.25) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+        .team-card-v4:hover .team-img-v4::after { opacity: 1; }
+
+        /* Social icons - staggered bounce in */
+        .team-social-v4 { position: absolute; bottom: 22px; left: 0; right: 0; justify-content: center; display: flex; gap: 10px; z-index: 10; }
+        .team-social-v4 a {
+            width: 42px; height: 42px;
+            background: #fff;
+            color: var(--v2-primary);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            text-decoration: none; font-size: 1rem;
+            transition: all 0.45s ease;
+            transform: translateY(30px);
+            opacity: 0;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .team-card-v4:hover .team-social-v4 a { transform: translateY(0); opacity: 1; }
+        .team-card-v4:hover .team-social-v4 a:nth-child(1) { transition-delay: 0s; }
+        .team-card-v4:hover .team-social-v4 a:nth-child(2) { transition-delay: 0.06s; }
+        .team-card-v4:hover .team-social-v4 a:nth-child(3) { transition-delay: 0.12s; }
+        .team-card-v4:hover .team-social-v4 a:nth-child(4) { transition-delay: 0.18s; }
+        .team-social-v4 a:hover { background: var(--v2-primary); color: #fff; transform: translateY(-4px) !important; box-shadow: 0 12px 25px rgba(240, 82, 35, 0.4); }
+        .team-info-v4 { padding: 28px 22px 32px; background: var(--v2-card); border-radius: 0 0 26px 26px; text-align: center; }
+        .team-info-v4 h4 { color: #fff; font-weight: 800; margin-bottom: 6px; font-size: 1.35rem; letter-spacing: -0.3px; }
+        .team-info-v4 .team-position { color: var(--v2-primary); font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 22px; display: block; }
+        .btn-pill-dark { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); color: #fff; border-radius: 100px; padding: 10px 30px; font-size: 0.82rem; font-weight: 700; transition: all 0.3s; text-decoration: none; display: inline-block; }
+        .btn-pill-dark:hover { background: var(--v2-primary); border-color: var(--v2-primary); color: #fff; transform: translateY(-2px); }
+        .btn-pill-lg { padding: 16px 50px; font-size: 0.95rem; }
+        /* Light Mode – Team */
+        body.light-mode .v2-team-wrap { background: #f0f4f8; }
+        body.light-mode .team-card-v4 { background: #ffffff; border-color: #e8edf2; box-shadow: 0 8px 30px rgba(0,0,0,0.07); }
+        body.light-mode .team-img-v4 { background: #f8fafc; border-bottom: 1px solid #edf0f3; }
+        body.light-mode .team-info-v4 { background: #ffffff; }
+        body.light-mode .team-info-v4 h4 { color: #0f172a !important; }
+        body.light-mode .team-info-v4 .team-position { color: var(--v2-primary) !important; }
+        body.light-mode .btn-pill-dark { background: transparent; border: 1px solid #cbd5e1; color: #334155; font-weight: 600; }
+        body.light-mode .btn-pill-dark:hover { background: var(--v2-primary); border-color: var(--v2-primary); color: #fff; }
+        body.light-mode .v2-section-title { color: #0f172a; }
 
         /* ── Blog ── */
         .v2-blog-wrap { background: var(--v2-bg); padding: 150px 0; position: relative; overflow: hidden; }
@@ -304,7 +353,8 @@
         @keyframes neon-slide { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
         .news-form-v4 { max-width: 600px; margin: 40px auto 0; position: relative; }
         .news-form-v4 input { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 100px; padding: 25px 230px 25px 40px; color: #fff; font-weight: 600; outline: none; transition: 0.3s; }
-        .news-form-v4 button:hover { background: #fff; color: var(--v2-primary); transform: scale(1.05); }
+        .news-form-v4 button { position: absolute; right: 10px; top: 10px; bottom: 10px; background: var(--v2-primary); color: #fff; border: none; border-radius: 100px; padding: 0 40px; font-weight: 800; letter-spacing: 2px; transition: 0.3s; box-shadow: 0 10px 20px var(--v2-primary-glow); }
+        .news-form-v4 button:hover { background: #fff; color: var(--v2-primary); transform: scale(1.02); }
 
         /* ── Light Mode PERFECT Overrides ── */
         body.light-mode { background: #f8fafc !important; }
@@ -318,7 +368,14 @@
         body.light-mode .v2-faq-wrap, 
         body.light-mode .v2-contact-wrap, 
         body.light-mode .v2-newsletter-wrap, 
+        body.light-mode .wf-section-wrapper,
+        body.light-mode .v2-marquee-wrap,
+        body.light-mode .testimonials-v2-wrap,
         body.light-mode .v2-feature-abstract { background: #f8fafc !important; }
+
+        body.light-mode .v2-mesh-glow,
+        body.light-mode .v2-mesh-glow-alt,
+        body.light-mode .mesh-gradient-v4 { opacity: 0.15 !important; }
 
         body.light-mode .s-card-v4, 
         body.light-mode .p-card-v4, 
@@ -329,24 +386,27 @@
         body.light-mode .pricing-card-v4, 
         body.light-mode .faq-item-v4, 
         body.light-mode .contact-glass-v4, 
+        body.light-mode .t-card-v4,
         body.light-mode .newsletter-glass-v4 { 
             background: #ffffff !important; 
-            border-color: rgba(0,0,0,0.05) !important; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05) !important; 
+            border-color: rgba(0,0,0,0.06) !important; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04) !important; 
         }
 
         body.light-mode h1, body.light-mode h2, body.light-mode h3, body.light-mode h4, body.light-mode h5, body.light-mode h6, 
+        body.light-mode .display-3, body.light-mode .display-4, body.light-mode .display-5,
         body.light-mode .v2-section-title, body.light-mode .s-title-v4, body.light-mode .p-title-v4, 
         body.light-mode .v2-stat-value, body.light-mode .blog-title-v4, body.light-mode .price-v4,
-        body.light-mode .faq-question-v4 { color: #0f172a !important; }
+        body.light-mode .faq-question-v4, body.light-mode .abstract-title,
+        body.light-mode .t-meta-v4 h5 { color: #0f172a !important; }
 
-        body.light-mode p, body.light-mode .s-desc-v4, body.light-mode .hero-subtitle-v4, 
+        body.light-mode p, body.light-mode .lead, body.light-mode .s-desc-v4, body.light-mode .hero-subtitle-v4, 
         body.light-mode .v2-stat-label, body.light-mode .blog-excerpt-v4, body.light-mode .mv-card-v4 p,
-        body.light-mode .faq-answer-v4, body.light-mode .t-text-v4 { color: #334155 !important; }
+        body.light-mode .faq-answer-v4, body.light-mode .t-text-v4, body.light-mode .t-meta-v4 span,
+        body.light-mode .marquee-item { color: #334155 !important; }
 
-        body.light-mode .btn-glass-v4, body.light-mode .s-link-v4, body.light-mode .blog-link-v4, 
-        body.light-mode .hero-swiper-next, body.light-mode .hero-swiper-prev, 
-        body.light-mode .t-nav-v4 { 
+        body.light-mode .s-link-v4, body.light-mode .blog-link-v4, 
+        body.light-mode .t-nav-v4, body.light-mode .hero-static-wrap-v2 .hero-scroll-v4 .mouse-v4 { 
             background: #f1f5f9 !important; 
             color: #0f172a !important; 
             border-color: rgba(0,0,0,0.1) !important; 
@@ -364,6 +424,59 @@
         body.light-mode .v2-marquee-wrap::before { background: linear-gradient(to right, #fff, transparent) !important; }
         body.light-mode .v2-marquee-wrap::after { background: linear-gradient(to left, #fff, transparent) !important; }
 
+        /* ── Testimonials Light Mode ── */
+        body.light-mode .t-card-v4 { border-color: rgba(0,0,0,0.08) !important; }
+        body.light-mode .t-quote-v4 { opacity: 0.2 !important; }
+
+        /* ── Portfolio Light Mode Refinement ── */
+        body.light-mode .p-card-v4 { background: #fff !important; }
+        body.light-mode .p-img-v4::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.02); pointer-events: none; }
+
+        /* ── Workflow Light Mode Fixes ── */
+        body.light-mode .wf-section-wrapper::before,
+        body.light-mode .wf-section-wrapper::after { opacity: 0.15; }
+        body.light-mode .wf-node { 
+            background: rgba(255,255,255,0.8) !important; 
+            border-color: rgba(240, 82, 35, 0.3) !important;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05) !important;
+        }
+        body.light-mode .wf-node i { color: #0f172a !important; background: none !important; -webkit-text-fill-color: initial !important; }
+        body.light-mode .wf-node.active { background: linear-gradient(135deg, var(--wf-orange), var(--wf-red-orange)) !important; }
+        body.light-mode .wf-node.active i { color: #fff !important; -webkit-text-fill-color: #fff !important; }
+
+        body.light-mode .big-ring { border-color: rgba(0, 0, 0, 0.08) !important; }
+        body.light-mode .big-ring-outer { border-color: rgba(0, 0, 0, 0.05) !important; }
+        body.light-mode .wf-stat-item { border-left-color: rgba(240, 82, 35, 0.1) !important; }
+        body.light-mode .wf-stat-number { color: #0f172a !important; }
+        body.light-mode .wf-stat-label { color: #64748b !important; }
+        body.light-mode .center-text p { color: #475569 !important; }
+        body.light-mode .wf-section-wrapper { background-image: radial-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px) !important; }
+
+        /* ── Hero Slider Light Mode ── */
+        body.light-mode .hero-slider-wrap,
+        body.light-mode .hero-static-wrap-v2 { background: #ffffff !important; }
+        body.light-mode .hero-overlay { background: linear-gradient(to right, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.7) 100%) !important; }
+        body.light-mode .hero-title-v4, 
+        body.light-mode .hero-title-elite { color: #0f172a !important; text-shadow: none !important; }
+        body.light-mode .hero-subtitle-v4 { color: #475569 !important; }
+        body.light-mode .hero-badge-v4 { background: rgba(240,82,35,0.08) !important; border-color: rgba(240,82,35,0.15) !important; color: var(--v2-primary) !important; }
+        
+        body.light-mode .btn-glass-v4 { background: #ffffff !important; color: #1e293b !important; border: 1px solid rgba(0,0,0,0.1) !important; box-shadow: 0 10px 30px rgba(0,0,0,0.04) !important; }
+        body.light-mode .btn-glass-v4:hover { background: #f8fafc !important; color: var(--v2-primary) !important; border-color: var(--v2-primary) !important; transform: translateY(-5px); }
+
+        body.light-mode .hero-swiper-next, 
+        body.light-mode .hero-swiper-prev { background: #ffffff !important; color: #0f172a !important; border-color: rgba(0,0,0,0.05) !important; box-shadow: 0 10px 30px rgba(0,0,0,0.08) !important; }
+        body.light-mode .hero-swiper-next:hover, 
+        body.light-mode .hero-swiper-prev:hover { background: var(--v2-primary) !important; color: #fff !important; }
+
+        body.light-mode .hero-thumbs-swiper .thumb-title { color: #0f172a !important; }
+        body.light-mode .hero-thumbs-swiper .thumb-meta { color: var(--v2-primary) !important; }
+        body.light-mode .hero-scroll-v4 span { color: #0f172a !important; }
+        body.light-mode .mouse-v4 { border-color: #0f172a !important; }
+        body.light-mode .wheel-v4 { background: #0f172a !important; }
+
+
+
         /* ── Cleanup ── */
         @media (max-width: 991px) {
             .desktop-only { display: none; }
@@ -371,7 +484,212 @@
             .v2-stat-value { font-size: 2.5rem; }
             .contact-glass-v4 { padding: 40px; }
         }
+
+        /* ── NEW WORK FLOWS SECTION ── */
+        :root {
+            --wf-navy: #040415;
+            --wf-blue: #3b82f6;
+            --wf-blue-light: #60a5fa;
+            --wf-orange: #f05223;
+            --wf-red-orange: #d14118;
+            --wf-white: #ffffff;
+            --wf-text-gray: #94a3b8;
+            --wf-ring-color: rgba(59, 130, 246, 0.25);
+        }
+
+        .wf-section-wrapper {
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+            background: var(--v2-bg);
+            background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+
+        .wf-section-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -80px; right: -80px;
+            width: 320px; height: 320px;
+            background: radial-gradient(circle, rgba(240, 82, 35, 0.12) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .wf-section-wrapper::after {
+            content: '';
+            position: absolute;
+            bottom: -60px; left: -60px;
+            width: 260px; height: 260px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .wf-content-row {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .workflow-left {
+            flex: 0 0 520px;
+            position: relative;
+        }
+
+        .circle-wrapper {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            margin: 0 auto;
+        }
+
+        .big-ring-outer {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 390px; height: 390px;
+            border-radius: 50%;
+            border: 1px dashed rgba(59, 130, 246, 0.18);
+        }
+
+        .big-ring {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 340px; height: 340px;
+            border-radius: 50%;
+            border: 1.5px solid var(--wf-ring-color);
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.1);
+        }
+
+        .center-text {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            width: 195px;
+            z-index: 5;
+        }
+        .center-text h3 {
+            font-size: 24px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--wf-orange), var(--wf-red-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+        .center-text p {
+            font-size: 14px;
+            color: var(--wf-text-gray);
+            line-height: 1.7;
+        }
+
+        @keyframes wfFadeSwap {
+            0%   { opacity: 0; transform: translate(-50%, -44%); }
+            100% { opacity: 1; transform: translate(-50%, -50%); }
+        }
+        .center-text.animate { animation: wfFadeSwap 0.4s ease forwards; }
+
+        .wf-node {
+            position: absolute;
+            width: 85px; height: 85px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1.5px solid rgba(240, 82, 35, 0.25);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transform: translate(-50%, -50%);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 10;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+        .wf-node i {
+            font-size: 28px;
+            background: linear-gradient(135deg, #fff, #aaa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: 0.3s;
+        }
+        .wf-node:hover {
+            border-color: var(--wf-orange);
+            box-shadow: 0 12px 40px rgba(240, 82, 35, 0.3);
+            transform: translate(-50%, -50%) scale(1.1) rotate(5deg);
+        }
+        .wf-node.active {
+            background: linear-gradient(135deg, var(--wf-orange), var(--wf-red-orange));
+            border-color: var(--wf-orange);
+            box-shadow: 0 15px 45px rgba(240, 82, 35, 0.5);
+            transform: translate(-50%, -50%) scale(1.15);
+        }
+        .wf-node.active i {
+            background: none;
+            -webkit-text-fill-color: #fff;
+            color: #fff;
+        }
+
+        .wf-node-1 { left: 148px; top:  72px; }
+        .wf-node-2 { left: 352px; top:  72px; }
+        .wf-node-3 { left: 460px; top: 250px; }
+        .wf-node-4 { left: 352px; top: 428px; }
+        .wf-node-5 { left: 148px; top: 428px; }
+        .wf-node-6 { left:  40px; top: 250px; }
+
+        .stats-right {
+            flex: 1;
+            min-width: 280px;
+        }
+        .wf-stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px 30px;
+        }
+        .wf-stat-item { text-align: left; position: relative; padding-left: 20px; border-left: 2px solid rgba(240, 82, 35, 0.1); transition: 0.3s; }
+        .wf-stat-item:hover { border-left-color: var(--wf-orange); transform: translateX(10px); }
+
+        .wf-stat-number {
+            font-size: 60px;
+            font-weight: 950;
+            color: #fff;
+            line-height: 1;
+            display: flex;
+            align-items: flex-start;
+            letter-spacing: -2px;
+        }
+        .wf-stat-number .plus {
+            font-size: 28px;
+            color: var(--wf-orange);
+            margin-top: 8px;
+            font-weight: 900;
+        }
+        .wf-stat-label {
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--wf-text-gray);
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 900px) {
+            .wf-content-row { flex-direction: column; align-items: center; }
+            .workflow-left { flex: none; }
+            .stats-right { text-align: center; }
+            .wf-stat-item { text-align: center; border-left: none; padding-left: 0; }
+            .wf-stat-number { justify-content: center; }
+        }
+        @media (max-width: 560px) {
+            .circle-wrapper { transform: scale(0.62); transform-origin: top center; height: 320px; }
+            .wf-section-wrapper { padding: 80px 20px; }
+        }
     </style>
+
 
     {{-- ═══════════════════════════════════ HERO ═══════════════════════════════════ --}}
     @if($heroMode === 'slider' && $heroSlides->count() > 0)
@@ -550,75 +868,76 @@
     </section>
 
     {{-- ═══════════════════════════════════ WORKING PROCESS ═══════════════════════════════════ --}}
-    <section id="process" class="v2-process-wrap">
-        <div class="v2-mesh-glow-alt"></div>
-        <div class="container position-relative z-1">
+    {{-- ═══════════════════════════════════ OUR WORK FLOWS & STATS ═══════════════════════════════════ --}}
+    <section id="process" class="wf-section-wrapper">
+        <div class="container overflow-hidden">
             <div class="text-center mb-5" data-aos="fade-up">
                 <span class="v2-badge-primary mb-3">ELITE PROTOCOL</span>
-                <h2 class="v2-section-title">The Blueprint of <br><span class="text-glow-primary">Digital Transformation</span></h2>
+                <h2 class="v2-section-title">Our Strategic <br><span class="text-glow-primary">Work Flows</span></h2>
+
             </div>
-            <div class="process-grid">
-                <div class="process-card-v4" data-aos="fade-up" data-aos-delay="0">
-                    <div class="process-icon-wrap">
-                        <i class="fas fa-search"></i>
-                        <span class="process-num">01</span>
+
+            <div class="wf-content-row">
+                <!-- LEFT: Circular Workflow -->
+                <div class="workflow-left" data-aos="fade-right">
+                    <div class="circle-wrapper">
+                        <div class="big-ring-outer"></div>
+                        <div class="big-ring"></div>
+
+                        <div class="center-text" id="centerText">
+                            @if($workFlows->count() > 0)
+                                @php $activeItem = $workFlows->where('display_order', 3)->first() ?: $workFlows->first(); @endphp
+                                <h3 id="centerTitle">{{ $activeItem->title }}</h3>
+                                <p id="centerDesc">{{ $activeItem->description }}</p>
+                            @else
+                                <h3 id="centerTitle">Design</h3>
+                                <p id="centerDesc">We develop a user friendly responsive layout with the content generally provided by the client and convert your vision into design and development.</p>
+                            @endif
+                        </div>
+
+                        @forelse($workFlows as $index => $step)
+                            <div class="wf-node wf-node-{{ $index + 1 }} {{ $index === 2 ? 'active' : '' }}"
+                                 data-title="{{ $step->title }}"
+                                 data-desc="{{ $step->description }}"
+                                 onclick="setWFActive(this)">
+                                <i class="{{ $step->icon_class }}"></i>
+                            </div>
+                        @empty
+                            <!-- Fallback Nodes -->
+                            <div class="wf-node wf-node-1" data-title="Discovery" data-desc="We consult with clients to understand their goals, audience and project requirements thoroughly." onclick="setWFActive(this)"><i class="fa-solid fa-handshake"></i></div>
+                            <div class="wf-node wf-node-2" data-title="Idea & Concept" data-desc="We brainstorm creative concepts and innovative ideas that best align with your business vision." onclick="setWFActive(this)"><i class="fa-solid fa-lightbulb"></i></div>
+                            <div class="wf-node wf-node-3 active" data-title="Design" data-desc="We develop a user friendly responsive layout with the content generally provided by the client and convert your vision into design and development." onclick="setWFActive(this)"><i class="fa-solid fa-desktop"></i></div>
+                            <div class="wf-node wf-node-4" data-title="Support & Maintenance" data-desc="We provide ongoing support, updates and maintenance to keep your product running flawlessly." onclick="setWFActive(this)"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+                            <div class="wf-node wf-node-5" data-title="Testing & QA" data-desc="We rigorously test every feature for performance, compatibility and quality before going live." onclick="setWFActive(this)"><i class="fa-solid fa-magnifying-glass"></i></div>
+                            <div class="wf-node wf-node-6" data-title="Development" data-desc="We build scalable, clean-coded solutions bringing your approved designs to life with precision." onclick="setWFActive(this)"><i class="fa-solid fa-rocket"></i></div>
+                        @endforelse
+
                     </div>
-                    <h4>Discovery</h4>
-                    <p>In-depth analysis of your brand narrative and market positioning.</p>
                 </div>
-                <div class="process-card-v4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="process-icon-wrap">
-                        <i class="fas fa-lightbulb"></i>
-                        <span class="process-num">02</span>
+
+                <!-- RIGHT: Stats -->
+                <div class="stats-right" data-aos="fade-left">
+                    <div class="wf-stats-grid">
+                        @foreach($stats as $index => $stat)
+                            @php
+                                preg_match('/([0-9.]+)(.*)/', $stat->stat_value, $matches);
+                                $val = $matches[1] ?? 0;
+                                $suffix = $matches[2] ?? '';
+                            @endphp
+                            <div class="wf-stat-item">
+                                <div class="wf-stat-number">
+                                    <span class="wf-count" data-target="{{ $val }}">0</span>
+                                    <span class="plus">{{ $suffix ?: '+' }}</span>
+                                </div>
+                                <div class="wf-stat-label">{{ $stat->stat_label }}</div>
+                            </div>
+                        @endforeach
                     </div>
-                    <h4>Strategy</h4>
-                    <p>Architecting the roadmap for geometric growth and domination.</p>
-                </div>
-                <div class="process-card-v4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="process-icon-wrap">
-                        <i class="fas fa-code"></i>
-                        <span class="process-num">03</span>
-                    </div>
-                    <h4>Execution</h4>
-                    <p>Precision engineering and high-fidelity design implementation.</p>
-                </div>
-                <div class="process-card-v4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="process-icon-wrap">
-                        <i class="fas fa-rocket"></i>
-                        <span class="process-num">04</span>
-                    </div>
-                    <h4>Expansion</h4>
-                    <p>Global deployment and continuous strategic scaling.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    {{-- ═══════════════════════════════════ STATS ═══════════════════════════════════ --}}
-    <section class="v2-stats-wrap">
-        <div class="container">
-            <div class="v2-stats-grid">
-                @foreach($stats as $index => $stat)
-                    <div class="v2-stat-item" data-aos="zoom-in" data-aos-delay="{{ $index * 100 }}">
-                        <div class="stat-status-dot"></div>
-                        <div class="v2-stat-icon"><i class="{{ $stat->icon_class }}"></i></div>
-                        
-                        @php
-                            // Separate numeric value from suffix (e.g., 99.9% -> 99.9 and %)
-                            preg_match('/([0-9.]+)(.*)/', $stat->stat_value, $matches);
-                            $val = $matches[1] ?? 0;
-                            $suffix = $matches[2] ?? '';
-                        @endphp
-                        
-                        <h3 class="v2-stat-value">
-                            <span class="v2-counter" data-target="{{ $val }}">{{ $val }}</span>{{ $suffix }}
-                        </h3>
-                        <p class="v2-stat-label">{{ $stat->stat_label }}</p>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
 
     {{-- ═══════════════════════════════════ ABSTRACT FEATURE ═══════════════════════════════════ --}}
     <section class="v2-feature-abstract">
@@ -695,17 +1014,17 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="team-info-v4 text-center">
-                                    <h4><a href="{{ route('team.show', $member->id) }}" class="text-decoration-none" style="color: var(--v2-text-h);">{{ $member->name }}</a></h4>
-                                    <p class="mb-3">{{ $member->position }}</p>
-                                    <a href="{{ route('team.show', $member->id) }}" class="btn btn-sm btn-outline-primary rounded-pill px-4" style="font-size: 0.8rem;">View Profile</a>
+                                <div class="team-info-v4">
+                                    <h4>{{ $member->name }}</h4>
+                                    <span class="team-position">{{ $member->position }}</span>
+                                    <a href="{{ route('team.show', $member->id) }}" class="btn-pill-dark">View Profile</a>
                                 </div>
                             </div>
                         </div>
                     @endforeach
                 </div>
                 <div class="text-center mt-5" data-aos="fade-up">
-                    <a href="{{ route('team') }}" class="btn-glass-v4 px-5">Strategic Directory</a>
+                    <a href="{{ route('team') }}" class="btn-pill-dark px-5">Strategic Directory</a>
                 </div>
             </div>
         </section>
@@ -1000,5 +1319,45 @@
             if (!wasActive) item.classList.add('active');
         });
     });
+
+    // Workflow Section Logic
+    window.setWFActive = function(el) {
+        document.querySelectorAll('.wf-node').forEach(n => n.classList.remove('active'));
+        el.classList.add('active');
+        const ct = document.getElementById('centerText');
+        ct.classList.remove('animate');
+        void ct.offsetWidth; 
+        ct.classList.add('animate');
+        document.getElementById('centerTitle').textContent = el.getAttribute('data-title');
+        document.getElementById('centerDesc').textContent  = el.getAttribute('data-desc');
+    };
+
+    function animateWFCounter(el) {
+        const target = parseFloat(el.getAttribute('data-target'));
+        const duration = 2000;
+        let startTime = null;
+        
+        const animate = (timestamp) => {
+            if (!startTime) startTime = timestamp;
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+            const currentVal = (progress * target).toFixed(target % 1 === 0 ? 0 : 1);
+            el.textContent = parseFloat(currentVal).toLocaleString();
+            if (progress < 1) requestAnimationFrame(animate);
+        };
+        requestAnimationFrame(animate);
+    }
+
+    const wfObserver = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                document.querySelectorAll('.wf-count').forEach(c => animateWFCounter(c));
+                wfObserver.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.3 });
+
+    const statsRight = document.querySelector('.stats-right');
+    if(statsRight) wfObserver.observe(statsRight);
+
 </script>
 @endpush

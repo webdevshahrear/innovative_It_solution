@@ -11,6 +11,7 @@ class Footer extends Component
 {
     public $siteName;
     public $siteLogo;
+    public $siteLogoLight;
     public $footerLogo;
     public $footerLogoWidth;
     public $footerLogoHeight;
@@ -35,6 +36,7 @@ class Footer extends Component
     {
         $this->siteName = SiteSetting::getValue('site_title', 'Innovative It Solutions');
         $this->siteLogo = SiteSetting::getValue('site_logo');
+        $this->siteLogoLight = SiteSetting::getValue('site_logo_light');
         $this->footerLogo = SiteSetting::getValue('footer_logo');
         $bgLogoW = SiteSetting::getValue('footer_logo_width', 180);
         $this->footerLogoWidth = empty($bgLogoW) ? 180 : $bgLogoW;

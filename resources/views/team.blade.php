@@ -3,8 +3,21 @@
 @section('title', $pageTitle)
 
 @section('content')
+@push('styles')
 <style>
-    /* Team Page Premium Styles */
+    :root {
+        --v2-bg: #06061e;
+        --v2-card: rgba(255, 255, 255, 0.02);
+        --v2-glass: rgba(13, 11, 40, 0.7);
+        --v2-border: rgba(255, 255, 255, 0.08);
+        --v2-primary: #f05223;
+        --v2-primary-glow: rgba(240, 82, 35, 0.35);
+        --v2-secondary: #3b82f6;
+        --v2-text-main: #f0eeff;
+        --v2-text-muted: #94a3b8;
+    }
+
+    /* ── Team Page Specific ── */
     .team-hero-v2 {
         position: relative;
         padding: 160px 0 100px;
@@ -22,119 +35,85 @@
     }
 
     .team-grid-v2 {
-        background: var(--navy-dark);
+        background: #040415;
         padding: 120px 0;
         position: relative;
-    }
-
-    .cyber-team-card {
-        position: relative;
-        border-radius: 40px;
-        overflow: hidden;
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        height: 100%;
-    }
-
-    .cyber-team-img {
-        position: relative;
-        height: 420px;
         overflow: hidden;
     }
 
-    .cyber-team-img img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-        filter: grayscale(0.2);
+    /* ── Team Card V4 (Home Page Match) ── */
+    .team-card-v4 { background: var(--v2-card); border: 1px solid var(--v2-border); border-radius: 30px; overflow: visible; position: relative; transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); height: 100%; }
+    .team-card-v4:hover { transform: translateY(-10px); border-color: rgba(240,82,35,0.35); box-shadow: 0 25px 50px rgba(0,0,0,0.3); }
+    .team-img-v4 { 
+        position: relative; 
+        aspect-ratio: 1/1.1; 
+        background: #ffffff; 
+        border-radius: 26px 26px 0 0; 
+        overflow: hidden;
     }
+    .team-img-v4 img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: 0.6s ease; display: block; }
+    .team-card-v4:hover .team-img-v4 img { transform: scale(1.06); }
 
-    .cyber-team-card:hover .cyber-team-img img {
-        transform: scale(1.1);
-        filter: grayscale(0);
-    }
-
-    .cyber-team-info {
+    .team-img-v4::after {
+        content: '';
         position: absolute;
-        bottom: 20px;
-        left: 20px;
-        right: 20px;
-        background: rgba(13, 11, 40, 0.7);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 30px;
-        border-radius: 30px;
-        text-align: center;
-        transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        transform: translateY(10px);
-    }
-
-    .cyber-team-card:hover .cyber-team-info {
-        transform: translateY(0);
-        border-color: var(--primary);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-    }
-
-    .cyber-team-name {
-        font-size: 1.4rem;
-        font-weight: 800;
-        margin-bottom: 5px;
-        color: #fff;
-    }
-
-    .cyber-team-pos {
-        font-size: 0.85rem;
-        font-weight: 700;
-        color: var(--primary);
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        margin-bottom: 20px;
-        display: block;
-    }
-
-    .cyber-social {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
+        inset: 0;
+        background: linear-gradient(to top, rgba(240, 82, 35, 0.25) 0%, transparent 60%);
         opacity: 0;
-        transform: translateY(10px);
-        transition: all 0.4s ease 0.1s;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
     }
+    .team-card-v4:hover .team-img-v4::after { opacity: 1; }
 
-    .cyber-team-card:hover .cyber-social {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .cyber-social-link {
-        width: 40px;
-        height: 40px;
-        background: rgba(255, 255, 255, 0.05);
+    .team-social-v4 { position: absolute; bottom: 22px; left: 0; right: 0; justify-content: center; display: flex; gap: 10px; z-index: 10; }
+    .team-social-v4 a {
+        width: 42px; height: 42px;
+        background: #fff;
+        color: var(--v2-primary);
         border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #fff;
-        transition: all 0.3s;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex; align-items: center; justify-content: center;
+        text-decoration: none; font-size: 1rem;
+        transition: all 0.45s ease;
+        transform: translateY(30px);
+        opacity: 0;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     }
+    .team-card-v4:hover .team-social-v4 a { transform: translateY(0); opacity: 1; }
+    .team-card-v4:hover .team-social-v4 a:nth-child(1) { transition-delay: 0s; }
+    .team-card-v4:hover .team-social-v4 a:nth-child(2) { transition-delay: 0.06s; }
+    .team-card-v4:hover .team-social-v4 a:nth-child(3) { transition-delay: 0.12s; }
+    .team-card-v4:hover .team-social-v4 a:nth-child(4) { transition-delay: 0.18s; }
+    .team-social-v4 a:hover { background: var(--v2-primary); color: #fff; transform: translateY(-4px) !important; box-shadow: 0 12px 25px rgba(240, 82, 35, 0.4); }
 
-    .cyber-social-link:hover {
-        background: var(--primary);
-        color: #fff;
-        transform: translateY(-3px);
-        box-shadow: 0 10px 20px var(--primary-glow);
-    }
+    .team-info-v4 { padding: 28px 22px 32px; background: var(--v2-card); border-radius: 0 0 26px 26px; text-align: center; }
+    .team-info-v4 h4 { color: #fff; font-weight: 800; margin-bottom: 6px; font-size: 1.35rem; letter-spacing: -0.3px; }
+    .team-info-v4 .team-position { color: var(--v2-primary); font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 22px; display: block; }
+    
+    .btn-pill-dark { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); color: #fff; border-radius: 100px; padding: 10px 30px; font-size: 0.82rem; font-weight: 700; transition: all 0.3s; text-decoration: none; display: inline-block; }
+    .btn-pill-dark:hover { background: var(--v2-primary); border-color: var(--v2-primary); color: #fff; transform: translateY(-2px); }
+
+    /* Light Mode Adjustments */
+    body.light-mode .team-hero-v2,
+    body.light-mode .team-grid-v2 { background: #f8fafc !important; }
+    body.light-mode .hero-title-cinematic,
+    body.light-mode .v2-section-title { color: #0f172a !important; }
+    body.light-mode .hero-subtitle-cinematic { color: #475569 !important; }
+
+    body.light-mode .team-card-v4 { background: #ffffff; border-color: #e2e8f0; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+    body.light-mode .team-img-v4 { background: #f8fafc; border-bottom: 1px solid #edf2f7; }
+    body.light-mode .team-info-v4 { background: #ffffff; }
+    body.light-mode .team-info-v4 h4 { color: #0f172a !important; }
+    body.light-mode .btn-pill-dark { background: transparent; border: 1px solid #cbd5e1; color: #334155; font-weight: 600; }
+    body.light-mode .btn-pill-dark:hover { background: var(--v2-primary); border-color: var(--v2-primary); color: #fff; }
 </style>
+@endpush
 
 <div class="team-hero-v2">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-7" data-aos="fade-right">
                 <span class="hero-badge-cinematic">THE ARCHITECTS</span>
-                <h1 class="hero-title-cinematic mb-4">The Minds Behind the <br><span class="text-primary">Innovation</span></h1>
+                <h1 class="hero-title-cinematic mb-4">The Minds Behind the <br><span class="text-glow-primary">Innovation</span></h1>
                 <p class="hero-subtitle-cinematic mb-5">Meet our collective of elite engineers, visionary designers, and strategic thinkers dedicated to your success.</p>
                 
                 <nav aria-label="breadcrumb">
@@ -149,18 +128,19 @@
 </div>
 
 <section class="team-grid-v2">
-    <div class="container">
-        <div class="text-center mb-100" data-aos="fade-up">
-            <span class="badge-modern mb-3" style="background: rgba(240, 82, 35, 0.1); border-color: rgba(240, 82, 35, 0.2); color: var(--primary);">LEADERSHIP</span>
-            <h2 class="display-4 fw-bold">Human-Centric <span class="text-primary">Engineering</span></h2>
+    <div class="v2-mesh-glow"></div>
+    <div class="container position-relative z-1">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="v2-badge-primary mb-3">LEADERSHIP</span>
+            <h2 class="v2-section-title">Human-Centric <br><span class="text-glow-primary">Engineering</span></h2>
         </div>
 
-        <div class="row g-4 justify-content-center">
+        <div class="row g-5 justify-content-center">
             @if($teamMembers->count() > 0)
                 @foreach($teamMembers as $index => $member)
                     <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="{{ ($index % 4) * 100 }}">
-                        <div class="cyber-team-card">
-                            <div class="cyber-team-img">
+                        <div class="team-card-v4">
+                            <div class="team-img-v4">
                                 @php
                                     $memberImg = $member->image ?? null;
                                     if (!empty($memberImg) && !filter_var($memberImg, FILTER_VALIDATE_URL)) {
@@ -171,27 +151,27 @@
                                 @endphp
                                 <img src="{{ $memberImg }}"
                                     alt="{{ $member->name }}"
-                                    onerror="this.src='https://via.placeholder.com/400x600/10101f/ffffff?text={{ urlencode($member->name) }}'">
-                            </div>
-                            <div class="cyber-team-info text-center">
-                                <h4 class="cyber-team-name"><a href="{{ route('team.show', $member->id) }}" class="text-white text-decoration-none">{{ $member->name }}</a></h4>
-                                <span class="cyber-team-pos mb-3 d-block">{{ $member->position }}</span>
-                                <a href="{{ route('team.show', $member->id) }}" class="btn btn-sm d-inline-block mb-3" style="background: rgba(240, 82, 35, 0.1); color: var(--v2-primary); border: 1px solid rgba(240, 82, 35, 0.2); border-radius: 20px; font-size: 0.8rem; font-weight: 700; padding: 5px 20px; transition: 0.3s;" onmouseover="this.style.background='var(--v2-primary)'; this.style.color='#fff';" onmouseout="this.style.background='rgba(240, 82, 35, 0.1)'; this.style.color='var(--v2-primary)';">View Profile</a>
-                               
-                                <div class="cyber-social">
+                                    onerror="this.src='https://via.placeholder.com/400x500/10101f/ffffff?text={{ urlencode($member->name) }}'">
+                                
+                                <div class="team-social-v4">
                                     @if($member->facebook_url)
-                                        <a href="{{ $member->facebook_url }}" class="cyber-social-link"><i class="fab fa-facebook-f"></i></a>
+                                        <a href="{{ $member->facebook_url }}"><i class="fab fa-facebook-f"></i></a>
                                     @endif
                                     @if($member->twitter_url)
-                                        <a href="{{ $member->twitter_url }}" class="cyber-social-link"><i class="fab fa-twitter"></i></a>
+                                        <a href="{{ $member->twitter_url }}"><i class="fab fa-twitter"></i></a>
                                     @endif
                                     @if($member->instagram_url)
-                                        <a href="{{ $member->instagram_url }}" class="cyber-social-link"><i class="fab fa-instagram"></i></a>
+                                        <a href="{{ $member->instagram_url }}"><i class="fab fa-instagram"></i></a>
                                     @endif
                                     @if($member->linkedin_url)
-                                        <a href="{{ $member->linkedin_url }}" class="cyber-social-link"><i class="fab fa-linkedin-in"></i></a>
+                                        <a href="{{ $member->linkedin_url }}"><i class="fab fa-linkedin-in"></i></a>
                                     @endif
                                 </div>
+                            </div>
+                            <div class="team-info-v4">
+                                <h4>{{ $member->name }}</h4>
+                                <span class="team-position">{{ $member->position }}</span>
+                                <a href="{{ route('team.show', $member->id) }}" class="btn-pill-dark">View Profile</a>
                             </div>
                         </div>
                     </div>

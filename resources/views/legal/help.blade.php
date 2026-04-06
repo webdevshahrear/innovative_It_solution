@@ -133,6 +133,31 @@
         box-shadow: 0 15px 40px var(--primary-glow);
         color: #fff;
     }
+
+    /* ── Light Mode Overrides for Help Center ── */
+    body.light-mode .help-hero-v2 { background: #f8fafc !important; }
+    body.light-mode .help-section-v2 { background: #f8fafc !important; }
+    body.light-mode .display-3 { color: #0f172a !important; }
+    body.light-mode .text-white-50 { color: #64748b !important; }
+    body.light-mode .search-box-v2 input { 
+        background: #ffffff !important; 
+        border-color: #e2e8f0 !important; 
+        color: #1e293b !important; 
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05) !important;
+    }
+    body.light-mode .help-category-card { 
+        background: #ffffff !important; 
+        border-color: rgba(0, 0, 0, 0.06) !important;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.03) !important;
+    }
+    body.light-mode .help-category-card h3 { color: #0f172a !important; }
+    body.light-mode .faq-list-v2 a { color: #64748b !important; }
+    body.light-mode .support-cta-v2 { 
+        background: #ffffff !important; 
+        border-color: rgba(0, 0, 0, 0.06) !important;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.05) !important;
+    }
+    body.light-mode .support-cta-v2 h2 { color: #0f172a !important; }
 </style>
 
 <div class="help-hero-v2">

@@ -32,16 +32,23 @@
     <nav class="navbar navbar-expand-lg navbar-v2-main">
         <div class="container">
             <a class="navbar-brand-v2" href="{{ url('/') }}">
-                @if($logo)
-                    <div class="brand-logo-glow">
+                <div class="brand-logo-glow">
+                    @if($logo)
                         <img src="{{ asset('uploads/settings/' . $logo) }}"
                              alt="{{ $siteName }}"
-                             style="width: {{ $logoWidth }}px; height: {{ $logoHeight }}px; object-fit: contain; object-position: left center;"
-                             onerror="this.style.display='none'">
-                    </div>
-                @else
-                    <span class="brand-text-v2">{{ $siteName }}</span>
-                @endif
+                             class="logo-dark"
+                             style="width: {{ $logoWidth }}px; height: {{ $logoHeight }}px; object-fit: contain; object-position: left center;">
+                    @endif
+                    
+                    @if($logoLight)
+                        <img src="{{ asset('uploads/settings/' . $logoLight) }}"
+                             alt="{{ $siteName }}"
+                             class="logo-light"
+                             style="width: {{ $logoWidth }}px; height: {{ $logoHeight }}px; object-fit: contain; object-position: left center; display: none;">
+                    @elseif(!$logo)
+                        <span class="brand-text-v2">{{ $siteName }}</span>
+                    @endif
+                </div>
             </a>
             
             <button class="navbar-toggler-v2 d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -197,19 +204,27 @@
 }
 
 /* Light Mode Overrides */
-body.light-mode .top-bar-v2 { background: #f8fafc !important; border-bottom-color: rgba(0,0,0,0.05) !important; }
-body.light-mode .top-info-v2 .info-item { color: #64748b !important; }
-body.light-mode .top-info-v2 .info-item:hover { color: #0f172a !important; }
-body.light-mode .social-icon { background: rgba(0,0,0,0.03) !important; border-color: rgba(0,0,0,0.1) !important; color: #0f172a !important; }
-body.light-mode .social-icon:hover { color: #fff !important; background: var(--primary) !important; }
-body.light-mode .header-v2.scrolled .navbar-v2-main { background: rgba(255, 255, 255, 0.9) !important; border-bottom-color: rgba(0,0,0,0.05) !important; box-shadow: 0 10px 30px rgba(0,0,0,0.05) !important; }
-body.light-mode .nav-link-v2 { color: #475569 !important; }
-body.light-mode .nav-link-v2:hover, body.light-mode .nav-link-v2.active { color: #0f172a !important; }
+body.light-mode .top-bar-v2 { background: #ffffff !important; border-bottom-color: rgba(0,0,0,0.06) !important; }
+body.light-mode .top-info-v2 .info-item { color: #475569 !important; font-weight: 500; }
+body.light-mode .top-info-v2 .info-item:hover { color: var(--primary) !important; }
+body.light-mode .social-label { color: #64748b !important; }
+body.light-mode .social-icon { background: rgba(0,0,0,0.02) !important; border-color: rgba(0,0,0,0.08) !important; color: #475569 !important; }
+body.light-mode .social-icon:hover { color: #fff !important; background: var(--primary) !important; box-shadow: 0 5px 15px var(--primary-glow); }
+body.light-mode .header-v2.scrolled .navbar-v2-main { background: rgba(255, 255, 255, 0.95) !important; border-bottom-color: rgba(0,0,0,0.05) !important; box-shadow: 0 10px 40px rgba(0,0,0,0.04) !important; }
+body.light-mode .nav-link-v2 { color: #1e293b !important; }
+body.light-mode .nav-link-v2:hover, body.light-mode .nav-link-v2.active { color: var(--primary) !important; }
 body.light-mode .dropdown-menu-v2-glass { background: #ffffff !important; border-color: rgba(0,0,0,0.05) !important; }
 body.light-mode .dropdown-item-v2 { color: #475569 !important; }
 body.light-mode .dropdown-item-v2:hover { color: var(--primary) !important; background: rgba(240,82,35,0.05) !important; }
 body.light-mode .nav-toggle-icon span { background: #0f172a !important; }
-body.light-mode .navbar-collapse { background: #ffffff !important; border-color: rgba(0,0,0,0.05) !important; }
+body.light-mode .navbar-collapse { border-color: rgba(0,0,0,0.05) !important; }
+
+/* Logo Theme Toggling */
+.logo-dark { display: block; }
+.logo-light { display: none; }
+body.light-mode .logo-dark { display: none !important; }
+body.light-mode .logo-light { display: block !important; }
+body:not(.light-mode) .logo-light { display: none !important; }
 
 .navbar-brand-v2 {
     display: flex;
@@ -360,6 +375,14 @@ body.light-mode .navbar-collapse { background: #ffffff !important; border-color:
 .btn-btn-elite-v2:hover::before {
     opacity: 0.5;
     transform: scale(1);
+}
+
+body.light-mode .btn-btn-elite-v2 {
+    border-color: rgba(240, 82, 35, 0.2);
+    box-shadow: 0 5px 20px rgba(240, 82, 35, 0.15);
+}
+body.light-mode .btn-btn-elite-v2:hover {
+    box-shadow: 0 10px 30px rgba(240, 82, 35, 0.25);
 }
 
 /* Mobile Toggler */

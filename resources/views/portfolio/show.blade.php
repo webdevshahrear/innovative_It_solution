@@ -53,6 +53,40 @@
     .mockups:hover img {
         transform: scale(1.02);
     }
+
+    /* ── Light Mode Overrides for Portfolio Show ── */
+    body.light-mode .page-header-premium {
+        background: #f8fafc !important;
+        background-image: radial-gradient(circle at 100% 0%, rgba(240, 82, 35, 0.05) 0%, transparent 50%) !important;
+    }
+    body.light-mode .display-3 { color: #0f172a !important; }
+    body.light-mode .breadcrumb-item a { color: #64748b !important; }
+    body.light-mode .breadcrumb-item.active { color: #0f172a !important; }
+    
+    body.light-mode .glass-card {
+        background: #fff !important;
+        border-color: #e2e8f0 !important;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.04) !important;
+    }
+    body.light-mode .glass-card.border-primary { border-color: var(--v2-primary) !important; }
+    body.light-mode .project-content { color: #334155 !important; }
+    body.light-mode .project-content h2,
+    body.light-mode .glass-card h4,
+    body.light-mode .info-item span,
+    body.light-mode .rel-title-v4,
+    body.light-mode .project-card h4 { color: #0f172a !important; }
+    
+    body.light-mode .info-item label { color: #64748b !important; }
+    body.light-mode .tag { background: #f1f5f9 !important; border-color: #e2e8f0 !important; color: #475569 !important; }
+    
+    body.light-mode .related-posts-section { background: #ffffff !important; }
+    body.light-mode .project-card { 
+        background: #f8fafc !important; 
+        border-color: #e2e8f0 !important; 
+    }
+    body.light-mode .project-card h4 { color: #0f172a !important; }
+    body.light-mode .project-card .text-white { color: #0f172a !important; }
+    body.light-mode h2.text-white { color: #0f172a !important; }
 </style>
 @endpush
     <section class="page-header-premium" style="min-height: 60vh; padding-top: 150px;">

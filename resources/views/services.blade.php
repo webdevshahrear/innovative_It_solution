@@ -91,6 +91,36 @@
     .service-link-v2 i {
         font-size: 0.8rem;
     }
+
+    /* ── Light Mode Overrides for Services ── */
+    body.light-mode .services-hero-v2,
+    body.light-mode .service-grid-v2 {
+        background: #f8fafc !important;
+    }
+    body.light-mode .display-3,
+    body.light-mode .display-4,
+    body.light-mode .hero-title-cinematic { color: #0f172a !important; }
+    
+    body.light-mode .hero-subtitle-cinematic,
+    body.light-mode .lead,
+    body.light-mode .text-v2-muted { color: #475569 !important; }
+
+    body.light-mode .glass-service-card {
+        background: #ffffff !important;
+        border-color: rgba(0, 0, 0, 0.06) !important;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04) !important;
+    }
+    body.light-mode .glass-service-card:hover {
+        background: #ffffff !important;
+        box-shadow: 0 40px 80px rgba(0, 0, 0, 0.08) !important;
+    }
+    body.light-mode .glass-service-card h3 { color: #0f172a !important; }
+    body.light-mode .service-icon-v3 { background: rgba(0, 0, 0, 0.03) !important; border-color: rgba(0, 0, 0, 0.06) !important; }
+
+    /* CTA Refining */
+    body.light-mode .glass-effect .position-absolute[style*="radial-gradient"] {
+        background: radial-gradient(circle at 70% 30%, rgba(59, 130, 246, 0.05) 0%, transparent 70%) !important;
+    }
 </style>
 
 <div class="services-hero-v2">

@@ -90,6 +90,28 @@
         .sitemap-container-v2 { padding: 40px 20px; border-radius: 24px; }
         .sitemap-links-v2 { grid-template-columns: 1fr; }
     }
+
+    /* ── Light Mode Overrides for Sitemap ── */
+    body.light-mode .sitemap-hero-v2 { background: #f8fafc !important; }
+    body.light-mode .sitemap-section-v2 { background: #f8fafc !important; }
+    body.light-mode .display-3 { color: #0f172a !important; }
+    body.light-mode .text-white-50 { color: #64748b !important; }
+    body.light-mode .sitemap-container-v2 { 
+        background: #ffffff !important; 
+        border-color: rgba(0, 0, 0, 0.06) !important;
+        box-shadow: 0 40px 80px rgba(0, 0, 0, 0.05) !important;
+    }
+    body.light-mode .sitemap-group-v2 h3 { color: #0f172a !important; }
+    body.light-mode .sitemap-links-v2 li a { 
+        background: #f8fafc !important; 
+        color: #475569 !important;
+        border-color: #e2e8f0 !important;
+    }
+    body.light-mode .sitemap-links-v2 li a:hover { 
+        background: var(--primary) !important; 
+        color: #fff !important;
+        border-color: transparent !important;
+    }
 </style>
 
 <div class="sitemap-hero-v2">

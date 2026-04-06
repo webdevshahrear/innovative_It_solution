@@ -3,17 +3,17 @@
 @section('content')
 <div class="page-header d-flex justify-content-between align-items-center mb-4">
     <div>
-        <h1 class="page-title">Newsletter Hub</h1>
-        <p class="page-subtitle">Manage decentralized subscriber lists and broadcast authorization.</p>
+        <h1 class="page-title text-white">Newsletter Hub</h1>
+        <p class="page-subtitle text-v2-muted">Manage decentralized subscriber lists and broadcast authorization.</p>
     </div>
 </div>
 
-<div class="tech-card p-0 overflow-hidden">
+<div class="tech-card-v2 overflow-hidden">
     <div class="table-responsive">
         <table class="table table-v2 mb-0">
             <thead>
                 <tr>
-                    <th>SUBSCRIBER UPLINK (EMAIL)</th>
+                    <th style="width: 400px;">SUBSCRIBER UPLINK (EMAIL)</th>
                     <th>REGISTRATION DATE</th>
                     <th>STATUS INDICATOR</th>
                     <th class="text-end">ACTIONS</th>
@@ -25,13 +25,16 @@
                     <tr>
                         <td>
                             <div class="fw-bold text-white d-flex align-items-center">
-                                <i class="fas fa-paper-plane me-3 text-v2-primary opacity-50"></i>
+                                <div class="metric-icon-v2 me-3" style="width: 38px; height: 38px; font-size: 1rem;">
+                                    <i class="fas fa-paper-plane"></i>
+                                </div>
                                 {{ $subscriber->email }}
                             </div>
                         </td>
                         <td><span class="text-v2-muted">{{ $subscriber->created_at->format('M d, Y') }}</span></td>
                         <td>
-                            <span class="status-glow {{ $subscriber->status === 'active' ? 'active' : 'inactive' }}">
+                            <span class="status-glow-v2 {{ $subscriber->status === 'active' ? 'active' : 'inactive' }}">
+                                <span class="status-dot"></span>
                                 {{ strtoupper($subscriber->status) }}
                             </span>
                         </td>
@@ -59,9 +62,9 @@
                 @else
                     <tr>
                         <td colspan="4" class="text-center py-5">
-                            <div class="opacity-50">
-                                <i class="fas fa-users-slash fs-1 mb-3"></i>
-                                <p>No active signals detected in the subscription registry.</p>
+                            <div class="opacity-30">
+                                <i class="fas fa-users-slash fs-1 mb-3 text-v2-muted"></i>
+                                <p class="text-v2-muted">No active signals detected in the subscription registry.</p>
                             </div>
                         </td>
                     </tr>
@@ -72,27 +75,11 @@
 </div>
 
 @if($subscribers->hasPages())
-<div class="mt-4">
-    {{ $subscribers->links() }}
+<div class="pagination-v2 mt-4 d-flex justify-content-center">
+    {{ $subscribers->links('pagination::bootstrap-5') }}
 </div>
 @endif
 
-<style>
-    .table-v2 { width: 100%; border-collapse: separate; border-spacing: 0; }
-    .table-v2 th { background: rgba(255, 255, 255, 0.02); padding: 1.25rem 1.5rem; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.1rem; color: var(--v2-text-muted); border-bottom: 1px solid var(--v2-border); }
-    .table-v2 td { padding: 1.25rem 1.5rem; vertical-align: middle; border-bottom: 1px solid var(--v2-border); background: transparent; transition: background 0.3s; }
-    .table-v2 tr:hover td { background: rgba(255, 255, 255, 0.01); }
+@endsection
 
-    .status-glow { font-size: 0.65rem; font-weight: 800; padding: 0.35rem 0.75rem; border-radius: 100px; display: inline-flex; align-items: center; gap: 0.5rem; }
-    .status-glow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; }
-    .status-glow.active { background: rgba(16, 185, 129, 0.1); color: #10b981; }
-    .status-glow.active::before { background: #10b981; box-shadow: 0 0 8px #10b981; }
-    .status-glow.inactive { background: rgba(148, 163, 184, 0.1); color: #94a3b8; }
-    .status-glow.inactive::before { background: #94a3b8; }
-
-    .action-btn-v2 { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--v2-border); background: rgba(255, 255, 255, 0.03); color: var(--v2-text-muted); transition: all 0.3s; text-decoration: none !important; cursor: pointer; }
-    .action-btn-v2:hover { transform: translateY(-2px); border-color: var(--v2-primary); color: var(--v2-primary); }
-    .action-btn-v2.delete:hover { border-color: #ef4444; color: #ef4444; }
-    .text-v2-muted { color: rgba(255,255,255,0.4); font-size: 0.85rem; }
-</style>
 @endsection
