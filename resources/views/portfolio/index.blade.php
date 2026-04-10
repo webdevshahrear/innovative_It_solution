@@ -41,9 +41,9 @@
     }
 
     body.light-mode .hero-title-v4 {
-      background: #0f172a !important;
-      -webkit-background-clip: unset !important;
-      -webkit-text-fill-color: #0f172a !important;
+      background: none !important;
+      -webkit-background-clip: initial !important;
+      -webkit-text-fill-color: initial !important;
       color: #0f172a !important;
     }
     body.light-mode .hero-title-v4 .text-white-50 { color: #64748b !important; }

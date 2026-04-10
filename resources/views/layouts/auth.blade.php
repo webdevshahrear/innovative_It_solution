@@ -40,8 +40,9 @@
             font-family: 'Inter', sans-serif;
             background-color: var(--v3-bg);
             color: var(--v3-text-main);
-            overflow: hidden;
+            overflow-x: hidden;
             transition: background 0.3s, color 0.3s;
+            min-height: 100vh;
         }
 
         .auth-grid {
@@ -148,6 +149,29 @@
             box-shadow: 0 0 0 4px var(--v3-accent-glow);
         }
 
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--v3-text-muted);
+            font-size: 1rem;
+            transition: color 0.3s;
+            pointer-events: none;
+        }
+
+        .input-wrapper:focus-within i {
+            color: var(--v3-accent);
+        }
+
         .btn-auth {
             width: 100%;
             background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
@@ -175,8 +199,39 @@
             opacity: 0.95;
         }
 
-        .remember-me { color: var(--v3-text-muted); }
-        .forgot-password { color: var(--v3-accent); text-decoration: none; font-weight: 600; }
+        .auth-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            font-size: 0.85rem;
+        }
+
+        .remember-me { color: var(--v3-text-muted); display: flex; align-items: center; gap: 0.4rem; cursor: pointer; }
+        .remember-me input { accent-color: var(--v3-accent); margin: 0; }
+        .forgot-password { color: var(--v3-accent); text-decoration: none; font-weight: 600; transition: color 0.3s; }
+        .forgot-password:hover { filter: brightness(1.2); }
+
+        .auth-logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .auth-logo img {
+            max-width: 100%;
+            height: 70px;
+            object-fit: contain;
+        }
+
+        .logo-light { display: none !important; }
+        .logo-dark { display: inline-block !important; }
+
+        [data-theme="light"] .logo-dark { display: none !important; }
+        [data-theme="light"] .logo-light { display: inline-block !important; }
+
+        [data-theme="light"] .logo-single {
+            filter: invert(1) hue-rotate(180deg) brightness(0.6);
+        }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -200,9 +255,13 @@
                 <a href="/">
                     @php
                         $siteLogo = \App\Models\SiteSetting::getValue('site_logo', 'logo.png');
+                        $siteLogoLight = \App\Models\SiteSetting::getValue('site_logo_light');
                     @endphp
-                    @if(file_exists(public_path('uploads/settings/'.$siteLogo)))
-                        <img src="{{ asset('uploads/settings/'.$siteLogo) }}" alt="Logo">
+                    @if($siteLogoLight && file_exists(public_path('uploads/settings/'.$siteLogoLight)))
+                        <img src="{{ asset('uploads/settings/'.$siteLogo) }}" alt="Logo" class="logo-dark">
+                        <img src="{{ asset('uploads/settings/'.$siteLogoLight) }}" alt="Logo" class="logo-light">
+                    @elseif(file_exists(public_path('uploads/settings/'.$siteLogo)))
+                        <img src="{{ asset('uploads/settings/'.$siteLogo) }}" alt="Logo" class="logo-single">
                     @else
                         <div style="font-size: 2rem; font-weight: 800; color: var(--v3-accent);">WBL</div>
                     @endif
