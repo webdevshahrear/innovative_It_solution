@@ -3,7 +3,7 @@
 @section('content')
 <div class="page-header d-flex justify-content-between align-items-center mb-4">
     <div>
-        <h1 class="page-title text-white">Strategic Workflows</h1>
+        <h1 class="page-title">Strategic Workflows</h1>
         <p class="page-subtitle text-v2-muted">Configure the circular operational steps displayed on the home page.</p>
     </div>
     <a href="{{ route('admin.work-flows.create') }}" class="btn-v2-primary">
@@ -33,7 +33,7 @@
                             </div>
                         </td>
                         <td>
-                            <div class="fw-bold text-white">{{ $step->title }}</div>
+                            <div class="fw-bold text-v2-main">{{ $step->title }}</div>
                             <div class="small text-v2-muted">Workflow Node</div>
                         </td>
                         <td><div class="text-v2-muted text-truncate" style="max-width: 240px;">{{ $step->description }}</div></td>

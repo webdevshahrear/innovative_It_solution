@@ -45,12 +45,14 @@
 <div class="kpi-grid mb-4">
     @php
     $kpis = [
+        ['label'=>'Pipeline Value','value'=>'$'.number_format($stats['pipeline_value'],0),'icon'=>'fa-hand-holding-usd','color'=>'orange','trend'=>number_format($stats['conversion_rate'],1).'% Conv.'],
+        ['label'=>'Active Clients','value'=>$stats['clients'],'icon'=>'fa-user-tie','color'=>'blue','trend'=>'Connected'],
         ['label'=>'Total Projects','value'=>$stats['projects'],'icon'=>'fa-layer-group','color'=>'purple','trend'=>'+12%'],
-        ['label'=>'Active Services','value'=>$stats['services'],'icon'=>'fa-concierge-bell','color'=>'blue','trend'=>'+5%'],
-        ['label'=>'Team Members','value'=>$stats['team'],'icon'=>'fa-users','color'=>'indigo','trend'=>'Stable'],
         ['label'=>'New Inquiries','value'=>$stats['new_inquiries'],'icon'=>'fa-envelope-open-text','color'=>'orange','trend'=>'Awaiting'],
         ['label'=>'Subscribers','value'=>$stats['subscribers'],'icon'=>'fa-bell','color'=>'teal','trend'=>'Growing'],
+        ['label'=>'Active Services','value'=>$stats['services'],'icon'=>'fa-concierge-bell','color'=>'indigo','trend'=>'+5%'],
         ['label'=>'Blog Posts','value'=>$stats['blog_posts'],'icon'=>'fa-newspaper','color'=>'rose','trend'=>'Published'],
+        ['label'=>'Team Members','value'=>$stats['team'],'icon'=>'fa-users','color'=>'indigo','trend'=>'Stable'],
     ];
     @endphp
     @foreach($kpis as $kpi)
@@ -65,6 +67,52 @@
     </div>
     @endforeach
 </div>
+
+{{-- ===== STRATEGIC ACTION CENTER (PAHSE 5 REMINDERS) ===== --}}
+@if($quick['upcoming_reminders']->count() > 0)
+<div class="dash-card action-center mb-4">
+    <div class="card-header-row mb-3">
+        <h5 class="card-title"><i class="fas fa-bullseye me-2 text-v2-primary"></i>Strategic Action Center</h5>
+        <span class="badge-v2 indigo">{{ $quick['upcoming_reminders']->count() }} PENDING FOLLOW-UPS</span>
+    </div>
+    <div class="reminder-grid">
+        @foreach($quick['upcoming_reminders'] as $rem)
+        <div class="reminder-item">
+            <div class="reminder-time">
+                <div class="rem-day">{{ $rem->remind_at->format('d') }}</div>
+                <div class="rem-month">{{ $rem->remind_at->format('M') }}</div>
+            </div>
+            <div class="reminder-content">
+                <div class="rem-name text-white fw-bold">{{ $rem->name }}</div>
+                <div class="rem-subject text-v2-muted small">{{ Str::limit($rem->subject, 30) }}</div>
+            </div>
+            <div class="reminder-actions">
+                <span class="badge-v2 {{ $rem->priority == 'high' ? 'rose' : ($rem->priority == 'medium' ? 'indigo' : 'turquoise') }} me-2">
+                    {{ strtoupper($rem->priority) }}
+                </span>
+                <a href="{{ route('admin.inquiries.show', $rem->id) }}" class="action-btn-v2">
+                    <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+        </div>
+        @endforeach
+    </div>
+</div>
+
+<style>
+.reminder-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; }
+.reminder-item { display: flex; align-items: center; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 1rem; transition: .3s; }
+.reminder-item:hover { transform: scale(1.02); border-color: var(--v2-primary); background: rgba(240,82,35,0.05); }
+.reminder-time { width: 50px; text-align: center; border-right: 1px solid rgba(255,255,255,0.1); margin-right: 1rem; padding-right: 1rem; flex-shrink: 0; }
+.rem-day { font-size: 1.2rem; font-weight: 800; color: var(--v2-primary); line-height: 1; }
+.rem-month { font-size: 0.7rem; font-weight: 800; color: #fff; text-transform: uppercase; }
+.reminder-content { flex: 1; min-width: 0; }
+.reminder-actions { display: flex; align-items: center; }
+[data-theme="light"] .reminder-item { background: #f8fafc; border-color: #e2e8f0; }
+[data-theme="light"] .rem-month { color: #0f172a; }
+</style>
+@endif
+
 {{-- ===== ELITE CHARTS ROW (NEO-GLASS DESIGN) ===== --}}
 <div class="charts-elite-row mb-4">
     {{-- Elite Growth Pulse Chart --}}
@@ -115,7 +163,18 @@
                     <div class="inq-sub">{{ \Illuminate\Support\Str::limit($inq->subject,40) }}</div>
                 </div>
                 <div class="inq-meta">
-                    <span class="inq-status {{ $inq->status === 'new' ? 'status-new' : 'status-read' }}">{{ strtoupper($inq->status) }}</span>
+                    @php
+                        $statusColors = [
+                            'new' => '#3b82f6',
+                            'contacted' => '#f59e0b',
+                            'qualified' => '#8b5cf6',
+                            'proposal_sent' => '#06b6d4',
+                            'won' => '#10b981',
+                            'lost' => '#ef4444'
+                        ];
+                        $sColor = $statusColors[$inq->status] ?? '#94a3b8';
+                    @endphp
+                    <span class="inq-status" style="background: {{ $sColor }}20; color: {{ $sColor }}; border: 1px solid {{ $sColor }}30;">{{ strtoupper($inq->status) }}</span>
                     <span class="inq-time">{{ $inq->created_at->diffForHumans(null,true) }}</span>
                 </div>
             </div>
@@ -262,15 +321,15 @@
 <div class="sys-ticker mb-2">
     <div class="ticker-tag"><i class="fas fa-terminal me-2 pulse-anim"></i>SYS_LOG</div>
     <div class="ticker-track"><div class="ticker-scroll">
-        <span class="text-white me-2">[SYSTEM]</span> Auth active &amp; secure.
+        <span class="text-v2-primary me-2">[SYSTEM]</span> Auth active &amp; secure.
         <span class="ticker-sep">|</span>
-        <span class="text-white me-2">[CONTENT]</span> {{ $stats['projects'] }} projects deployed. {{ $stats['blog_posts'] }} blog posts published.
+        <span class="text-v2-primary me-2">[CONTENT]</span> {{ $stats['projects'] }} projects deployed. {{ $stats['blog_posts'] }} blog posts published.
         <span class="ticker-sep">|</span>
-        <span class="text-white me-2">[LEADS]</span> {{ $stats['total_inquiries'] }} total inquiries. {{ $stats['new_inquiries'] }} new unread.
+        <span class="text-v2-primary me-2">[LEADS]</span> {{ $stats['total_inquiries'] }} total inquiries. {{ $stats['new_inquiries'] }} new unread.
         <span class="ticker-sep">|</span>
         <span class="text-success me-2">[TEAM]</span> {{ $stats['team'] }} active team members. {{ $stats['subscribers'] }} subscribers.
         <span class="ticker-sep">|</span>
-        <span class="text-white me-2">[STATUS]</span> All systems nominal. Ready for new commands.
+        <span class="text-v2-primary me-2">[STATUS]</span> All systems nominal. Ready for new commands.
     </div></div>
 </div>
 

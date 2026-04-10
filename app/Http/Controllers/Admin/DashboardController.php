@@ -22,6 +22,11 @@ class DashboardController extends Controller
             'hero_slides'    => \App\Models\HeroSlide::count(),
             'statistics'     => \App\Models\Statistic::count(),
             'workflows'      => \App\Models\WorkFlow::count(),
+            'clients'        => \App\Models\Client::count(),
+            'pipeline_value' => \App\Models\ContactSubmission::whereNotIn('status', ['lost'])->sum('lead_value'),
+            'conversion_rate'=> \App\Models\ContactSubmission::count() > 0 
+                                ? (\App\Models\ContactSubmission::where('status', 'won')->count() / \App\Models\ContactSubmission::count()) * 100 
+                                : 0,
         ];
 
         // Monthly inquiry data for chart (last 6 months)
@@ -52,7 +57,10 @@ class DashboardController extends Controller
         // Quick action counts
         $quick = [
             'unread_msgs'    => \App\Models\ContactSubmission::where('status', 'new')->count(),
-            'pending_tasks'  => 0,
+            'upcoming_reminders' => \App\Models\ContactSubmission::where('remind_at', '>=', now())
+                                    ->where('remind_at', '<=', now()->addDays(7))
+                                    ->orderBy('remind_at', 'asc')
+                                    ->get(),
         ];
 
         return view('dashboard', compact(

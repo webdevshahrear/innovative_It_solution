@@ -17,16 +17,19 @@ class ProjectController extends Controller
         return view('admin.projects.index', compact('projects'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
         $categories = ProjectCategory::all();
-        return view('admin.projects.create', compact('categories'));
+        $clients = \App\Models\Client::all();
+        $selectedClientId = $request->get('client_id');
+        return view('admin.projects.create', compact('categories', 'clients', 'selectedClientId'));
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
+            'client_id' => 'nullable|exists:clients,id',
             'client_name' => 'nullable|string|max:255',
             'project_url' => 'nullable|url|max:255',
             'desktop_image' => 'nullable|image|max:2048',
@@ -69,14 +72,16 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $categories = ProjectCategory::all();
+        $clients = \App\Models\Client::all();
         $project->load('categories');
-        return view('admin.projects.edit', compact('project', 'categories'));
+        return view('admin.projects.edit', compact('project', 'categories', 'clients'));
     }
 
     public function update(Request $request, Project $project)
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
+            'client_id' => 'nullable|exists:clients,id',
             'client_name' => 'nullable|string|max:255',
             'project_url' => 'nullable|url|max:255',
             'desktop_image' => 'nullable|image|max:2048',

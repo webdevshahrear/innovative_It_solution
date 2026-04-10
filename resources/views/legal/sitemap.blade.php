@@ -86,9 +86,15 @@
         font-size: 0.8rem;
     }
 
-    @media (max-width: 767px) {
-        .sitemap-container-v2 { padding: 40px 20px; border-radius: 24px; }
-        .sitemap-links-v2 { grid-template-columns: 1fr; }
+    @media (max-width: 768px) {
+        .sitemap-hero-v2 { padding: 120px 0 60px; }
+        .display-3 { font-size: 2.5rem; }
+        
+        .sitemap-container-v2 { padding: 35px 25px; border-radius: 25px; }
+        .sitemap-group-v2 h3 { font-size: 1.25rem; margin-bottom: 20px; }
+        .sitemap-links-v2 { grid-template-columns: 1fr; gap: 10px; }
+        
+        .sitemap-section-v2 { padding-bottom: 60px; }
     }
 
     /* ── Light Mode Overrides for Sitemap ── */

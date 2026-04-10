@@ -158,6 +158,19 @@
         box-shadow: 0 30px 60px rgba(0, 0, 0, 0.05) !important;
     }
     body.light-mode .support-cta-v2 h2 { color: #0f172a !important; }
+    /* ── Mobile Responsiveness Overrides ── */
+    @media (max-width: 768px) {
+        .help-hero-v2 { padding: 120px 0 60px; }
+        .display-3 { font-size: 2.2rem; }
+        .search-box-v2 { padding: 0 15px; margin-top: 30px; }
+        .search-box-v2 input { padding: 15px 20px; font-size: 0.9rem; border-radius: 15px; }
+        
+        .help-section-v2 { padding-bottom: 60px; }
+        .help-category-card { padding: 30px 20px; border-radius: 20px; }
+        
+        .support-cta-v2 { padding: 40px 20px; border-radius: 25px; margin-top: 50px; }
+        .support-cta-v2 h2 { font-size: 1.8rem; }
+    }
 </style>
 
 <div class="help-hero-v2">

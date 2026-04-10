@@ -164,6 +164,30 @@
     body.light-mode .glass-effect .position-absolute[style*="radial-gradient"] {
         background: radial-gradient(circle at 50% 50%, rgba(240, 82, 35, 0.05) 0%, transparent 70%) !important;
     }
+    /* ── Mobile Responsiveness Overrides ── */
+    @media (max-width: 768px) {
+        .about-hero-v2 { padding: 120px 0 60px; text-align: center; }
+        .hero-title-cinematic { font-size: 2.8rem; line-height: 1.1; }
+        .hero-subtitle-cinematic { font-size: 1rem; }
+        .breadcrumb { justify-content: center; }
+        
+        .story-section-v2 { padding: 60px 0; }
+        .about-image-premium { border-radius: 25px; margin-bottom: 30px; }
+        .experience-floating-v2 { position: relative; bottom: 0; right: 0; margin-top: -40px; margin-left: 20px; margin-right: 20px; padding: 15px; text-align: center; border-right: none; border-bottom: 4px solid var(--primary); }
+        
+        .section-padding { padding: 60px 0; }
+        .display-4 { font-size: 2.2rem; }
+        .mb-100 { margin-bottom: 50px !important; }
+        
+        .value-card-v2 { padding: 40px 25px; border-radius: 25px; }
+        .value-icon-v2 { width: 60px; height: 60px; font-size: 24px; margin-bottom: 20px; }
+        .value-card-v2 h4 { font-size: 1.4rem; }
+        
+        .glass-effect { padding: 60px 25px !important; border-radius: 30px !important; }
+        .display-3 { font-size: 2rem; }
+        .d-flex.gap-4 { flex-direction: column; align-items: center; }
+        .btn-btn-elite-v2 { width: 100%; text-align: center; justify-content: center; display: flex; }
+    }
 </style>
 
 <div class="about-hero-v2">

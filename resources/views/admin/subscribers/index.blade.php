@@ -3,7 +3,7 @@
 @section('content')
 <div class="page-header d-flex justify-content-between align-items-center mb-4">
     <div>
-        <h1 class="page-title text-white">Newsletter Hub</h1>
+        <h1 class="page-title">Newsletter Hub</h1>
         <p class="page-subtitle text-v2-muted">Manage decentralized subscriber lists and broadcast authorization.</p>
     </div>
 </div>
@@ -24,7 +24,7 @@
                     @foreach($subscribers as $subscriber)
                     <tr>
                         <td>
-                            <div class="fw-bold text-white d-flex align-items-center">
+                            <div class="fw-bold text-v2-main d-flex align-items-center">
                                 <div class="metric-icon-v2 me-3" style="width: 38px; height: 38px; font-size: 1rem;">
                                     <i class="fas fa-paper-plane"></i>
                                 </div>
@@ -79,7 +79,5 @@
     {{ $subscribers->links('pagination::bootstrap-5') }}
 </div>
 @endif
-
-@endsection
 
 @endsection

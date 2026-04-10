@@ -212,6 +212,13 @@
 
 
         {!! $custom_css !!}
+        /* ── Global Mobile Safety Overrides ── */
+        @media (max-width: 768px) {
+            html, body { overflow-x: hidden !important; width: 100%; position: relative; }
+            section { padding: 60px 0 !important; }
+            .container { padding-left: 20px !important; padding-right: 20px !important; }
+            .theme-switch-wrap { bottom: 20px; left: 20px; width: 45px; height: 45px; }
+        }
     </style>
     @stack('styles')
 </head>

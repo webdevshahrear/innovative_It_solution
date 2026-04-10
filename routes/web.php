@@ -57,10 +57,21 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('testimonials', AdminTestimonialController::class);
         Route::resource('hero-slides', AdminHeroSlideController::class);
         
-        // New Admin Modules
-        Route::resource('inquiries', \App\Http\Controllers\Admin\InquiryController::class)->only(['index', 'show', 'destroy']);
-        Route::post('inquiries/{inquiry}/mark-read', [\App\Http\Controllers\Admin\InquiryController::class, 'markAsRead'])->name('inquiries.mark-read');
+        // CRM & Inquiry Management
+        Route::get('inquiries/insights', [\App\Http\Controllers\Admin\InquiryAnalyticsController::class, 'index'])->name('inquiries.insights');
+        Route::get('inquiries/board', [\App\Http\Controllers\Admin\InquiryController::class, 'index'])->name('inquiries.board');
+        
+        Route::resource('inquiries', \App\Http\Controllers\Admin\InquiryController::class);
+        Route::post('inquiries/{inquiry}/update-status', [\App\Http\Controllers\Admin\InquiryController::class, 'updateStatus'])->name('inquiries.update-status');
+        Route::post('inquiries/{inquiry}/add-note', [\App\Http\Controllers\Admin\InquiryController::class, 'addNote'])->name('inquiries.add-note');
+        Route::post('inquiries/{inquiry}/convert-client', [\App\Http\Controllers\Admin\InquiryController::class, 'convertToClient'])->name('inquiries.convert-client');
         Route::post('inquiries/{inquiry}/duplicate', [\App\Http\Controllers\Admin\InquiryController::class, 'duplicate'])->name('inquiries.duplicate');
+        Route::post('inquiries/{inquiry}/set-reminder', [\App\Http\Controllers\Admin\InquiryController::class, 'setReminder'])->name('inquiries.set-reminder');
+        Route::post('inquiries/{inquiry}/assign', [\App\Http\Controllers\Admin\InquiryController::class, 'assign'])->name('inquiries.assign');
+        
+        Route::resource('clients', \App\Http\Controllers\Admin\ClientController::class);
+        Route::resource('invoices', \App\Http\Controllers\Admin\InvoiceController::class);
+        Route::get('invoices/{invoice}/print', [\App\Http\Controllers\Admin\InvoiceController::class, 'print'])->name('invoices.print');
         
         Route::resource('subscribers', \App\Http\Controllers\Admin\SubscriberController::class)->only(['index', 'update', 'destroy']);
         Route::resource('statistics', \App\Http\Controllers\Admin\StatisticController::class);

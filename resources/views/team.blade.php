@@ -105,6 +105,28 @@
     body.light-mode .team-info-v4 h4 { color: #0f172a !important; }
     body.light-mode .btn-pill-dark { background: transparent; border: 1px solid #cbd5e1; color: #334155; font-weight: 600; }
     body.light-mode .btn-pill-dark:hover { background: var(--v2-primary); border-color: var(--v2-primary); color: #fff; }
+    /* ── Mobile Responsiveness Overrides ── */
+    @media (max-width: 768px) {
+        .team-hero-v2 { padding: 120px 0 60px; text-align: center; }
+        .hero-title-cinematic { font-size: 2.8rem; line-height: 1.1; }
+        .hero-subtitle-cinematic { font-size: 1rem; }
+        .breadcrumb { justify-content: center; }
+        
+        .team-grid-v2 { padding: 60px 0; }
+        .v2-section-title { font-size: 2.22rem; }
+        .mb-5 { margin-bottom: 30px !important; }
+        
+        .team-card-v4 { border-radius: 25px; }
+        .team-info-v4 { padding: 25px 15px; }
+        .team-info-v4 h4 { font-size: 1.2rem; }
+        .team-social-v4 { position: relative; bottom: 0; transform: none; opacity: 1; margin-top: 15px; padding-bottom: 5px; }
+        .team-social-v4 a { transform: none; opacity: 1; position: static; width: 38px; height: 38px; font-size: 0.9rem; }
+        
+        .glass-effect { padding: 60px 25px !important; border-radius: 30px !important; }
+        .display-3 { font-size: 2rem; }
+        .d-flex.gap-4 { flex-direction: column; align-items: center; }
+        .btn-btn-elite-v2 { width: 100%; text-align: center; justify-content: center; display: flex; }
+    }
 </style>
 @endpush
 

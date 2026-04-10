@@ -155,6 +155,24 @@
     body.light-mode .rel-link-v4 { color: #64748b !important; }
     body.light-mode .rel-card-v4:hover .rel-link-v4 { color: #0f172a !important; }
     body.light-mode .text-glow-primary { color: var(--v2-primary) !important; text-shadow: none !important; }
+    /* ── Mobile Responsiveness Overrides ── */
+    @media (max-width: 768px) {
+        .blog-hero-v4 { padding: 120px 0 60px; }
+        .blog-title-v4 { font-size: 2.2rem; margin-bottom: 25px; }
+        .blog-meta-v4 { gap: 15px; font-size: 0.85rem; flex-direction: column; align-items: center; }
+        
+        .blog-cover-wrapper { margin-top: -30px; }
+        .blog-content-container { margin: 50px auto 60px; }
+        .blog-content-v4 { font-size: 1.05rem; line-height: 1.7; }
+        .blog-content-v4 blockquote { padding: 20px 25px; margin: 40px 0; font-size: 1.15rem; }
+        .blog-content-v4 h1, .blog-content-v4 h2, .blog-content-v4 h3 { margin: 35px 0 15px; font-size: 1.5rem; }
+        
+        .blog-share-v4 { flex-wrap: wrap; justify-content: center; gap: 15px; padding: 30px 0; }
+        .share-btn { width: 45px; height: 45px; font-size: 1rem; }
+        
+        .related-posts-section { padding: 60px 0; }
+        .related-posts-section h2.blog-title-v4 { font-size: 2rem !important; }
+    }
 </style>
 @endpush
 

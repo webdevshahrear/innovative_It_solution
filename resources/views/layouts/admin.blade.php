@@ -776,17 +776,35 @@
                 </div>
 
 
-                <div class="nav-section-title-v2">AUDIENCE</div>
+                <div class="nav-section-title-v2">RELATIONSHIP MGMT</div>
                 <div class="nav-item">
-                    <a href="{{ route('admin.inquiries.index') }}" class="nav-link-v2-admin {{ request()->routeIs('admin.inquiries.*') ? 'active' : '' }}">
-                        <div class="nav-icon-v2"><i class="fas fa-satellite-dish"></i></div>
-                        <span>Inquiries</span>
+                    <a href="{{ route('admin.inquiries.index') }}" class="nav-link-v2-admin {{ request()->routeIs('admin.inquiries.index') ? 'active' : '' }}">
+                        <div class="nav-icon-v2"><i class="fas fa-funnel-dollar"></i></div>
+                        <span>Lead Pipeline</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="{{ route('admin.inquiries.insights') }}" class="nav-link-v2-admin {{ request()->routeIs('admin.inquiries.insights') ? 'active' : '' }}">
+                        <div class="nav-icon-v2"><i class="fas fa-chart-line text-v2-primary"></i></div>
+                        <span>CRM Insights</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="{{ route('admin.clients.index') }}" class="nav-link-v2-admin {{ request()->routeIs('admin.clients.*') ? 'active' : '' }}">
+                        <div class="nav-icon-v2"><i class="fas fa-address-book"></i></div>
+                        <span>Client Database</span>
                     </a>
                 </div>
                 <div class="nav-item">
                     <a href="{{ route('admin.subscribers.index') }}" class="nav-link-v2-admin {{ request()->routeIs('admin.subscribers.*') ? 'active' : '' }}">
                         <div class="nav-icon-v2"><i class="fas fa-envelope-open-text"></i></div>
                         <span>Subscribers</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="{{ route('admin.invoices.index') }}" class="nav-link-v2-admin {{ request()->routeIs('admin.invoices.*') ? 'active' : '' }}">
+                        <div class="nav-icon-v2"><i class="fas fa-file-invoice-dollar"></i></div>
+                        <span>Financial Ledger</span>
                     </a>
                 </div>
 
@@ -822,7 +840,7 @@
             <!-- Header -->
 
             <header class="admin-header-v2">
-                <button class="btn p-0 border-0 fs-4 text-white d-lg-none" id="sidebarToggle">
+                <button class="btn p-0 border-0 fs-4 text-v2-main d-lg-none" id="sidebarToggle">
                     <i class="fas fa-bars-staggered"></i>
                 </button>
                 <div class="header-search d-none d-md-block" style="flex: 1; max-width: 400px; margin-right: auto; position: relative;">

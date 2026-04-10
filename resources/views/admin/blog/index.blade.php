@@ -5,7 +5,7 @@
 @section('content')
 <div class="page-header d-flex justify-content-between align-items-center mb-4">
     <div>
-        <h1 class="page-title text-white">Broadcast Center</h1>
+        <h1 class="page-title">Broadcast Center</h1>
         <p class="page-subtitle text-v2-muted">Manage and publish your digital transmissions to the outer world.</p>
     </div>
     <a href="{{ route('admin.blog.create') }}" class="btn-v2-primary">
@@ -47,7 +47,7 @@
                         </td>
                         <td>
                             <div class="d-flex align-items-center gap-2">
-                                <span class="fw-bold text-white">{{ Str::limit($post->title, 40) }}</span>
+                                <span class="fw-bold text-v2-main">{{ Str::limit($post->title, 40) }}</span>
                                 @if($post->is_featured)
                                     <span class="badge-v2 indigo" style="font-size: 0.6rem;">PRIORITY</span>
                                 @endif

@@ -19,21 +19,27 @@
             <div class="col-md-4">
                 <div class="mb-4">
                     <label class="v2-form-label">METRIC LABEL</label>
-                    <input type="text" name="stat_label" class="v2-admin-input w-100" required value="{{ $statistic->stat_label }}" placeholder="Display name">
+                    <input type="text" name="stat_label" class="v2-admin-input w-100 @error('stat_label') is-invalid @enderror" required value="{{ old('stat_label', $statistic->stat_label) }}" placeholder="Display name">
+                    @error('stat_label')
+                        <div class="invalid-feedback text-danger small mt-2">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="mb-4">
                     <label class="v2-form-label">TELEMETRY VALUE</label>
-                    <input type="text" name="stat_value" class="v2-admin-input w-100" required value="{{ $statistic->stat_value }}" placeholder="e.g. 500+">
+                    <input type="text" name="stat_value" class="v2-admin-input w-100 @error('stat_value') is-invalid @enderror" required value="{{ old('stat_value', $statistic->stat_value) }}" placeholder="e.g. 500+">
+                    @error('stat_value')
+                        <div class="invalid-feedback text-danger small mt-2">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="mb-4">
                     <label class="v2-form-label">DEPLOYMENT STATUS</label>
                     <select name="status" class="v2-admin-input w-100" required>
-                        <option value="active" {{ $statistic->status === 'active' ? 'selected' : '' }}>ACTIVE</option>
-                        <option value="inactive" {{ $statistic->status === 'inactive' ? 'selected' : '' }}>INACTIVE</option>
+                        <option value="active" {{ old('status', $statistic->status) === 'active' ? 'selected' : '' }}>ACTIVE</option>
+                        <option value="inactive" {{ old('status', $statistic->status) === 'inactive' ? 'selected' : '' }}>INACTIVE</option>
                     </select>
                 </div>
             </div>
@@ -42,10 +48,13 @@
                     <label class="v2-form-label">VISUAL SIGNAL (ICON CLASS)</label>
                     <div class="input-group-v2">
                         <div class="v2-icon-preview" id="iconPreview">
-                            <i class="{{ $statistic->icon_class }}"></i>
+                            <i class="{{ old('icon_class', $statistic->icon_class) }}"></i>
                         </div>
-                        <input type="text" name="icon_class" id="iconInput" class="v2-admin-input flex-1" required value="{{ $statistic->icon_class }}" placeholder="fas fa-users">
+                        <input type="text" name="icon_class" id="iconInput" class="v2-admin-input flex-1 @error('icon_class') is-invalid @enderror" required value="{{ old('icon_class', $statistic->icon_class) }}" placeholder="fas fa-users">
                     </div>
+                    @error('icon_class')
+                        <div class="invalid-feedback text-danger small mt-2">{{ $message }}</div>
+                    @enderror
                     <small class="text-v2-muted mt-2 d-block">Update signal identifier for frontend rendering.</small>
                 </div>
             </div>

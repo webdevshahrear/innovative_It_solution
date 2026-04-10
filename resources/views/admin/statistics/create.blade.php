@@ -18,7 +18,10 @@
             <div class="col-md-6">
                 <div class="mb-4">
                     <label class="v2-form-label">METRIC UNIQUE KEY</label>
-                    <input type="text" name="stat_key" class="v2-admin-input w-100" required placeholder="e.g. happy_clients">
+                    <input type="text" name="stat_key" class="v2-admin-input w-100 @error('stat_key') is-invalid @enderror" required value="{{ old('stat_key') }}" placeholder="e.g. happy_clients">
+                    @error('stat_key')
+                        <div class="invalid-feedback text-danger small mt-2">{{ $message }}</div>
+                    @enderror
                     <small class="text-v2-muted mt-2 d-block">System-level unique identifier (Slug style)</small>
                 </div>
             </div>
@@ -26,21 +29,27 @@
                 <div class="mb-4">
                     <label class="v2-form-label">DEPLOYMENT STATUS</label>
                     <select name="status" class="v2-admin-input w-100" required>
-                        <option value="active" selected>ACTIVE</option>
-                        <option value="inactive">INACTIVE</option>
+                        <option value="active" {{ old('status') === 'active' ? 'selected' : '' }}>ACTIVE</option>
+                        <option value="inactive" {{ old('status') === 'inactive' ? 'selected' : '' }}>INACTIVE</option>
                     </select>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="mb-4">
                     <label class="v2-form-label">METRIC LABEL</label>
-                    <input type="text" name="stat_label" class="v2-admin-input w-100" required placeholder="e.g. Happy Clients">
+                    <input type="text" name="stat_label" class="v2-admin-input w-100 @error('stat_label') is-invalid @enderror" required value="{{ old('stat_label') }}" placeholder="e.g. Happy Clients">
+                    @error('stat_label')
+                        <div class="invalid-feedback text-danger small mt-2">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="mb-4">
                     <label class="v2-form-label">TELEMETRY VALUE</label>
-                    <input type="text" name="stat_value" class="v2-admin-input w-100" required placeholder="e.g. 500+">
+                    <input type="text" name="stat_value" class="v2-admin-input w-100 @error('stat_value') is-invalid @enderror" required value="{{ old('stat_value') }}" placeholder="e.g. 500+">
+                    @error('stat_value')
+                        <div class="invalid-feedback text-danger small mt-2">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
             <div class="col-md-12">
@@ -48,10 +57,13 @@
                     <label class="v2-form-label">VISUAL SIGNAL (ICON CLASS)</label>
                     <div class="input-group-v2">
                         <div class="v2-icon-preview" id="iconPreview">
-                            <i class="fas fa-rocket"></i>
+                            <i class="{{ old('icon_class', 'fas fa-rocket') }}"></i>
                         </div>
-                        <input type="text" name="icon_class" id="iconInput" class="v2-admin-input flex-1" required placeholder="fas fa-users" value="fas fa-rocket">
+                        <input type="text" name="icon_class" id="iconInput" class="v2-admin-input flex-1 @error('icon_class') is-invalid @enderror" required placeholder="fas fa-users" value="{{ old('icon_class', 'fas fa-rocket') }}">
                     </div>
+                    @error('icon_class')
+                        <div class="invalid-feedback text-danger small mt-2">{{ $message }}</div>
+                    @enderror
                     <small class="text-v2-muted mt-2 d-block">Use <a href="https://fontawesome.com/v6/icons" target="_blank" class="text-v2-primary">FontAwesome 6 Reference</a></small>
                 </div>
             </div>

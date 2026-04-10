@@ -5,7 +5,7 @@
 @section('content')
 <div class="page-header d-flex justify-content-between align-items-center mb-4">
     <div>
-        <h1 class="page-title text-white">Portfolio Hub</h1>
+        <h1 class="page-title">Portfolio Hub</h1>
         <p class="page-subtitle text-v2-muted">Manage and deploy your creative projects from one central command.</p>
     </div>
     <a href="{{ route('admin.projects.create') }}" class="btn-v2-primary">
@@ -46,15 +46,20 @@
                             <div class="project-preview-v2" style="background-image: url('{{ $displayUrl }}')"></div>
                         </td>
                         <td>
-                            <div class="fw-bold text-white">{{ $project->title }}</div>
+                            <div class="fw-bold text-v2-main">{{ $project->title }}</div>
                             <div class="small text-v2-muted text-truncate" style="max-width: 200px;">{{ $project->short_description }}</div>
                         </td>
                         <td>
-                            <div class="text-white fw-bold">{{ $project->client_name }}</div>
-                            @if($project->completion_date)
-                            <div class="small text-v2-muted" title="Completion cycle">
-                                <i class="far fa-calendar-alt me-1"></i>{{ Carbon\Carbon::parse($project->completion_date)->format('M d, Y') }}
-                            </div>
+                            @if($project->client)
+                                <a href="{{ route('admin.clients.show', $project->client_id) }}" class="text-v2-primary fw-bold text-decoration-none d-flex align-items-center gap-2">
+                                    <i class="fas fa-user-check small"></i> {{ $project->client->name }}
+                                </a>
+                                <div class="small text-v2-muted">{{ $project->client->company_name ?? 'Individual Client' }}</div>
+                            @elseif($project->client_name)
+                                <div class="text-v2-main fw-bold">{{ $project->client_name }}</div>
+                                <div class="small text-v2-muted">External Record</div>
+                            @else
+                                <div class="text-v2-muted small">-- No Client Linked --</div>
                             @endif
                         </td>
                         <td>
@@ -67,7 +72,7 @@
                             </div>
                         </td>
                         <td>
-                            <span class="status-glow-v2 {{ $project->status === 'published' ? 'active' : 'inactive' }}">
+                            <span class="status-glow-v2 {{ $project->status === 'active' ? 'active' : 'inactive' }}">
                                 <span class="status-dot"></span>
                                 {{ strtoupper($project->status) }}
                             </span>

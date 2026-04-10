@@ -3,7 +3,7 @@
 @section('content')
 <div class="page-header d-flex justify-content-between align-items-center mb-4">
     <div>
-        <h1 class="page-title text-white">Elite Operatives</h1>
+        <h1 class="page-title">Elite Operatives</h1>
         <p class="page-subtitle text-v2-muted">Manage the high-performance units driving your digital ecosystem.</p>
     </div>
     <a href="{{ route('admin.team.create') }}" class="btn-v2-primary">
@@ -42,7 +42,7 @@
                             <div class="operative-avatar-v2" style="background-image: url('{{ $displayUrl }}')"></div>
                         </td>
                         <td>
-                            <div class="fw-bold text-white">{{ $member->name }}</div>
+                            <div class="fw-bold text-v2-main">{{ $member->name }}</div>
                             <div class="small text-v2-muted">ID: #0{{ $member->id }}</div>
                         </td>
                         <td><span class="badge-v2 turquoise">{{ $member->position }}</span></td>

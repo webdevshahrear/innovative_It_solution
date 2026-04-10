@@ -156,8 +156,28 @@
     .btn-scroll:disabled { opacity: 0.3; cursor: not-allowed; }
 
     @media (max-width: 768px) {
-      .filter-glass-container { width: 100%; border-radius: 30px; }
+      .portfolio-page-wrapper { padding-top: 100px; }
+      .portfolio-hero { padding: 40px 0 20px; }
+      .hero-title-v4 { font-size: 2.5rem; letter-spacing: -1px; }
+      .hero-sub-v4 { font-size: 1rem; margin-bottom: 30px; }
+      
+      .filter-sticky-wrapper { top: 70px; padding: 15px 0; }
+      .filter-glass-container { width: 100%; border-radius: 20px; }
+      .filter-btn { padding: 10px 20px; font-size: 0.8rem; }
       .btn-scroll { padding: 0 10px; }
+
+      .portfolio-grid { padding: 30px 0 80px; }
+      .p-card { border-radius: 24px; }
+      .p-card__overlay { opacity: 1; background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%); }
+      .p-card__body { padding: 25px 20px; }
+      .p-card__title { font-size: 1.25rem; }
+      
+      .pagination-wrap { padding-bottom: 60px; gap: 8px; }
+      .pg-btn { width: 40px; height: 40px; border-radius: 12px; font-size: 0.9rem; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title-v4 { font-size: 2rem; }
     }
 
     /* GRID */

@@ -212,6 +212,26 @@
         color: var(--primary) !important;
     }
     body.light-mode .map-premium { filter: grayscale(0.2) contrast(1); opacity: 1; border-color: #e2e8f0; }
+    /* ── Mobile Responsiveness Overrides ── */
+    @media (max-width: 768px) {
+        .contact-hero-v2 { padding: 120px 0 60px; text-align: center; }
+        .hero-title-cinematic { font-size: 2.8rem; line-height: 1.1; }
+        .hero-subtitle-cinematic { font-size: 1rem; }
+        .breadcrumb { justify-content: center; }
+        
+        section.pb-120 { margin-top: 0 !important; padding-bottom: 60px !important; }
+        .glass-contact-card { padding: 35px 25px; border-radius: 25px; text-align: center; }
+        .contact-icon-v2 { margin: 0 auto 25px; width: 60px; height: 60px; font-size: 24px; }
+        .glass-contact-card a { justify-content: center; font-size: 1.1rem !important; }
+        
+        .mt-120 { margin-top: 60px !important; }
+        .premium-form-box { padding: 35px 25px; border-radius: 30px; }
+        .premium-form-box h1.h1 { font-size: 2rem; }
+        .mb-5 { margin-bottom: 30px !important; }
+        
+        .map-premium { min-height: 400px !important; border-radius: 30px; }
+        .map-premium iframe { height: 400px !important; }
+    }
 </style>
 
 <div class="contact-hero-v2">
@@ -301,6 +321,21 @@
                         <div class="v2-input-group">
                             <input type="email" class="v2-input-field" name="email" placeholder=" " required>
                             <label class="v2-label">Email Address</label>
+                        </div>
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="v2-input-group">
+                                    <input type="url" class="v2-input-field" name="website_url" placeholder=" ">
+                                    <label class="v2-label">Website URL (Optional)</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="v2-input-group">
+                                    <input type="url" class="v2-input-field" name="linkedin_url" placeholder=" ">
+                                    <label class="v2-label">LinkedIn Profile (Optional)</label>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="v2-input-group">

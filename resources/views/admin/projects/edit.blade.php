@@ -35,8 +35,20 @@
 
                 <div class="row g-4">
                     <div class="col-md-6">
-                        <label for="client_name" class="v2-form-label">ENTITY / CLIENT</label>
-                        <input type="text" class="v2-form-control" id="client_name" name="client_name" value="{{ old('client_name', $project->client_name) }}" placeholder="Client organization name">
+                        <label for="client_id" class="v2-form-label">LINK TO CRM CLIENT</label>
+                        <select class="v2-form-control" id="client_id" name="client_id">
+                            <option value="">-- No CRM Client Linked --</option>
+                            @foreach($clients as $client)
+                                <option value="{{ $client->id }}" {{ old('client_id', $project->client_id) == $client->id ? 'selected' : '' }}>
+                                    {{ $client->name }} ({{ $client->company_name ?? 'Individual' }})
+                                </option>
+                            @endforeach
+                        </select>
+                        <small class="text-v2-muted mt-2 d-block">Associating with a client enables life-cycle tracking.</small>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="client_name" class="v2-form-label">PUBLIC CLIENT NAME</label>
+                        <input type="text" class="v2-form-control" id="client_name" name="client_name" value="{{ old('client_name', $project->client_name) }}" placeholder="Organization name for public display">
                     </div>
                     <div class="col-md-6">
                         <label for="project_url" class="v2-form-label">LIVE SECTOR URL</label>

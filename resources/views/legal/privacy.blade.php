@@ -86,9 +86,14 @@
         margin-right: 8px;
     }
 
-    @media (max-width: 767px) {
-        .legal-card-v2 { padding: 40px 20px; border-radius: 24px; }
+    @media (max-width: 768px) {
         .legal-hero-v2 { padding: 120px 0 60px; }
+        .display-3 { font-size: 2.5rem; }
+        .legal-meta-v2 { flex-direction: column; gap: 15px; }
+        
+        .legal-card-v2 { padding: 35px 25px; border-radius: 25px; }
+        .legal-card-v2 h2 { font-size: 1.5rem; }
+        .legal-content-section { padding-bottom: 60px; }
     }
 
     /* ── Light Mode Overrides for Legal ── */

@@ -5,7 +5,7 @@
 @section('content')
 <div class="page-header d-flex justify-content-between align-items-center mb-4">
     <div>
-        <h1 class="page-title text-white">Service Protocols</h1>
+        <h1 class="page-title">Service Protocols</h1>
         <p class="page-subtitle text-v2-muted">Configure the core utility modules offered in your digital catalog.</p>
     </div>
     <a href="{{ route('admin.services.create') }}" class="btn-v2-primary">
@@ -32,11 +32,11 @@
                     <tr>
                         <td class="text-center">
                              <div class="metric-icon-v2 mx-auto">
-                                <i class="{{ $service->icon }}"></i>
+                                <i class="{{ $service->icon_class }}"></i>
                              </div>
                         </td>
                         <td>
-                            <div class="fw-bold text-white">{{ $service->title }}</div>
+                            <div class="fw-bold text-v2-main">{{ $service->title }}</div>
                             <div class="small text-v2-muted">Performance: <span class="text-v2-primary">{{ $service->rating ?? 'N/A' }}/5.0</span></div>
                         </td>
                         <td>

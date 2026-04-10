@@ -250,6 +250,24 @@
         background: var(--primary) !important;
         color: #fff !important;
     }
+    /* ── Mobile Responsiveness Overrides ── */
+    @media (max-width: 768px) {
+        .blog-hero-v2 { padding: 120px 0 60px; text-align: center; }
+        .hero-title-cinematic { font-size: 2.8rem; line-height: 1.1; }
+        .hero-subtitle-cinematic { font-size: 1rem; }
+        .breadcrumb { justify-content: center; }
+        
+        .blog-section-v2 { padding: 60px 0; }
+        .article-card-elite { border-radius: 25px; }
+        .article-img-box { height: 200px; }
+        .article-content { padding: 25px 20px; }
+        .article-title-v2 { font-size: 1.25rem; }
+        
+        .sidebar-wrapper { position: relative !important; top: 0 !important; margin-top: 50px; padding-left: 0 !important; }
+        .sidebar-widget-v2 { padding: 25px 20px; border-radius: 20px; }
+        
+        .mt-80 { margin-top: 40px !important; }
+    }
 </style>
 
 <div class="blog-hero-v2">

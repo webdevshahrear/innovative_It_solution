@@ -3,7 +3,7 @@
 @section('content')
 <div class="page-header d-flex justify-content-between align-items-center mb-4">
     <div>
-        <h1 class="page-title text-white">Portfolio Categories</h1>
+        <h1 class="page-title">Portfolio Categories</h1>
         <p class="page-subtitle text-v2-muted">Manage classifications for your project archive.</p>
     </div>
     <a href="{{ route('admin.project-categories.create') }}" class="btn-v2-primary">
@@ -33,7 +33,7 @@
                 @forelse($categories as $category)
                 <tr>
                     <td class="ps-4 text-v2-muted">#{{ str_pad($category->id, 3, '0', STR_PAD_LEFT) }}</td>
-                    <td class="fw-bold text-white">{{ $category->name }}</td>
+                    <td class="fw-bold text-v2-main">{{ $category->name }}</td>
                     <td class="font-monospace"><span class="badge-v2 turquoise">{{ $category->slug }}</span></td>
                     <td>
                         <span class="status-glow-v2 active">
@@ -61,7 +61,7 @@
                     <td colspan="5" class="text-center py-5">
                         <div class="opacity-30">
                             <i class="fas fa-tags fs-1 mb-3 text-v2-muted"></i>
-                            <h5 class="text-white">No Categories Found</h5>
+                            <h5 class="text-v2-main">No Categories Found</h5>
                             <p class="text-v2-muted small">Start organizing your portfolio by adding the first category.</p>
                         </div>
                     </td>

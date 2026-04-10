@@ -87,6 +87,26 @@
     body.light-mode .project-card h4 { color: #0f172a !important; }
     body.light-mode .project-card .text-white { color: #0f172a !important; }
     body.light-mode h2.text-white { color: #0f172a !important; }
+    /* ── Mobile Responsiveness Overrides ── */
+    @media (max-width: 768px) {
+        .page-header-premium { padding-top: 100px !important; min-height: 40vh !important; text-align: center; }
+        .display-3 { font-size: 2.2rem; }
+        .breadcrumb { justify-content: center; }
+        
+        section.py-5[style*="margin-top: -100px"] { margin-top: -40px !important; padding-top: 40px !important; }
+        .glass-card.p-5 { padding: 30px 20px !important; border-radius: 20px; }
+        .row.g-5 { --bs-gutter-y: 2rem; }
+        
+        .project-content h2 { font-size: 1.8rem; }
+        .project-content .lead { font-size: 1rem; line-height: 1.6; }
+        
+        .sticky-top { position: relative !important; top: 0 !important; }
+        
+        .mt-5.pt-5 { margin-top: 3rem !important; pt-3 !important; }
+        h2.text-white[style*="font-size: 3rem"] { font-size: 2rem !important; }
+        
+        .project-card .mockups { height: 200px !important; }
+    }
 </style>
 @endpush
     <section class="page-header-premium" style="min-height: 60vh; padding-top: 150px;">

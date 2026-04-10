@@ -38,11 +38,25 @@
         box-shadow: 0 10px 20px rgba(240, 82, 35, 0.25);
     }
     .inst-action-btn {
-        display: block; width: 100%; padding: 16px;
-        background: var(--v2-primary); color: #fff; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
-        border-radius: 12px; text-decoration: none; margin-top: 35px; transition: 0.3s; font-size: 0.95rem;
+        display: flex; align-items: center; justify-content: center; gap: 12px;
+        width: 100%; padding: 20px;
+        background: #fb7147;
+        color: #fff; font-weight: 800; text-transform: uppercase; letter-spacing: 2px;
+        border-radius: 15px; text-decoration: none; margin-top: 35px; 
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); 
+        font-size: 0.85rem;
+        box-shadow: 0 15px 35px rgba(251, 113, 71, 0.3);
+        border: none;
     }
-    .inst-action-btn:hover { background: #fff; color: var(--v2-primary); transform: translateY(-3px); box-shadow: 0 15px 30px rgba(255,255,255,0.1); }
+
+    .inst-action-btn:hover { 
+        transform: translateY(-8px) scale(1.02); 
+        box-shadow: 0 25px 50px rgba(251, 113, 71, 0.4); 
+        color: #fff;
+    }
+
+    .inst-action-btn i { font-size: 1.1rem; }
+
 
     .inst-main {
         padding-left: 0;
@@ -91,6 +105,50 @@
     .inst-timeline-date { font-size: 0.9rem; color: var(--v2-primary); font-weight: 800; letter-spacing: 1.5px; margin-bottom: 10px; display: inline-block; padding: 4px 12px; background: rgba(240, 82, 35, 0.1); border-radius: 6px; }
     .inst-timeline-title { font-size: 1.3rem; font-weight: 800; color: #fff; margin-bottom: 8px; }
     .inst-timeline-desc { font-size: 1.1rem; color: rgba(255,255,255,0.6); line-height: 1.7; }
+
+    /* ── Team Profile Light Mode Overrides ── */
+    body.light-mode .instructor-profile-wrap { background: #fafafa !important; color: #0f172a !important; }
+    
+    body.light-mode .inst-avatar { 
+        border-color: #fff !important; 
+        box-shadow: 0 20px 60px rgba(0,0,0,0.08) !important; 
+    }
+    
+    body.light-mode .inst-social-btn { 
+        background: #fff !important; 
+        border-color: rgba(0,0,0,0.06) !important; 
+        color: #0f172a !important; 
+        box-shadow: 0 4px 10px rgba(0,0,0,0.03) !important;
+    }
+    body.light-mode .inst-social-btn:hover { background: var(--v2-primary) !important; color: #fff !important; }
+
+    body.light-mode .inst-action-btn { box-shadow: 0 15px 35px rgba(240, 82, 35, 0.15) !important; }
+    body.light-mode .inst-action-btn:hover { background: #0f172a !important; color: #fff !important; box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important; }
+
+
+    body.light-mode .inst-role { color: #475569 !important; }
+
+    body.light-mode .inst-stats-row { border-color: rgba(0,0,0,0.06) !important; }
+    body.light-mode .inst-stat-val { color: #0f172a !important; }
+    body.light-mode .inst-stat-label { color: #64748b !important; }
+
+    body.light-mode .inst-section-title { color: #0f172a !important; }
+    body.light-mode .inst-bio { color: #334155 !important; }
+
+    body.light-mode .inst-skill-tag { 
+        background: #ffffff !important; 
+        border-color: rgba(0,0,0,0.08) !important; 
+        color: #475569 !important; 
+        box-shadow: 0 4px 6px rgba(0,0,0,0.02) !important;
+    }
+    body.light-mode .inst-skill-tag:hover { border-color: var(--v2-primary) !important; color: var(--v2-primary) !important; background: rgba(240, 82, 35, 0.04) !important; }
+
+    body.light-mode .inst-timeline { border-left-color: rgba(0,0,0,0.06) !important; }
+    body.light-mode .inst-timeline-item::before { background: #fafafa !important; }
+    body.light-mode .inst-timeline-title { color: #0f172a !important; }
+    body.light-mode .inst-timeline-desc { color: #64748b !important; }
+    body.light-mode .inst-timeline-date { background: rgba(240, 82, 35, 0.05) !important; color: var(--v2-primary) !important; }
+
 
 </style>
 @endpush

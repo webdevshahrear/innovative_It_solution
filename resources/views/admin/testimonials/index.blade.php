@@ -3,7 +3,7 @@
 @section('content')
 <div class="page-header d-flex justify-content-between align-items-center mb-4">
     <div>
-        <h1 class="page-title text-white">Feedback Matrix</h1>
+        <h1 class="page-title">Feedback Matrix</h1>
         <p class="page-subtitle text-v2-muted">Analyze and manage client transmission logs and performance endorsements.</p>
     </div>
     <a href="{{ route('admin.testimonials.create') }}" class="btn-v2-primary">
@@ -46,7 +46,7 @@
                             @endphp
                             <div class="operative-avatar-v2 me-3" style="background-image: url('{{ $displayUrl }}')"></div>
                                 <div>
-                                    <div class="fw-bold text-white">{{ $testimonial->client_name }}</div>
+                                    <div class="fw-bold text-v2-main">{{ $testimonial->client_name }}</div>
                                     <div class="small text-v2-muted">Verified Signal</div>
                                 </div>
                             </div>

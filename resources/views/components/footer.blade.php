@@ -313,8 +313,18 @@ body.light-mode .footer-divider-v2 { background: linear-gradient(90deg, rgba(0,0
     50% { transform: scale(1.2); }
 }
 
-@media (max-width: 767px) {
-    .footer-v2 { padding: 80px 0 40px; }
-    .footer-title-v2 { margin-bottom: 20px; }
+@media (max-width: 768px) {
+    .footer-v2 { padding: 80px 0 40px; text-align: center; }
+    .footer-desc-v2 { margin-left: auto; margin-right: auto; margin-bottom: 30px !important; }
+    .footer-social-group-v2 { justify-content: center; margin-bottom: 20px; }
+    
+    .footer-title-v2 { margin-bottom: 25px; margin-top: 20px; }
+    .footer-title-v2::after { left: 50%; transform: translateX(-50%); }
+    
+    .footer-contact-card-v2 { padding: 25px 20px; text-align: left; }
+    .contact-item-v2 { gap: 15px; }
+    
+    .footer-divider-v2 { margin: 40px 0 25px; }
+    .footer-bottom-v2 .text-md-end { margin-top: 15px !important; }
 }
 </style>
