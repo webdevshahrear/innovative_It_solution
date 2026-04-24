@@ -22,6 +22,8 @@ use App\Http\Controllers\Admin\TeamController as AdminTeamController;
 use App\Http\Controllers\Admin\TestimonialController as AdminTestimonialController;
 use App\Http\Controllers\Admin\HeroSlideController as AdminHeroSlideController;
 use App\Http\Controllers\Admin\SettingController as AdminSettingController;
+use App\Http\Controllers\Admin\AchievementController as AdminAchievementController;
+use App\Http\Controllers\Admin\GalleryController as AdminGalleryController;
 
 // --- Frontend Routes ---
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -76,6 +78,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('subscribers', \App\Http\Controllers\Admin\SubscriberController::class)->only(['index', 'update', 'destroy']);
         Route::resource('statistics', \App\Http\Controllers\Admin\StatisticController::class);
         Route::resource('work-flows', \App\Http\Controllers\Admin\WorkFlowController::class);
+        Route::resource('achievements', AdminAchievementController::class);
+        Route::resource('gallery-items', AdminGalleryController::class);
 
         
         // Duplication Routes
@@ -101,3 +105,113 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+// ═══════════════════════════════════════════════════════════════
+// INTERNSHIP MODULE ROUTES
+// ═══════════════════════════════════════════════════════════════
+
+use App\Http\Controllers\Internship\InternshipController;
+use App\Http\Controllers\Internship\ExamController;
+use App\Http\Controllers\Internship\ResultController;
+use App\Http\Controllers\Internship\PaymentController as InternshipPaymentController;
+use App\Http\Controllers\Internship\InternAuthController;
+use App\Http\Controllers\Intern\DashboardController as InternDashboardController;
+use App\Http\Controllers\Intern\TaskController as InternTaskController;
+use App\Http\Controllers\Mentor\DashboardController as MentorDashboardController;
+use App\Http\Controllers\Mentor\TaskController as MentorTaskController;
+use App\Http\Controllers\Admin\Internship\ApplicationController as AdminApplicationController;
+use App\Http\Controllers\Admin\Internship\QuestionController as AdminQuestionController;
+use App\Http\Controllers\Admin\Internship\ExamResultController as AdminExamResultController;
+use App\Http\Controllers\Admin\Internship\PaymentController as AdminInternshipPaymentController;
+use App\Http\Controllers\Admin\Internship\InternManagementController;
+use App\Http\Controllers\Admin\Internship\NoticeController as AdminNoticeController;
+
+// ── Public Internship Routes ──
+Route::prefix('internship')->name('internship.')->group(function () {
+    Route::get('/',                              [InternshipController::class, 'landing'])->name('landing');
+    Route::get('/apply',                         [InternshipController::class, 'apply'])->name('apply');
+    Route::post('/apply',                        [InternshipController::class, 'storeApplication'])->name('apply.store');
+    Route::get('/terms/{application}',           [InternshipController::class, 'terms'])->name('terms');
+    Route::post('/terms/{application}/accept',   [InternshipController::class, 'acceptTerms'])->name('terms.accept');
+
+    // Exam
+    Route::get('/exam/{attempt}',                [ExamController::class, 'show'])->name('exam');
+    Route::post('/exam/{attempt}/submit',        [ExamController::class, 'submit'])->name('exam.submit');
+    Route::post('/exam/{attempt}/terminate',     [ExamController::class, 'terminate'])->name('exam.terminate');
+
+    // Result
+    Route::get('/result/{attempt}',              [ResultController::class, 'show'])->name('result');
+
+    // Payment
+    Route::get('/payment/{attempt}',             [InternshipPaymentController::class, 'show'])->name('payment');
+    Route::post('/payment/{attempt}/ssl',        [InternshipPaymentController::class, 'processSSL'])->name('payment.ssl');
+    Route::post('/payment/{attempt}/bkash',      [InternshipPaymentController::class, 'processBkash'])->name('payment.bkash');
+    Route::post('/payment/success',              [InternshipPaymentController::class, 'success'])->name('payment.success')->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class]);
+    Route::post('/payment/fail',                 [InternshipPaymentController::class, 'fail'])->name('payment.fail')->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class]);
+    Route::post('/payment/cancel',               [InternshipPaymentController::class, 'cancel'])->name('payment.cancel')->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class]);
+    Route::get('/payment/bkash-pending',         [InternshipPaymentController::class, 'bkashPending'])->name('payment.bkash-pending');
+
+    // Account Creation (post-payment)
+    Route::get('/register/{token}',              [InternAuthController::class, 'showRegister'])->name('register');
+    Route::post('/register/{token}',             [InternAuthController::class, 'register'])->name('register.store');
+});
+
+// ── Intern Dashboard Routes ──
+Route::prefix('intern')->name('intern.')->middleware(['auth', 'intern'])->group(function () {
+    Route::get('/dashboard',                     [InternDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/tasks',                         [InternTaskController::class, 'index'])->name('tasks.index');
+    Route::get('/tasks/{task}',                  [InternTaskController::class, 'show'])->name('tasks.show');
+    Route::post('/tasks/{task}/submit',          [InternTaskController::class, 'submit'])->name('tasks.submit');
+});
+
+// ── Mentor Panel Routes ──
+Route::prefix('mentor')->name('mentor.')->middleware(['auth', 'mentor'])->group(function () {
+    Route::get('/dashboard',                     [MentorDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/tasks',                         [MentorTaskController::class, 'index'])->name('tasks.index');
+    Route::get('/tasks/create',                  [MentorTaskController::class, 'create'])->name('tasks.create');
+    Route::post('/tasks',                        [MentorTaskController::class, 'store'])->name('tasks.store');
+    Route::get('/tasks/{task}',                  [MentorTaskController::class, 'show'])->name('tasks.show');
+    Route::post('/tasks/{task}/review',          [MentorTaskController::class, 'review'])->name('tasks.review');
+});
+
+// ── Admin Internship Routes ──
+Route::prefix('admin/internship')->name('admin.internship.')->middleware(['auth', 'verified'])->group(function () {
+    // Applications
+    Route::get('applications',                                   [AdminApplicationController::class, 'index'])->name('applications.index');
+    Route::get('applications/{application}',                     [AdminApplicationController::class, 'show'])->name('applications.show');
+    Route::post('applications/{application}/status',             [AdminApplicationController::class, 'updateStatus'])->name('applications.status');
+
+    // Questions
+    Route::get('questions',                                      [AdminQuestionController::class, 'index'])->name('questions.index');
+    Route::get('questions/create',                               [AdminQuestionController::class, 'create'])->name('questions.create');
+    Route::post('questions',                                     [AdminQuestionController::class, 'store'])->name('questions.store');
+    Route::get('questions/generate',                             [AdminQuestionController::class, 'generatePage'])->name('questions.generate');
+    Route::post('questions/generate-ai',                         [AdminQuestionController::class, 'generateAI'])->name('questions.generate-ai');
+    Route::get('questions/{question}/edit',                      [AdminQuestionController::class, 'edit'])->name('questions.edit');
+    Route::put('questions/{question}',                           [AdminQuestionController::class, 'update'])->name('questions.update');
+    Route::delete('questions/{question}',                        [AdminQuestionController::class, 'destroy'])->name('questions.destroy');
+    Route::post('questions/{question}/approve',                  [AdminQuestionController::class, 'approve'])->name('questions.approve');
+
+    // Exam Results
+    Route::get('exam-results',                                   [AdminExamResultController::class, 'index'])->name('exam-results.index');
+
+    // Payments
+    Route::get('payments',                                       [AdminInternshipPaymentController::class, 'index'])->name('payments.index');
+    Route::post('payments/{payment}/verify',                     [AdminInternshipPaymentController::class, 'verify'])->name('payments.verify');
+
+    // Interns
+    Route::get('interns',                                        [InternManagementController::class, 'index'])->name('interns.index');
+    Route::get('interns/{account}',                              [InternManagementController::class, 'show'])->name('interns.show');
+    Route::post('interns/{account}/assign-mentor',               [InternManagementController::class, 'assignMentor'])->name('interns.assign-mentor');
+    Route::post('interns/{account}/toggle-status',               [InternManagementController::class, 'toggleStatus'])->name('interns.toggle-status');
+
+    // Notices
+    Route::resource('notices', AdminNoticeController::class)->names([
+        'index'   => 'notices.index',
+        'create'  => 'notices.create',
+        'store'   => 'notices.store',
+        'edit'    => 'notices.edit',
+        'update'  => 'notices.update',
+        'destroy' => 'notices.destroy',
+    ]);
+});

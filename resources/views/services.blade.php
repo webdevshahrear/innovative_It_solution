@@ -116,6 +116,7 @@
     }
     body.light-mode .glass-service-card h3 { color: #0f172a !important; }
     body.light-mode .service-icon-v3 { background: rgba(0, 0, 0, 0.03) !important; border-color: rgba(0, 0, 0, 0.06) !important; }
+    body.light-mode .glass-service-card:hover .service-icon-v3 { background: var(--primary) !important; color: #fff !important; }
 
     /* CTA Refining */
     body.light-mode .glass-effect .position-absolute[style*="radial-gradient"] {

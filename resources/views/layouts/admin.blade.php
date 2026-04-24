@@ -707,6 +707,7 @@
             border-color: transparent !important;
         }
     </style>
+    @stack('styles')
 </head>
 <body class="antialiased">
     <div class="admin-wrapper" id="app">
@@ -774,6 +775,18 @@
                         <span>Work Flows</span>
                     </a>
                 </div>
+                <div class="nav-item">
+                    <a href="{{ route('admin.achievements.index') }}" class="nav-link-v2-admin {{ request()->routeIs('admin.achievements.*') ? 'active' : '' }}">
+                        <div class="nav-icon-v2"><i class="fas fa-trophy"></i></div>
+                        <span>Achievements</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="{{ route('admin.gallery-items.index') }}" class="nav-link-v2-admin {{ request()->routeIs('admin.gallery-items.*') ? 'active' : '' }}">
+                        <div class="nav-icon-v2"><i class="fas fa-photo-video"></i></div>
+                        <span>Gallery</span>
+                    </a>
+                </div>
 
 
                 <div class="nav-section-title-v2">RELATIONSHIP MGMT</div>
@@ -808,7 +821,39 @@
                     </a>
                 </div>
 
-                <div class="nav-section-title-v2">CONFIGURATION</div>
+                <div class="nav-section-title-v2">INTERNSHIP HUB</div>
+                <div class="nav-item">
+                    <a href="{{ route('admin.internship.applications.index') }}" class="nav-link-v2-admin {{ request()->routeIs('admin.internship.applications.*') ? 'active' : '' }}">
+                        <div class="nav-icon-v2"><i class="fas fa-id-card"></i></div>
+                        <span>Applications</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="{{ route('admin.internship.interns.index') }}" class="nav-link-v2-admin {{ request()->routeIs('admin.internship.interns.*') ? 'active' : '' }}">
+                        <div class="nav-icon-v2"><i class="fas fa-users-cog"></i></div>
+                        <span>Active Interns</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="{{ route('admin.internship.payments.index') }}" class="nav-link-v2-admin {{ request()->routeIs('admin.internship.payments.*') ? 'active' : '' }}">
+                        <div class="nav-icon-v2"><i class="fas fa-money-check-alt"></i></div>
+                        <span>Payments & Fees</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="{{ route('admin.internship.questions.index') }}" class="nav-link-v2-admin {{ request()->routeIs('admin.internship.questions.*') ? 'active' : '' }}">
+                        <div class="nav-icon-v2"><i class="fas fa-brain"></i></div>
+                        <span>Exam Questions</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="{{ route('admin.internship.exam-results.index') }}" class="nav-link-v2-admin {{ request()->routeIs('admin.internship.exam-results.*') ? 'active' : '' }}">
+                        <div class="nav-icon-v2"><i class="fas fa-poll"></i></div>
+                        <span>Exam Results</span>
+                    </a>
+                </div>
+
+                <div class="nav-section-title-v2 mt-4">CONFIGURATION</div>
                 <div class="nav-item">
                     <a href="{{ route('admin.statistics.index') }}" class="nav-link-v2-admin {{ request()->routeIs('admin.statistics.*') ? 'active' : '' }}">
                         <div class="nav-icon-v2"><i class="fas fa-chart-line"></i></div>
@@ -951,5 +996,7 @@
             }
         });
     </script>
+
+    @stack('scripts')
 </body>
 </html>

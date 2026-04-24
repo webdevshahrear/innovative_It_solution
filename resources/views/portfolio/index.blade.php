@@ -95,8 +95,8 @@
 
     /* GLASS FILTER BAR */
     .filter-sticky-wrapper {
-      position: sticky; top: 100px; z-index: 1000;
-      padding: 25px 0;
+      position: sticky; top: 80px; z-index: 1000;
+      padding: 20px 0;
     }
     .filter-glass-container {
       background: rgba(13, 11, 40, 0.6);
@@ -161,7 +161,7 @@
       .hero-title-v4 { font-size: 2.5rem; letter-spacing: -1px; }
       .hero-sub-v4 { font-size: 1rem; margin-bottom: 30px; }
       
-      .filter-sticky-wrapper { top: 70px; padding: 15px 0; }
+      .filter-sticky-wrapper { top: 60px; padding: 10px 0; }
       .filter-glass-container { width: 100%; border-radius: 20px; }
       .filter-btn { padding: 10px 20px; font-size: 0.8rem; }
       .btn-scroll { padding: 0 10px; }

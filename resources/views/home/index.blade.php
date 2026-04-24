@@ -551,6 +551,8 @@
         body.light-mode .btn-pill-dark { background: transparent; border: 1px solid #cbd5e1; color: #334155; font-weight: 600; }
         body.light-mode .btn-pill-dark:hover { background: var(--v2-primary); border-color: var(--v2-primary); color: #fff; }
         body.light-mode .v2-section-title { color: #0f172a; }
+        body.light-mode .t-nav-v4, body.light-mode .team-nav-v4 { background: #ffffff; border: 1px solid #cbd5e1; color: #0f172a; }
+        body.light-mode .t-nav-v4:hover, body.light-mode .team-nav-v4:hover { background: var(--v2-primary); border-color: transparent; color: #fff; }
 
         /* ── Blog ── */
         .v2-blog-wrap { background: var(--v2-bg); padding: 150px 0; position: relative; overflow: hidden; }
@@ -572,17 +574,18 @@
 
         /* ── Testimonials ── */
         .testimonials-v2-wrap { background: var(--v2-bg); padding: 150px 0; position: relative; overflow: hidden; }
-        .t-card-v4 { background: rgba(255,255,255,0.02); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.08); border-radius: 40px; padding: 60px; text-align: center; position: relative; }
-        .t-quote-v4 { font-size: 3rem; color: var(--v2-primary); opacity: 0.3; margin-bottom: 30px; }
-        .t-text-v4 { font-size: 1.4rem; color: #fff; font-style: italic; line-height: 1.6; margin-bottom: 40px; }
-        .t-author-v4 { display: flex; align-items: center; justify-content: center; gap: 20px; }
-        .t-avatar-v4 { width: 70px; height: 70px; border-radius: 20px; overflow: hidden; border: 2px solid var(--v2-primary); }
+        .testimonial-main-swiper .swiper-slide, .team-main-swiper .swiper-slide { height: auto; }
+        .t-card-v4 { background: rgba(255,255,255,0.02); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.08); border-radius: 30px; padding: 40px; text-align: center; position: relative; height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
+        .t-quote-v4 { font-size: 2.2rem; color: var(--v2-primary); opacity: 0.3; margin-bottom: 20px; }
+        .t-text-v4 { font-size: 1.1rem; color: #fff; font-style: italic; line-height: 1.6; margin-bottom: 30px; flex-grow: 1; display: flex; align-items: center; justify-content: center; }
+        .t-author-v4 { display: flex; align-items: center; justify-content: center; gap: 15px; text-align: left; }
+        .t-avatar-v4 { width: 55px; height: 55px; border-radius: 15px; overflow: hidden; border: 2px solid var(--v2-primary); flex-shrink: 0; }
         .t-avatar-v4 img { width: 100%; height: 100%; object-fit: cover; }
-        .t-meta-v4 h5 { color: #fff; font-weight: 800; margin: 0; }
-        .t-meta-v4 span { color: var(--v2-text-muted); font-size: 0.9rem; }
-        .t-nav-v4 { position: absolute; top: 50%; width: 60px; height: 60px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; z-index: 10; }
-        .t-nav-v4:hover { background: var(--v2-primary); border-color: transparent; transform: scale(1.1); }
-        .t-prev-v4 { left: -30px; } .t-next-v4 { right: -30px; }
+        .t-meta-v4 h5 { color: #fff; font-weight: 800; margin: 0; font-size: 1rem; }
+        .t-meta-v4 span { color: var(--v2-text-muted); font-size: 0.8rem; }
+        .t-nav-v4, .team-nav-v4 { position: absolute; top: 50%; transform: translateY(-50%); width: 50px; height: 50px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; z-index: 10; }
+        .t-nav-v4:hover, .team-nav-v4:hover { background: var(--v2-primary); border-color: transparent; transform: translateY(-50%) scale(1.1); }
+        .t-prev-v4, .team-prev-v4 { left: -20px; } .t-next-v4, .team-next-v4 { right: -20px; }
 
         /* ── Contact ── */
         .v2-contact-wrap { background: var(--v2-bg); padding: 150px 0; position: relative; overflow: hidden; }
@@ -656,6 +659,13 @@
         .news-form-v4 button { position: absolute; right: 10px; top: 10px; bottom: 10px; background: var(--v2-primary); color: #fff; border: none; border-radius: 100px; padding: 0 40px; font-weight: 800; letter-spacing: 2px; transition: 0.3s; box-shadow: 0 10px 20px var(--v2-primary-glow); }
         .news-form-v4 button:hover { background: #fff; color: var(--v2-primary); transform: scale(1.02); }
 
+        /* ── Internship Section ── */
+        .v2-internship-cta-wrap { background: var(--v2-bg); padding: 150px 0; position: relative; overflow: hidden; border-top: 1px solid var(--v2-border); }
+        .internship-floating-card { position: absolute; bottom: 30px; left: -30px; background: rgba(13, 11, 40, 0.8); backdrop-filter: blur(20px); border: 1px solid rgba(240, 82, 35, 0.3); border-radius: 20px; padding: 20px; z-index: 3; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .internship-icon-box { width: 50px; height: 50px; background: rgba(240,82,35,0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--v2-primary); font-size: 1.5rem; }
+        .internship-floating-title { color: #fff; margin: 0; font-size: 1.25rem; font-weight: 800; }
+        @media (max-width: 991px) { .internship-floating-card { left: 20px; bottom: 20px; right: 20px; text-align: left; } }
+
         /* ── Light Mode PERFECT Overrides ── */
         body.light-mode { background: #f8fafc !important; }
         body.light-mode .v2-services-wrap, 
@@ -671,6 +681,7 @@
         body.light-mode .wf-section-wrapper,
         body.light-mode .v2-marquee-wrap,
         body.light-mode .testimonials-v2-wrap,
+        body.light-mode .v2-internship-cta-wrap,
         body.light-mode .v2-feature-abstract { background: #f8fafc !important; }
 
         body.light-mode .v2-mesh-glow,
@@ -687,7 +698,8 @@
         body.light-mode .faq-item-v4, 
         body.light-mode .contact-glass-v4, 
         body.light-mode .t-card-v4,
-        body.light-mode .newsletter-glass-v4 { 
+        body.light-mode .newsletter-glass-v4,
+        body.light-mode .internship-floating-card { 
             background: #ffffff !important; 
             border-color: rgba(0,0,0,0.06) !important; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.04) !important; 
@@ -698,7 +710,7 @@
         body.light-mode .v2-section-title, body.light-mode .s-title-v4, body.light-mode .p-title-v4, 
         body.light-mode .v2-stat-value, body.light-mode .blog-title-v4, body.light-mode .price-v4,
         body.light-mode .faq-question-v4, body.light-mode .abstract-title,
-        body.light-mode .t-meta-v4 h5 { color: #0f172a !important; }
+        body.light-mode .t-meta-v4 h5, body.light-mode .internship-floating-title { color: #0f172a !important; }
 
         body.light-mode p, body.light-mode .lead, body.light-mode .s-desc-v4, body.light-mode .hero-subtitle-v4, 
         body.light-mode .v2-stat-label, body.light-mode .blog-excerpt-v4, body.light-mode .mv-card-v4 p,
@@ -1059,7 +1071,7 @@
             .hero-title-elite { font-size: 3.5rem; letter-spacing: -2px; }
 
             /* Common Section Sizing */
-            .v2-services-wrap, .v2-portfolio-wrap, .v2-stats-wrap, .v2-mv-wrap, .v2-team-wrap, .v2-blog-wrap, .v2-pricing-wrap, .v2-faq-wrap, .v2-contact-wrap, .v2-newsletter-wrap, .testimonials-v2-wrap, .v2-feature-abstract { padding: 80px 0; }
+            .v2-services-wrap, .v2-portfolio-wrap, .v2-stats-wrap, .v2-mv-wrap, .v2-team-wrap, .v2-blog-wrap, .v2-pricing-wrap, .v2-faq-wrap, .v2-contact-wrap, .v2-newsletter-wrap, .testimonials-v2-wrap, .v2-feature-abstract, .v2-internship-cta-wrap { padding: 80px 0; }
             .v2-section-title { font-size: 2.5rem; }
 
             /* Services */
@@ -1430,6 +1442,43 @@
         </div>
     </section>
 
+    {{-- ═══════════════════════════════════ INTERNSHIP CTA ═══════════════════════════════════ --}}
+    <section class="v2-internship-cta-wrap">
+        <div class="v2-mesh-glow"></div>
+        <div class="container position-relative z-1">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
+                    <span class="v2-badge-primary mb-3">CAREER JUMPSTART</span>
+                    <h2 class="v2-section-title mb-4">Elite <br><span class="text-glow-primary">Internship Program</span></h2>
+                    <p class="fs-5 mb-5" style="color: var(--v2-text-muted); max-width: 500px;">Are you ready to accelerate your career? Join our exclusive internship program and work on cutting-edge technologies with industry experts. Gain real-world experience, build a stellar portfolio, and step into your digital future with absolute confidence.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="{{ route('internship.landing') }}" class="btn-elite-v4">Explore Program <i class="fas fa-arrow-right"></i></a>
+                        <a href="{{ route('internship.apply') }}" class="btn-glass-v4">Apply Now</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center" data-aos="fade-left">
+                    <div class="position-relative mx-auto" style="max-width: 500px;">
+                        <div class="mesh-gradient-v4" style="filter: blur(60px); opacity: 0.6; transform: scale(1.2);"></div>
+                        <img src="{{ asset('assets/images/internship-banner.jpg') }}" onerror="this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800'" class="img-fluid position-relative z-2" style="border-radius: 40px; border: 1px solid rgba(255,255,255,0.05);" alt="Internship Program">
+                        
+                        <!-- Floating element -->
+                        <div class="internship-floating-card">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="internship-icon-box">
+                                    <i class="fas fa-laptop-code"></i>
+                                </div>
+                                <div class="text-start">
+                                    <h4 class="internship-floating-title">Real Projects</h4>
+                                    <span style="color: var(--v2-text-muted); font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; font-weight: 700;">100% Practical</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     {{-- ═══════════════════════════════════ TEAM ═══════════════════════════════════ --}}
     @if($teamMembers->isNotEmpty())
         <section class="v2-team-wrap">
@@ -1439,43 +1488,49 @@
                     <span class="v2-badge-primary mb-3">ELITE CORE</span>
                     <h2 class="v2-section-title">Architects of <br><span class="text-glow-primary">The Vision</span></h2>
                 </div>
-                <div class="row g-4 justify-content-center">
-                    @foreach($teamMembers as $index => $member)
-                        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="{{ $index * 150 }}">
-                            <div class="team-card-v4">
-                                <div class="team-img-v4">
-                                    @php
-                                        $memberImg = $member->image ?? null;
-                                        if (!empty($memberImg) && !filter_var($memberImg, FILTER_VALIDATE_URL)) {
-                                            $memberImg = asset('uploads/team/' . $memberImg);
-                                        } elseif (empty($memberImg)) {
-                                            $memberImg = 'https://via.placeholder.com/400x500/10101f/ffffff?text=' . urlencode($member->name);
-                                        }
-                                    @endphp
-                                    <img src="{{ $memberImg }}" alt="{{ $member->name }}" onerror="this.src='https://via.placeholder.com/400x500/10101f/ffffff?text={{ urlencode($member->name) }}'">
-                                    <div class="team-social-v4">
-                                        @if($member->facebook_url)
-                                            <a href="{{ $member->facebook_url }}"><i class="fab fa-facebook-f"></i></a>
-                                        @endif
-                                        @if($member->twitter_url)
-                                            <a href="{{ $member->twitter_url }}"><i class="fab fa-twitter"></i></a>
-                                        @endif
-                                        @if($member->instagram_url)
-                                            <a href="{{ $member->instagram_url }}"><i class="fab fa-instagram"></i></a>
-                                        @endif
-                                        @if($member->linkedin_url)
-                                            <a href="{{ $member->linkedin_url }}"><i class="fab fa-linkedin-in"></i></a>
-                                        @endif
+                <div class="position-relative px-lg-4">
+                    <div class="swiper team-main-swiper" data-aos="fade-up">
+                        <div class="swiper-wrapper">
+                            @foreach($teamMembers as $index => $member)
+                                <div class="swiper-slide py-3">
+                                    <div class="team-card-v4">
+                                        <div class="team-img-v4">
+                                            @php
+                                                $memberImg = $member->image ?? null;
+                                                if (!empty($memberImg) && !filter_var($memberImg, FILTER_VALIDATE_URL)) {
+                                                    $memberImg = asset('uploads/team/' . $memberImg);
+                                                } elseif (empty($memberImg)) {
+                                                    $memberImg = 'https://via.placeholder.com/400x500/10101f/ffffff?text=' . urlencode($member->name);
+                                                }
+                                            @endphp
+                                            <img src="{{ $memberImg }}" alt="{{ $member->name }}" onerror="this.src='https://via.placeholder.com/400x500/10101f/ffffff?text={{ urlencode($member->name) }}'">
+                                            <div class="team-social-v4">
+                                                @if($member->facebook_url)
+                                                    <a href="{{ $member->facebook_url }}"><i class="fab fa-facebook-f"></i></a>
+                                                @endif
+                                                @if($member->twitter_url)
+                                                    <a href="{{ $member->twitter_url }}"><i class="fab fa-twitter"></i></a>
+                                                @endif
+                                                @if($member->instagram_url)
+                                                    <a href="{{ $member->instagram_url }}"><i class="fab fa-instagram"></i></a>
+                                                @endif
+                                                @if($member->linkedin_url)
+                                                    <a href="{{ $member->linkedin_url }}"><i class="fab fa-linkedin-in"></i></a>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="team-info-v4">
+                                            <h4>{{ $member->name }}</h4>
+                                            <span class="team-position">{{ $member->position }}</span>
+                                            <a href="{{ route('team.show', $member->id) }}" class="btn-pill-dark">View Profile</a>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="team-info-v4">
-                                    <h4>{{ $member->name }}</h4>
-                                    <span class="team-position">{{ $member->position }}</span>
-                                    <a href="{{ route('team.show', $member->id) }}" class="btn-pill-dark">View Profile</a>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
-                    @endforeach
+                    </div>
+                    <div class="team-nav-v4 team-prev-v4"><i class="fas fa-chevron-left"></i></div>
+                    <div class="team-nav-v4 team-next-v4"><i class="fas fa-chevron-right"></i></div>
                 </div>
                 <div class="text-center mt-5" data-aos="fade-up">
                     <a href="{{ route('team') }}" class="btn-pill-dark px-5">Strategic Directory</a>
@@ -1613,8 +1668,16 @@
                                     <div class="t-quote-v4"><i class="fas fa-quote-left"></i></div>
                                     <p class="t-text-v4">"{{ $testimonial->comment }}"</p>
                                     <div class="t-author-v4">
+                                        @php
+                                            $t_img = $testimonial->image;
+                                            if (!empty($t_img) && !filter_var($t_img, FILTER_VALIDATE_URL)) {
+                                                $t_img = asset('uploads/testimonials/' . $t_img);
+                                            } elseif (empty($t_img)) {
+                                                $t_img = 'https://via.placeholder.com/100/1e293b/ffffff?text=' . urlencode(mb_substr($testimonial->name ?? 'U', 0, 1));
+                                            }
+                                        @endphp
                                         <div class="t-avatar-v4">
-                                            <img src="{{ asset('assets/images/testimonials/' . ($testimonial->image ?? 'user.png')) }}"
+                                            <img src="{{ $t_img }}"
                                                  alt="{{ $testimonial->name }}"
                                                  onerror="this.src='https://via.placeholder.com/100/1e293b/ffffff?text={{ urlencode(mb_substr($testimonial->name ?? 'U', 0, 1)) }}'">
                                         </div>
@@ -1627,7 +1690,6 @@
                             </div>
                         @endforeach
                     </div>
-                    <div class="swiper-pagination mt-5"></div>
                 </div>
                 <div class="t-nav-v4 t-prev-v4"><i class="fas fa-chevron-left"></i></div>
                 <div class="t-nav-v4 t-next-v4"><i class="fas fa-chevron-right"></i></div>
@@ -1804,9 +1866,27 @@
     if (document.querySelector('.testimonial-main-swiper')) {
         new Swiper('.testimonial-main-swiper', {
             loop: true, autoplay: { delay: 5000, disableOnInteraction: false },
-            slidesPerView: 1, spaceBetween: 30,
-            pagination: { el: '.testimonial-main-swiper .swiper-pagination', clickable: true },
+            slidesPerView: 3, spaceBetween: 30,
+            breakpoints: {
+                0: { slidesPerView: 1 },
+                768: { slidesPerView: 2 },
+                992: { slidesPerView: 3 }
+            },
             navigation: { nextEl: '.t-next-v4', prevEl: '.t-prev-v4' },
+        });
+    }
+
+    if (document.querySelector('.team-main-swiper')) {
+        new Swiper('.team-main-swiper', {
+            loop: true, autoplay: { delay: 4000, disableOnInteraction: false },
+            slidesPerView: 4, spaceBetween: 30,
+            breakpoints: {
+                0: { slidesPerView: 1 },
+                576: { slidesPerView: 2 },
+                992: { slidesPerView: 3 },
+                1200: { slidesPerView: 4 }
+            },
+            navigation: { nextEl: '.team-next-v4', prevEl: '.team-prev-v4' },
         });
     }
 

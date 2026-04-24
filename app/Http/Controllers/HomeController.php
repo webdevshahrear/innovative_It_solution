@@ -12,6 +12,8 @@ use App\Models\Statistic;
 use App\Models\TeamMember;
 use App\Models\BlogPost;
 use App\Models\WorkFlow;
+use App\Models\Achievement;
+use App\Models\GalleryItem;
 
 
 class HomeController extends Controller
@@ -29,11 +31,14 @@ class HomeController extends Controller
         $projects = Project::with('categories')->where('featured', 1)->where('status', 'active')->take(4)->get();
         $portfolioStyle = SiteSetting::where('setting_key', 'portfolio_section_style')->value('setting_value') ?? 'classic-grid';
         
-        $testimonials = Testimonial::where('status', 'active')->latest()->take(3)->get();
+        $testimonials = Testimonial::where('status', 'active')->latest()->take(10)->get();
         $stats = Statistic::where('status', 'active')->orderBy('display_order')->get();
-        $teamMembers = TeamMember::where('status', 'active')->orderBy('display_order')->take(4)->get();
+        $teamMembers = TeamMember::where('status', 'active')->orderBy('display_order')->get();
         $posts = BlogPost::where('status', 'published')->latest()->take(3)->get();
         $workFlows = WorkFlow::ordered()->take(6)->get();
+
+        $achievements = Achievement::where('status', 'active')->orderBy('display_order')->take(4)->get();
+        $galleryItems = GalleryItem::where('status', 'active')->orderBy('display_order')->take(8)->get();
 
         
         $mission = SiteSetting::where('setting_key', 'company_mission')->value('setting_value');
@@ -48,7 +53,8 @@ class HomeController extends Controller
         return \view('home.index', compact(
             'pageTitle', 'heroSlides', 'heroMode',
             'services', 'projects', 'portfolioStyle', 'testimonials', 'stats', 'teamMembers', 
-            'posts', 'mission', 'vision', 'heroTitle', 'heroSubtitle', 'contactEmail', 'contactPhone', 'workFlows'
+            'posts', 'mission', 'vision', 'heroTitle', 'heroSubtitle', 'contactEmail', 'contactPhone', 'workFlows',
+            'achievements', 'galleryItems'
         ));
 
     }

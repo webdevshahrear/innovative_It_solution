@@ -103,7 +103,13 @@
                             <span class="nav-label">Insights</span>
                         </a>
                     </li>
-                    <li class="nav-item ms-lg-4 mt-3 mt-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link-v2 {{ request()->is('internship*') ? 'active' : '' }}" href="{{ url('internship') }}">
+                            <span class="nav-dot"></span>
+                            <span class="nav-label">Internship</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ms-lg-4 mt-3 mt-lg-0 text-nowrap">
                         <a href="{{ url('contact') }}" class="btn-btn-elite-v2">
                             <span>Get Started</span>
                             <i class="fas fa-arrow-right ms-2"></i>
@@ -265,14 +271,14 @@ body:not(.light-mode) .logo-light { display: none !important; }
 /* Nav Links */
 .nav-link-v2 {
     position: relative;
-    padding: 8px 18px !important;
+    padding: 8px 14px !important;
     color: rgba(255, 255, 255, 0.75) !important;
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.92rem;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
 }
 
 .nav-link-v2 .nav-dot {
