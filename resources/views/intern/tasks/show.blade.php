@@ -3,11 +3,17 @@
 @section('panel_type', 'Intern Panel')
 
 @section('sidebar')
-    <a href="{{ route('intern.dashboard') }}" class="nav-link">
+    <a href="{{ route('intern.dashboard') }}" class="nav-link {{ request()->routeIs('intern.dashboard') ? 'active' : '' }}">
         <i class="fas fa-home"></i> Dashboard
     </a>
-    <a href="{{ route('intern.tasks.index') }}" class="nav-link active">
+    <a href="{{ route('intern.tasks.index') }}" class="nav-link {{ request()->routeIs('intern.tasks.*') ? 'active' : '' }}">
         <i class="fas fa-tasks"></i> My Tasks
+    </a>
+    <a href="{{ route('intern.certification') }}" class="nav-link {{ request()->routeIs('intern.certification') ? 'active' : '' }}">
+        <i class="fas fa-certificate"></i> Certification
+    </a>
+    <a href="{{ route('intern.profile') }}" class="nav-link {{ request()->routeIs('intern.profile') ? 'active' : '' }}">
+        <i class="fas fa-user-circle"></i> My Profile
     </a>
 @endsection
 

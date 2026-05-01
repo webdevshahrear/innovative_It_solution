@@ -149,7 +149,11 @@ Route::prefix('internship')->name('internship.')->group(function () {
     Route::post('/payment/success',              [InternshipPaymentController::class, 'success'])->name('payment.success')->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class]);
     Route::post('/payment/fail',                 [InternshipPaymentController::class, 'fail'])->name('payment.fail')->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class]);
     Route::post('/payment/cancel',               [InternshipPaymentController::class, 'cancel'])->name('payment.cancel')->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class]);
-    Route::get('/payment/bkash-pending',         [InternshipPaymentController::class, 'bkashPending'])->name('payment.bkash-pending');
+    Route::get('/payment/{attempt}/bkash-pending',[InternshipPaymentController::class, 'bkashPending'])->name('payment.bkash-pending');
+
+    // Intern Login
+    Route::get('/login',                         [InternAuthController::class, 'showLogin'])->name('login');
+    Route::post('/login',                        [InternAuthController::class, 'login'])->name('login.submit');
 
     // Account Creation (post-payment)
     Route::get('/register/{token}',              [InternAuthController::class, 'showRegister'])->name('register');
@@ -162,6 +166,12 @@ Route::prefix('intern')->name('intern.')->middleware(['auth', 'intern'])->group(
     Route::get('/tasks',                         [InternTaskController::class, 'index'])->name('tasks.index');
     Route::get('/tasks/{task}',                  [InternTaskController::class, 'show'])->name('tasks.show');
     Route::post('/tasks/{task}/submit',          [InternTaskController::class, 'submit'])->name('tasks.submit');
+    
+    // Additional Intern Routes
+    Route::get('/profile',                       [InternDashboardController::class, 'profile'])->name('profile');
+    Route::put('/profile',                       [InternDashboardController::class, 'profileUpdate'])->name('profile.update');
+    Route::get('/certification',                 [InternDashboardController::class, 'certification'])->name('certification');
+    Route::get('/certificate/download',          [InternDashboardController::class, 'certificateDownload'])->name('certificate.download');
 });
 
 // ── Mentor Panel Routes ──
@@ -204,6 +214,8 @@ Route::prefix('admin/internship')->name('admin.internship.')->middleware(['auth'
     Route::get('interns/{account}',                              [InternManagementController::class, 'show'])->name('interns.show');
     Route::post('interns/{account}/assign-mentor',               [InternManagementController::class, 'assignMentor'])->name('interns.assign-mentor');
     Route::post('interns/{account}/toggle-status',               [InternManagementController::class, 'toggleStatus'])->name('interns.toggle-status');
+    Route::post('interns/{account}/issue-certificate',           [InternManagementController::class, 'issueCertificate'])->name('interns.issue-certificate');
+    Route::get('interns/{account}/view-certificate',             [InternManagementController::class, 'viewCertificate'])->name('interns.view-certificate');
 
     // Notices
     Route::resource('notices', AdminNoticeController::class)->names([

@@ -249,6 +249,8 @@
             <a href="{{ route('admin.hero-slides.create') }}" class="quick-link-btn"><i class="fas fa-images"></i><span>New Slide</span></a>
             <a href="{{ route('admin.settings.index') }}" class="quick-link-btn"><i class="fas fa-cog"></i><span>Settings</span></a>
             <a href="{{ route('admin.subscribers.index') }}" class="quick-link-btn"><i class="fas fa-bell"></i><span>Subscribers</span></a>
+            <a href="{{ route('admin.internship.questions.index') }}" class="quick-link-btn"><i class="fas fa-brain"></i><span>Manage Exams</span></a>
+            <a href="{{ route('admin.internship.exam-results.index') }}" class="quick-link-btn"><i class="fas fa-poll"></i><span>Exam Results</span></a>
         </div>
     </div>
 

@@ -11,7 +11,7 @@ body {
         radial-gradient(ellipse at 20% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 40%);
     background-attachment: fixed;
 }
-[data-theme="light"] body {
+body.light-mode {
     background: #f8fafc;
     background-image: 
         radial-gradient(ellipse at 80% 20%, rgba(240, 82, 35, 0.08) 0%, transparent 40%),
@@ -25,12 +25,13 @@ body {
     position: relative; overflow:hidden; backdrop-filter: blur(20px);
     box-shadow: 0 25px 50px rgba(0,0,0,0.3); transition: all 0.3s;
 }
-[data-theme="light"] .res-card {
+body.light-mode .res-card {
     background: rgba(255,255,255,0.8); border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 15px 35px rgba(0,0,0,0.04);
 }
 .res-card::before {
     content:''; position:absolute; inset:0;
     background: radial-gradient(circle at top, rgba(255,255,255,0.03), transparent 70%);
+    pointer-events: none;
 }
 .res-status-badge {
     display:inline-flex; align-items:center; gap:10px; padding:10px 24px;
@@ -50,17 +51,17 @@ body {
     font-family: 'Outfit', sans-serif; font-size: 3rem; font-weight: 800;
     position: relative; z-index: 2; box-shadow: inset 0 0 30px rgba(0,0,0,0.3);
 }
-[data-theme="light"] .score-circle { border-color: rgba(0,0,0,0.05); box-shadow: inset 0 0 20px rgba(0,0,0,0.05); }
+body.light-mode .score-circle { border-color: rgba(0,0,0,0.05); box-shadow: inset 0 0 20px rgba(0,0,0,0.05); }
 .score-circle.passed { border-color: #10b981; color: #10b981; text-shadow: 0 4px 15px rgba(16,185,129,0.4); box-shadow: inset 0 0 30px rgba(16,185,129,0.2), 0 15px 35px rgba(16,185,129,0.15); }
 .score-circle.failed { border-color: #ef4444; color: #ef4444; text-shadow: 0 4px 15px rgba(239,68,68,0.4); box-shadow: inset 0 0 30px rgba(239,68,68,0.2), 0 15px 35px rgba(239,68,68,0.15); }
 
 .res-stats { display:flex; justify-content:center; gap:40px; margin-bottom:40px; position:relative; z-index:2; background:rgba(255,255,255,0.03); padding:20px; border-radius:20px; border:1px solid rgba(255,255,255,0.05); }
-[data-theme="light"] .res-stats { background: #f8fafc; border-color: #e2e8f0; }
+body.light-mode .res-stats { background: #f8fafc; border-color: #e2e8f0; }
 .r-stat { text-align:center; }
-.r-stat .num { font-size:2rem; font-weight:800; color:var(--text-primary); display:block; font-family:'Outfit',sans-serif; line-height:1; }
+.r-stat .num { font-size:2rem; font-weight:800; color:var(--text-main); display:block; font-family:'Outfit',sans-serif; line-height:1; }
 .r-stat.win .num { color:#10b981; }
 .r-stat.loss .num { color:#ef4444; }
-.r-stat .lbl { font-size:.8rem; color:var(--text-secondary); text-transform:uppercase; letter-spacing:.1em; font-weight:700; margin-top:8px; display:block; }
+.r-stat .lbl { font-size:.8rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:.1em; font-weight:700; margin-top:8px; display:block; }
 
 .btn-act {
     background: linear-gradient(135deg, #f05223, #e04010); color:#fff;
@@ -80,11 +81,11 @@ body {
             @if($attempt->isPassed())
                 <div class="res-status-badge passed"><i class="fas fa-trophy"></i> Exam Passed</div>
                 <h2 style="font-family:'Outfit';font-weight:800">Congratulations, {{ explode(' ', $attempt->application->full_name)[0] }}!</h2>
-                <p style="color:var(--text-secondary)">You have successfully passed the internship qualification exam.</p>
+                <p style="color:var(--text-muted)">You have successfully passed the internship qualification exam.</p>
             @else
                 <div class="res-status-badge failed"><i class="fas fa-times-circle"></i> Exam Failed</div>
                 <h2 style="font-family:'Outfit';font-weight:800">Better luck next time.</h2>
-                <p style="color:var(--text-secondary)">Unfortunately, you did not meet the required {{ $passMark }}% mark to pass the exam.</p>
+                <p style="color:var(--text-muted)">Unfortunately, you did not meet the required {{ $passMark }}% mark to pass the exam.</p>
             @endif
 
             <div class="score-circle {{ $attempt->isPassed() ? 'passed' : 'failed' }}">

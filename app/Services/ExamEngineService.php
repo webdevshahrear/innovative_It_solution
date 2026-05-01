@@ -15,7 +15,8 @@ class ExamEngineService
 
     public function __construct()
     {
-        $this->passMark = (int) env('INTERNSHIP_PASS_MARK', 60);
+        $setting = \App\Models\SiteSetting::where('setting_key', 'internship_pass_mark')->value('setting_value');
+        $this->passMark = $setting ? (int) $setting : 60;
     }
 
     /**

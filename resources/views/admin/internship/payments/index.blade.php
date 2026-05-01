@@ -141,53 +141,6 @@
                             <button type="button" class="btn-neo-glass py-1 px-3" style="font-size:0.75rem" data-bs-toggle="modal" data-bs-target="#verifyModal{{ $payment->id }}">
                                 <i class="fas fa-shield-check me-1 text-primary"></i> VERIFY
                             </button>
-
-                            <!-- Verification Modal -->
-                            <div class="modal fade" id="verifyModal{{ $payment->id }}" tabindex="-1" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content bg-v2-sidebar border border-secondary text-white" style="backdrop-filter: blur(40px); border-radius:20px">
-                                        <div class="modal-header border-secondary p-4">
-                                            <h5 class="modal-title fw-bold">Transaction Authentication</h5>
-                                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <form action="{{ route('admin.internship.payments.verify', $payment) }}" method="POST">
-                                            @csrf
-                                            <div class="modal-body p-4">
-                                                <div class="p-3 mb-4 rounded-4" style="background: rgba(255,255,255,0.03); border: 1px solid var(--v2-border)">
-                                                     <div class="text-v2-muted small text-uppercase fw-bold letter-spacing-1 mb-3">Segment Analysis:</div>
-                                                     <div class="row g-3">
-                                                         <div class="col-6">
-                                                             <div class="small opacity-50">Origin Number</div>
-                                                             <div class="text-v2-primary fw-bold">{{ $payment->bkash_number }}</div>
-                                                         </div>
-                                                         <div class="col-6">
-                                                             <div class="small opacity-50">Amount</div>
-                                                             <div class="text-white fw-bold">৳{{ number_format($payment->amount) }}</div>
-                                                         </div>
-                                                         <div class="col-12">
-                                                             <div class="small opacity-50">Transaction Hash</div>
-                                                             <div class="text-warning fw-mono">{{ $payment->transaction_id }}</div>
-                                                         </div>
-                                                     </div>
-                                                </div>
-
-                                                <div class="mb-2">
-                                                    <label class="form-label text-v2-muted small text-uppercase fw-bold letter-spacing-1">Authentication Decision</label>
-                                                    <select name="action" class="form-select v2-admin-input" required>
-                                                        <option value="">-- Choose Resolution --</option>
-                                                        <option value="approve">AUTHORIZE — Payment Verified, Proceed to Lifecycle Activation</option>
-                                                        <option value="reject">ABORT — Hash Mismatch / Refund Required</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer border-secondary p-4">
-                                                <button type="button" class="btn-neo-glass py-2 px-4" data-bs-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn-v2-primary py-2 px-5">Confirm Pulse</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
                         @else
                             <i class="fas fa-circle-check text-success opacity-50" title="Settled"></i>
                         @endif
@@ -212,4 +165,56 @@
         {{ $payments->links('pagination::bootstrap-5') }}
     </div>
 </div>
+
+<!-- Modals rendered outside of scrollable container to prevent clipping -->
+@foreach($payments as $payment)
+    @if($payment->payment_method == 'bkash' && $payment->status == 'pending')
+    <div class="modal fade" id="verifyModal{{ $payment->id }}" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-v2-sidebar border border-secondary text-white" style="backdrop-filter: blur(40px); border-radius:20px">
+                <div class="modal-header border-secondary p-4">
+                    <h5 class="modal-title fw-bold">Transaction Authentication</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{ route('admin.internship.payments.verify', $payment) }}" method="POST">
+                    @csrf
+                    <div class="modal-body p-4">
+                        <div class="p-3 mb-4 rounded-4" style="background: rgba(255,255,255,0.03); border: 1px solid var(--v2-border)">
+                                <div class="text-v2-muted small text-uppercase fw-bold letter-spacing-1 mb-3">Segment Analysis:</div>
+                                <div class="row g-3">
+                                    <div class="col-6">
+                                        <div class="small opacity-50">Origin Number</div>
+                                        <div class="text-v2-primary fw-bold">{{ $payment->bkash_number }}</div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="small opacity-50">Amount</div>
+                                        <div class="text-white fw-bold">৳{{ number_format($payment->amount) }}</div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="small opacity-50">Transaction Hash</div>
+                                        <div class="text-warning fw-mono">{{ $payment->transaction_id }}</div>
+                                    </div>
+                                </div>
+                        </div>
+
+                        <div class="mb-2">
+                            <label class="form-label text-v2-muted small text-uppercase fw-bold letter-spacing-1">Authentication Decision</label>
+                            <select name="action" class="form-select v2-admin-input" required>
+                                <option value="">-- Choose Resolution --</option>
+                                <option value="approve">AUTHORIZE — Payment Verified, Proceed to Lifecycle Activation</option>
+                                <option value="reject">ABORT — Hash Mismatch / Refund Required</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-secondary p-4">
+                        <button type="button" class="btn-neo-glass py-2 px-4" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn-v2-primary py-2 px-5">Confirm Pulse</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @endif
+@endforeach
+
 @endsection

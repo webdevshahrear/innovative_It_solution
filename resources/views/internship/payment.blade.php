@@ -52,14 +52,14 @@ body.light-mode .pay-card {
 .btn-ssl { background:#fff; color:#1a1a1a; box-shadow:0 10px 25px rgba(255,255,255,.15); }
 body.light-mode .btn-ssl { background: #f8fafc; border: 1px solid #cbd5e1; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
 .btn-ssl:hover { transform:translateY(-4px); box-shadow:0 15px 35px rgba(255,255,255,.25); }
-.btn-ssl img { height:28px; }
+.btn-ssl img { height:28px !important; width:150px !important; object-fit:contain !important; flex-shrink: 0; }
 
 /* tabs */
 .pay-tabs { display:flex; gap:8px; margin-bottom:24px; background:rgba(255,255,255,0.03); padding:8px; border-radius:16px; border:1px solid var(--border); }
 body.light-mode .pay-tabs { background: #f1f5f9; border-color: #e2e8f0; }
 .pay-tab { flex:1; text-align:center; padding:12px; border-radius:12px; font-weight:700; font-size:1rem; color:var(--text-muted); cursor:pointer; transition:.3s; }
 .pay-tab.active { background:var(--navy-light); color:var(--white); box-shadow:0 8px 20px rgba(0,0,0,.2); border:1px solid var(--border); }
-body.light-mode .pay-tab.active { background: #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-color: #cbd5e1; color: var(--navy-dark); }
+body.light-mode .pay-tab.active { background: #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-color: #cbd5e1; color: #0f172a; }
 
 .tab-pane { display:none; }
 .tab-pane.active { display:block; animation:fade-slide-up .4s cubic-bezier(0.165, 0.84, 0.44, 1); }
@@ -103,7 +103,7 @@ body.light-mode .pay-tab.active { background: #fff; box-shadow: 0 4px 10px rgba(
                     <div class="amt-box">
                         <div class="amt-lbl">Refundable Security Fee</div>
                         <div class="amt-val">৳{{ number_format($amount) }}</div>
-                        <div class="mt-2" style="font-size:.8rem;color:var(--text-secondary)">Refunded upon successful completion of the 3-month program.</div>
+                        <div class="mt-2" style="font-size:.8rem;color:var(--text-muted)">Refunded upon successful completion of the 3-month program.</div>
                     </div>
 
                     @if(session('error'))
@@ -118,12 +118,12 @@ body.light-mode .pay-tab.active { background: #fff; box-shadow: 0 4px 10px rgba(
                     {{-- SSLCommerz --}}
                     @if($sslConfigured)
                     <div class="tab-pane active" id="tab-ssl">
-                        <p style="color:var(--text-secondary);font-size:.9rem;text-align:center;margin-bottom:24px;">Pay securely via SSLCommerz using any Debit/Credit card, MFS (bKash, Nagad), or Net Banking.</p>
+                        <p style="color:var(--text-muted);font-size:.9rem;text-align:center;margin-bottom:24px;">Pay securely via SSLCommerz using any Debit/Credit card, MFS (bKash, Nagad), or Net Banking.</p>
                         
                         <form action="{{ route('internship.payment.ssl', $attempt) }}" method="POST">
                             @csrf
                             <button type="submit" class="gateway-btn btn-ssl">
-                                Pay via <img src="https://securepay.sslcommerz.com/public/image/SSLCommerz-Pay-With-logo-All-Size-03.png" alt="SSLCommerz" style="height:25px">
+                                Pay via <span style="font-weight: 800; font-size: 1.1rem; color: #2c3e50; margin-left: 6px; letter-spacing: -0.5px;">SSL<span style="color: #0081C5;">Commerz</span></span>
                             </button>
                         </form>
                     </div>
@@ -133,7 +133,9 @@ body.light-mode .pay-tab.active { background: #fff; box-shadow: 0 4px 10px rgba(
                     @if($bkashConfigured)
                     <div class="tab-pane {{ !$sslConfigured ? 'active' : '' }}" id="tab-bkash">
                         <div class="bkash-box">
-                            <div class="text-center mb-4"><img src="https://scripts.sandbox.bka.sh/resources/img/bkash_logo.png" alt="bKash" height="35"></div>
+                            <div class="text-center mb-4">
+                                <img src="{{ asset('images/bkash_logo.png') }}" alt="bKash" style="height: 55px; object-fit: contain; filter: brightness(0) invert(1);">
+                            </div>
                             
                             @foreach($bkashInfo['steps'] as $i => $step)
                             <div class="bkash-step"><div class="n">{{ $i+1 }}</div><div>{!! $step !!}</div></div>
@@ -176,7 +178,7 @@ body.light-mode .pay-tab.active { background: #fff; box-shadow: 0 4px 10px rgba(
                     
                     <div class="mt-4 p-3 rounded-3" style="background:rgba(240,82,35,.1);border:1px solid rgba(240,82,35,.2)">
                         <h6 style="color:#f05223;font-size:.9rem;font-weight:700;margin-bottom:8px"><i class="fas fa-shield-alt me-2"></i>Refund Policy</h6>
-                        <p style="font-size:.8rem;color:var(--text-secondary);margin:0">The deposit is refunded via bank transfer or MFS within 7 days after the 3-month program concludes successfully.</p>
+                        <p style="font-size:.8rem;color:var(--text-muted);margin:0">The deposit is refunded via bank transfer or MFS within 7 days after the 3-month program concludes successfully.</p>
                     </div>
                 </div>
             </div>

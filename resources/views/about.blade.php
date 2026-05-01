@@ -160,6 +160,39 @@
     }
     body.light-mode .check-item-v2 span { color: #1e293b !important; }
 
+    /* ── Timeline Section ── */
+    .timeline-section-v2 { position: relative; overflow: hidden; }
+    .timeline-v2-container { position: relative; max-width: 1000px; margin: 0 auto; }
+    .timeline-v2-line { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: rgba(255, 255, 255, 0.1); transform: translateX(-50%); }
+    .timeline-v2-item { position: relative; width: 50%; padding: 40px 50px; margin-bottom: 20px; }
+    .timeline-v2-item.left { left: 0; text-align: right; }
+    .timeline-v2-item.right { left: 50%; }
+    .timeline-v2-dot { position: absolute; top: 50px; width: 20px; height: 20px; background: var(--navy-dark); border: 4px solid var(--primary); border-radius: 50%; z-index: 2; box-shadow: 0 0 15px var(--primary-glow); transition: 0.3s; }
+    .timeline-v2-item.left .timeline-v2-dot { right: -10px; }
+    .timeline-v2-item.right .timeline-v2-dot { left: -10px; }
+    .timeline-v2-item:hover .timeline-v2-dot { background: var(--primary); transform: scale(1.3); }
+    .timeline-v2-content { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); padding: 40px; border-radius: 24px; transition: all 0.4s ease; position: relative; }
+    .timeline-v2-item:hover .timeline-v2-content { background: rgba(255, 255, 255, 0.04); border-color: rgba(240, 82, 35, 0.3); transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
+    .timeline-v2-year { font-size: 1.2rem; font-weight: 800; color: var(--primary); margin-bottom: 15px; display: inline-block; background: rgba(240, 82, 35, 0.1); padding: 5px 15px; border-radius: 30px; }
+    .timeline-v2-title { font-size: 1.6rem; font-weight: 800; color: #fff; margin-bottom: 15px; }
+    .timeline-v2-desc { color: var(--v2-text-muted, #94a3b8); line-height: 1.7; margin: 0; }
+
+    /* Timeline Light Mode */
+    body.light-mode .timeline-v2-line { background: rgba(0,0,0,0.1); }
+    body.light-mode .timeline-v2-dot { background: #f8fafc; }
+    body.light-mode .timeline-v2-content { background: #ffffff; border-color: rgba(0,0,0,0.06); box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+    body.light-mode .timeline-v2-item:hover .timeline-v2-content { background: #ffffff; border-color: var(--primary); box-shadow: 0 15px 30px rgba(0,0,0,0.08); }
+    body.light-mode .timeline-v2-title { color: #0f172a; }
+    body.light-mode .timeline-v2-desc { color: #475569; }
+
+    @media (max-width: 991px) {
+        .timeline-v2-line { left: 30px; }
+        .timeline-v2-item { width: 100%; padding: 0 0 40px 70px; text-align: left !important; }
+        .timeline-v2-item.left, .timeline-v2-item.right { left: 0; }
+        .timeline-v2-item.left .timeline-v2-dot, .timeline-v2-item.right .timeline-v2-dot { left: 20px; right: auto; }
+        .timeline-v2-content { padding: 30px 20px; }
+    }
+
     /* CTA Refining */
     body.light-mode .glass-effect .position-absolute[style*="radial-gradient"] {
         background: radial-gradient(circle at 50% 50%, rgba(240, 82, 35, 0.05) 0%, transparent 70%) !important;
@@ -280,6 +313,56 @@
                     </div>
                     <h4 class="mb-3">Absolute Integrity</h4>
                     <p class="text-v2-muted">Radical transparency is our standard. We believe true success is built on the pillar of unshakeable client trust.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Timeline Section -->
+<section class="timeline-section-v2 bg-navy-dark section-padding">
+    <div class="container">
+        <div class="text-center mb-100" data-aos="fade-up">
+            <span class="hero-badge-cinematic mb-3">OUR JOURNEY</span>
+            <h2 class="display-4 fw-bold">The Path of <span class="text-primary">Innovation</span></h2>
+        </div>
+        
+        <div class="timeline-v2-container">
+            <div class="timeline-v2-line"></div>
+            
+            <div class="timeline-v2-item left" data-aos="fade-right">
+                <div class="timeline-v2-dot"></div>
+                <div class="timeline-v2-content">
+                    <div class="timeline-v2-year">2014</div>
+                    <h4 class="timeline-v2-title">The Inception</h4>
+                    <p class="timeline-v2-desc">Started with a small team of 3 developers, focusing on simple web solutions and building our foundation of trust.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-v2-item right" data-aos="fade-left">
+                <div class="timeline-v2-dot"></div>
+                <div class="timeline-v2-content">
+                    <div class="timeline-v2-year">2017</div>
+                    <h4 class="timeline-v2-title">Expansion & Growth</h4>
+                    <p class="timeline-v2-desc">Expanded our services to include mobile app development and enterprise software solutions, growing our team to 20+ experts.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-v2-item left" data-aos="fade-right">
+                <div class="timeline-v2-dot"></div>
+                <div class="timeline-v2-content">
+                    <div class="timeline-v2-year">2020</div>
+                    <h4 class="timeline-v2-title">Global Reach</h4>
+                    <p class="timeline-v2-desc">Opened our first international office and started serving clients across 15+ countries globally.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-v2-item right" data-aos="fade-left">
+                <div class="timeline-v2-dot"></div>
+                <div class="timeline-v2-content">
+                    <div class="timeline-v2-year">2024</div>
+                    <h4 class="timeline-v2-title">AI & Beyond</h4>
+                    <p class="timeline-v2-desc">Embracing the future by integrating AI solutions into our core services and setting new industry standards.</p>
                 </div>
             </div>
         </div>

@@ -155,6 +155,9 @@
                  <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#seo">
                     <i class="fas fa-search me-3"></i> SEO & Scripts
                 </a>
+                 <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#payment">
+                    <i class="fas fa-credit-card me-3"></i> Payment Gateways
+                </a>
             </div>
          </div>
     </div>
@@ -460,6 +463,47 @@
                          <div class="mb-0">
                             <label class="v2-form-label">Custom Header Scripts <span class="text-warning text-lowercase float-end" style="font-size: 0.6rem;"><i class="fas fa-exclamation-triangle"></i> proceed with caution</span></label>
                             <textarea class="v2-form-control font-monospace" name="custom_header_scripts" rows="6" placeholder="<script>...</script>" style="background: rgba(0,0,0,0.2) !important;">{{ $allSettings['custom_header_scripts'] ?? '' }}</textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Gateways -->
+                 <div class="tab-pane" id="payment">
+                    <div class="settings-card">
+                        <div class="settings-header">
+                            <div class="settings-icon-wrapper" style="color: #10b981; background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.2); box-shadow: 0 0 20px rgba(16, 185, 129, 0.1);"><i class="fas fa-credit-card"></i></div>
+                            <div>
+                                <h4 class="fw-bold mb-1 text-white">Payment Configuration</h4>
+                                <p class="text-v2-muted small mb-0">Manage SSLCommerz and bKash credentials dynamically.</p>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-info rounded-3" style="background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.2); color: var(--v2-text-main);">
+                            <i class="fas fa-info-circle me-2"></i> Leaving these fields empty will automatically hide the corresponding payment method from the frontend.
+                        </div>
+
+                        <h6 class="text-white fw-bold mb-3 mt-4"><i class="fas fa-shield-alt me-2 text-primary"></i> SSLCommerz Integration</h6>
+                        <div class="row g-4 mb-5">
+                            <div class="col-md-6">
+                                <label class="v2-form-label">Store ID</label>
+                                <input type="text" class="v2-form-control" name="sslcommerz_store_id" value="{{ $allSettings['sslcommerz_store_id'] ?? '' }}" placeholder="Enter Store ID (e.g. testbox)">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="v2-form-label">Store Password</label>
+                                <input type="text" class="v2-form-control" name="sslcommerz_store_password" value="{{ $allSettings['sslcommerz_store_password'] ?? '' }}" placeholder="Enter Store Password">
+                            </div>
+                        </div>
+
+                        <h6 class="text-white fw-bold mb-3"><i class="fas fa-mobile-alt me-2 text-danger"></i> bKash Integration</h6>
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <label class="v2-form-label">Personal bKash Number</label>
+                                <input type="text" class="v2-form-control" name="bkash_number" value="{{ $allSettings['bkash_number'] ?? '' }}" placeholder="017XXXXXXXX">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="v2-form-label">Account Type</label>
+                                <input type="text" class="v2-form-control" name="bkash_account_type" value="{{ $allSettings['bkash_account_type'] ?? 'Personal' }}">
+                            </div>
                         </div>
                     </div>
                 </div>

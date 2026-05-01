@@ -459,7 +459,7 @@
         .v2-stat-item:hover .v2-stat-label { color: var(--v2-primary); }
 
         /* ── Mission & Vision ── */
-        .v2-mv-wrap { background: var(--v2-bg); padding: 150px 0; position: relative; overflow: hidden; border-top: 1px solid var(--v2-border); }
+        .v2-mv-wrap { background: var(--v2-bg); padding: 70px 0; position: relative; overflow: hidden; border-top: 1px solid var(--v2-border); }
         .mv-card-v4 { 
             background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%); 
             backdrop-filter: blur(20px); 
@@ -555,7 +555,7 @@
         body.light-mode .t-nav-v4:hover, body.light-mode .team-nav-v4:hover { background: var(--v2-primary); border-color: transparent; color: #fff; }
 
         /* ── Blog ── */
-        .v2-blog-wrap { background: var(--v2-bg); padding: 150px 0; position: relative; overflow: hidden; }
+        .v2-blog-wrap { background: var(--v2-bg); padding: 70px 0; position: relative; overflow: hidden; }
         .blog-card-v4 { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 35px; overflow: hidden; height: 100%; transition: 0.5s; }
         .blog-card-v4:hover { border-color: var(--v2-primary); transform: translateY(-15px); }
         .blog-img-v4 { position: relative; aspect-ratio: 16/9; overflow: hidden; }
@@ -573,7 +573,7 @@
         .blog-link-v4:hover { color: var(--v2-primary); letter-spacing: 2px; }
 
         /* ── Testimonials ── */
-        .testimonials-v2-wrap { background: var(--v2-bg); padding: 150px 0; position: relative; overflow: hidden; }
+        .testimonials-v2-wrap { background: var(--v2-bg); padding: 70px 0; position: relative; overflow: hidden; }
         .testimonial-main-swiper .swiper-slide, .team-main-swiper .swiper-slide { height: auto; }
         .t-card-v4 { background: rgba(255,255,255,0.02); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.08); border-radius: 30px; padding: 40px; text-align: center; position: relative; height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
         .t-quote-v4 { font-size: 2.2rem; color: var(--v2-primary); opacity: 0.3; margin-bottom: 20px; }
@@ -588,7 +588,7 @@
         .t-prev-v4, .team-prev-v4 { left: -20px; } .t-next-v4, .team-next-v4 { right: -20px; }
 
         /* ── Contact ── */
-        .v2-contact-wrap { background: var(--v2-bg); padding: 150px 0; position: relative; overflow: hidden; }
+        .v2-contact-wrap { background: var(--v2-bg); padding: 70px 0; position: relative; overflow: hidden; }
         .contact-glass-v4 { background: rgba(255,255,255,0.01); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.05); border-radius: 50px; padding: 80px; }
         .contact-reach-v4 { display: flex; flex-direction: column; gap: 30px; }
         .reach-item-v4 { display: flex; align-items: center; gap: 20px; }
@@ -627,7 +627,7 @@
         .abstract-title { font-size: clamp(3rem, 6vw, 5rem); font-weight: 950; color: #fff; margin-bottom: 30px; line-height: 1; letter-spacing: -2px; }
 
         /* ── Pricing ── */
-        .v2-pricing-wrap { background: var(--v2-bg); padding: 150px 0; position: relative; overflow: hidden; }
+        .v2-pricing-wrap { background: var(--v2-bg); padding: 70px 0; position: relative; overflow: hidden; }
         .pricing-card-v4 { background: rgba(255,255,255,0.02); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.05); border-radius: 40px; padding: 60px 45px; height: 100%; transition: 0.5s; position: relative; overflow: hidden; }
         .pricing-card-v4.featured { border-color: var(--v2-primary); background: rgba(240,82,35,0.03); }
         .pricing-card-v4:hover { transform: translateY(-15px); border-color: var(--v2-primary); box-shadow: 0 30px 60px rgba(0,0,0,0.5); }
@@ -639,7 +639,7 @@
         .pricing-list-v4 li i { color: var(--v2-primary); font-size: 0.9rem; }
 
         /* ── FAQ ── */
-        .v2-faq-wrap { background: var(--v2-bg); padding: 150px 0; position: relative; }
+        .v2-faq-wrap { background: var(--v2-bg); padding: 70px 0; position: relative; }
         .faq-accordion-v4 { max-width: 800px; margin: 0 auto; }
         .faq-item-v4 { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; margin-bottom: 20px; overflow: hidden; transition: 0.3s; }
         .faq-question-v4 { padding: 30px 40px; color: #fff; font-size: 1.2rem; font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
@@ -660,7 +660,7 @@
         .news-form-v4 button:hover { background: #fff; color: var(--v2-primary); transform: scale(1.02); }
 
         /* ── Internship Section ── */
-        .v2-internship-cta-wrap { background: var(--v2-bg); padding: 150px 0; position: relative; overflow: hidden; border-top: 1px solid var(--v2-border); }
+        .v2-internship-cta-wrap { background: var(--v2-bg); padding: 70px 0; position: relative; overflow: hidden; border-top: 1px solid var(--v2-border); }
         .internship-floating-card { position: absolute; bottom: 30px; left: -30px; background: rgba(13, 11, 40, 0.8); backdrop-filter: blur(20px); border: 1px solid rgba(240, 82, 35, 0.3); border-radius: 20px; padding: 20px; z-index: 3; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .internship-icon-box { width: 50px; height: 50px; background: rgba(240,82,35,0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--v2-primary); font-size: 1.5rem; }
         .internship-floating-title { color: #fff; margin: 0; font-size: 1.25rem; font-weight: 800; }

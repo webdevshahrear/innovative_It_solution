@@ -205,6 +205,9 @@
                 <a href="{{ route('admin.internship.questions.create') }}" class="btn-neo-glass py-4 px-5 w-100 w-lg-auto" style="border-radius: 24px; font-size: 1.1rem; font-weight: 800;">
                     <i class="fas fa-plus-circle me-2"></i> Manual Curriculum
                 </a>
+                <button type="button" class="btn-neo-glass py-3 px-5 w-100 w-lg-auto mt-2" data-bs-toggle="modal" data-bs-target="#passMarkModal" style="border-radius: 20px; font-size: 1rem; font-weight: 800;">
+                    <i class="fas fa-cog me-2 text-warning"></i> Configure Pass Mark
+                </button>
             </div>
         </div>
     </div>
@@ -366,5 +369,43 @@
     <div>{{ $questions->links('pagination::bootstrap-5') }}</div>
 </div>
 @endif
+
+{{-- Configure Pass Mark Modal --}}
+<div class="modal fade" id="passMarkModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 28px; backdrop-filter: blur(20px);">
+            <div class="modal-header border-0 pb-0">
+                <h5 class="modal-title text-v2-main fw-bold"><i class="fas fa-cog text-warning me-2"></i> Exam Configuration</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter: invert(0.8);"></button>
+            </div>
+            <form action="{{ route('admin.settings.update') }}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="modal-body pt-4">
+                    @php
+                        $currentPassMark = \App\Models\SiteSetting::where('setting_key', 'internship_pass_mark')->value('setting_value') ?? 60;
+                    @endphp
+                    <div class="mb-3">
+                        <label class="form-label text-v2-muted small text-uppercase fw-bold" style="letter-spacing: 1px;">Passing Score Percentage</label>
+                        <div class="input-group">
+                            <input type="number" name="internship_pass_mark" class="form-control v2-admin-input border-end-0" min="1" max="100" value="{{ $currentPassMark }}" required>
+                            <span class="input-group-text v2-admin-input bg-transparent text-v2-muted fw-bold border-start-0">%</span>
+                        </div>
+                        <div class="form-text text-v2-muted mt-2" style="font-size: 0.8rem;">Interns must score at least this percentage to pass the exam. Changes take effect immediately for all new submissions.</div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="button" class="btn-neo-glass" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn-v2-primary shadow-lg" style="border-radius: 16px;">Save Configuration</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<style>
+    [data-theme="light"] .modal-title { color: #0f172a !important; }
+    [data-theme="light"] .modal-content { background: #ffffff !important; border-color: #e2e8f0 !important; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    [data-theme="light"] .btn-close { filter: none !important; }
+</style>
 
 @endsection

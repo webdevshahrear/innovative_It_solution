@@ -60,7 +60,7 @@ class PaymentController extends Controller
             $account = InternshipAccount::firstOrCreate(
                 ['application_id' => $application->id],
                 [
-                    'user_id'            => 0,
+                    'user_id'            => null,
                     'category_id'        => $application->preferred_category_id,
                     'registration_token' => Str::uuid()->toString(),
                     'start_date'         => now()->toDateString(),
@@ -69,7 +69,12 @@ class PaymentController extends Controller
                 ]
             );
 
-            return back()->with('success', 'bKash payment approved. Intern account activated. Registration token: ' . $account->registration_token);
+            $link = route('internship.register', $account->registration_token);
+
+            // Send Email to the intern
+            \Illuminate\Support\Facades\Mail::to($application->email)->send(new \App\Mail\InternPaymentApprovedMail($application, $link));
+
+            return back()->with('success', 'bKash payment approved. Intern account activated. Link for user to register: ' . $link);
         }
 
         $payment->update(['status' => 'failed']);

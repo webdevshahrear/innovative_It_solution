@@ -9,6 +9,12 @@
     <a href="{{ route('intern.tasks.index') }}" class="nav-link {{ request()->routeIs('intern.tasks.*') ? 'active' : '' }}">
         <i class="fas fa-tasks"></i> My Tasks
     </a>
+    <a href="{{ route('intern.certification') }}" class="nav-link {{ request()->routeIs('intern.certification') ? 'active' : '' }}">
+        <i class="fas fa-certificate"></i> Certification
+    </a>
+    <a href="{{ route('intern.profile') }}" class="nav-link {{ request()->routeIs('intern.profile') ? 'active' : '' }}">
+        <i class="fas fa-user-circle"></i> My Profile
+    </a>
 @endsection
 
 @section('content')

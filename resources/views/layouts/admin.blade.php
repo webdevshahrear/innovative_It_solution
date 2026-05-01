@@ -59,6 +59,14 @@
             --v2-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
         }
 
+        .logo-light { display: none !important; }
+        .logo-dark { display: inline-block !important; }
+
+        [data-theme="light"] .logo-dark { display: none !important; }
+        [data-theme="light"] .logo-light { display: inline-block !important; }
+
+        [data-theme="light"] .logo-single { filter: invert(1) hue-rotate(180deg) brightness(0.6); }
+
         body {
             font-family: 'Inter', 'Outfit', sans-serif;
             background: var(--v2-bg);
@@ -713,9 +721,24 @@
     <div class="admin-wrapper" id="app">
         <!-- Sidebar -->
         <aside class="admin-sidebar">
-            <div class="brand-logo">
-                <div class="logo-dot-v2"></div>
-                <span class="brand-text-v2">Innovative IT</span>
+            <div class="brand-logo text-center d-flex justify-content-center">
+                <a href="/" style="text-decoration: none;">
+                    @php
+                        $siteLogo = \App\Models\SiteSetting::getValue('site_logo', 'logo.png');
+                        $siteLogoLight = \App\Models\SiteSetting::getValue('site_logo_light');
+                    @endphp
+                    @if($siteLogoLight && file_exists(public_path('uploads/settings/'.$siteLogoLight)))
+                        <img src="{{ asset('uploads/settings/'.$siteLogoLight) }}" alt="Logo" class="logo-light" style="max-height: 60px; width: auto;">
+                        <img src="{{ asset('uploads/settings/'.$siteLogo) }}" alt="Logo" class="logo-dark" style="max-height: 60px; width: auto;">
+                    @elseif(file_exists(public_path('uploads/settings/'.$siteLogo)))
+                        <img src="{{ asset('uploads/settings/'.$siteLogo) }}" alt="Logo" class="logo-single" style="max-height: 60px; width: auto;">
+                    @else
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="logo-dot-v2"></div>
+                            <span class="brand-text-v2">Innovative IT</span>
+                        </div>
+                    @endif
+                </a>
             </div>
             <nav class="nav-menu">
                 <div class="nav-section-title-v2">MAIN</div>

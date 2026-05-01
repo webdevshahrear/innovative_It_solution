@@ -134,18 +134,23 @@ body.light-mode .cat-card-premium:hover { background: #fff; box-shadow: 0 30px 6
 
 /* ── Premium Protocol Buttons ── */
 .btn-protocol {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 12px 24px; border-radius: 50px;
-    background: rgba(240,82,35,0.05); border: 1px solid rgba(240,82,35,0.2);
-    color: var(--primary) !important; font-weight: 800; font-size: 0.8rem;
+    display: inline-flex; align-items: center; gap: 12px;
+    padding: 18px 35px; border-radius: 100px;
+    background: rgba(240,82,35,0.05); border: 1.5px solid rgba(240,82,35,0.25);
+    color: #fff !important; font-weight: 800; font-size: 0.9rem;
     text-transform: uppercase; letter-spacing: 0.1em; transition: all 0.4s;
-    text-decoration: none; position: relative; overflow: hidden;
-    width: fit-content;
+    text-decoration: none !important; position: relative; overflow: hidden;
+    height: 60px; /* Matching height */
 }
-.btn-protocol i { transition: transform 0.4s; font-size: 1.1rem; }
+body.light-mode .btn-protocol {
+    background: #f8fafc; border-color: #e2e8f0;
+    color: #0f172a !important;
+}
+.btn-protocol i { transition: transform 0.4s; font-size: 1.2rem; }
 .btn-protocol:hover {
     background: var(--primary); color: #fff !important;
-    box-shadow: 0 10px 20px rgba(240,82,35,0.3); transform: translateX(5px);
+    border-color: var(--primary);
+    box-shadow: 0 15px 30px rgba(240,82,35,0.2); transform: translateY(-3px);
 }
 .btn-protocol:hover i { transform: translateX(3px); }
 
@@ -255,9 +260,12 @@ body.light-mode .cat-card-premium:hover { background: #fff; box-shadow: 0 30px 6
                     </div>
                 </div>
 
-                <div class="d-flex flex-wrap gap-3">
+                <div class="d-flex flex-wrap gap-3 align-items-center mb-5">
                     <a href="{{ route('internship.apply') }}" class="btn-premium-cta">
                         Bridge the Gap <i class="bi bi-arrow-right-short"></i>
+                    </a>
+                    <a href="{{ route('internship.login') }}" class="btn-protocol">
+                        <i class="bi bi-person-lock"></i> Intern Login
                     </a>
                 </div>
             </div>
@@ -387,9 +395,14 @@ body.light-mode .cat-card-premium:hover { background: #fff; box-shadow: 0 30px 6
             <div class="position-absolute top-0 start-0 w-100 h-100 opacity-5" style="background-image: var(--v2-mesh); pointer-events: none;"></div>
             <h2 class="text-white mb-4">Start Your Career Evolution</h2>
             <p class="text-v2-muted mx-auto mb-5" style="max-width: 500px;">The recruitment phase for 2026 is currently active. Do not miss your chance to join the vanguard.</p>
-            <a href="{{ route('internship.apply') }}" class="btn-premium-cta mb-4">
-                Enter the Portal <i class="bi bi-door-open-fill"></i>
-            </a>
+            <div class="d-flex flex-wrap justify-content-center gap-3 mb-5">
+                <a href="{{ route('internship.apply') }}" class="btn-premium-cta">
+                    Enter the Portal <i class="bi bi-door-open-fill"></i>
+                </a>
+                <a href="{{ route('internship.login') }}" class="btn-protocol">
+                    <i class="bi bi-person-lock"></i> Existing Intern Login
+                </a>
+            </div>
             <div class="d-flex justify-content-center gap-4 text-v2-muted small fw-bold">
                 <span><i class="bi bi-clock me-1 text-v2-main"></i> 8m to apply</span>
                 <span><i class="bi bi-patch-check me-1 text-v2-main"></i> ISO Certified</span>

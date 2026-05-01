@@ -28,6 +28,16 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        $user = Auth::user();
+
+        // Prevent interns from logging in via admin page
+        if ($user->role === 'intern') {
+            Auth::logout();
+            return back()->withErrors([
+                'email' => 'Access denied. Please use the Intern Portal to login.',
+            ])->onlyInput('email');
+        }
+
         return redirect()->intended(route('dashboard', absolute: false));
     }
 

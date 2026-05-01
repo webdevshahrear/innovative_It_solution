@@ -27,14 +27,18 @@ class PaymentController extends Controller
                 ->with('error', 'You must pass the exam to proceed to payment.');
         }
 
-        // Check if already paid
+        // Check if already paid or pending
         $existingPayment = InternshipPayment::where('attempt_id', $attempt->id)
-            ->where('status', 'success')
+            ->whereIn('status', ['success', 'pending'])
             ->first();
 
         if ($existingPayment) {
+            if ($existingPayment->status === 'pending') {
+                return redirect()->route('internship.payment.bkash-pending');
+            }
+            
             // Already paid — redirect to registration or dashboard
-            if ($attempt->application->account) {
+            if ($attempt->application->account && $attempt->application->account->user_id) {
                 return redirect()->route('intern.dashboard')
                     ->with('info', 'Payment already completed.');
             }
@@ -134,7 +138,7 @@ class PaymentController extends Controller
             'bkash_transaction_id' => $request->bkash_transaction_id,
         ]);
 
-        return redirect()->route('internship.payment.bkash-pending')
+        return redirect()->route('internship.payment.bkash-pending', $attempt)
             ->with('success', 'bKash payment submitted! An admin will verify your payment shortly (usually within 24 hours). You will receive confirmation via email.');
     }
 
@@ -201,9 +205,21 @@ class PaymentController extends Controller
         return view('internship.payment-cancel');
     }
 
-    public function bkashPending()
+    public function bkashPending(InternshipExamAttempt $attempt)
     {
-        return view('internship.payment-bkash-pending');
+        // Check if it got approved in the meantime
+        $existingPayment = InternshipPayment::where('attempt_id', $attempt->id)->latest()->first();
+        if ($existingPayment && $existingPayment->status === 'success') {
+            if ($attempt->application->account && $attempt->application->account->user_id) {
+                return redirect()->route('intern.dashboard');
+            }
+            $token = $attempt->application->account->registration_token ?? null;
+            if ($token) {
+                return redirect()->route('internship.register', $token);
+            }
+        }
+
+        return view('internship.payment-bkash-pending', compact('attempt'));
     }
 
     protected function activateAfterPayment(InternshipPayment $payment): void

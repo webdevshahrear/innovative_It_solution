@@ -92,15 +92,35 @@
         ::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
         ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+        .logo-light { display: none !important; }
+        .logo-dark { display: inline-block !important; }
+
+        [data-bs-theme="light"] .logo-dark { display: none !important; }
+        [data-bs-theme="light"] .logo-light { display: inline-block !important; }
+
+        [data-bs-theme="light"] .logo-single { filter: invert(1) hue-rotate(180deg) brightness(0.6) !important; }
     </style>
     @stack('styles')
 </head>
 <body>
 
     <aside class="sidebar">
-        <div class="sb-brand">
-            <h5 style="font-family:'Outfit';font-weight:800;color:#fff;margin:0">Innovate<span style="color:#f05223">IT</span></h5>
-            <small style="color:var(--text-secondary);font-size:0.7rem;text-transform:uppercase;letter-spacing:1px">@yield('panel_type', 'Dashboard')</small>
+        <div class="sb-brand" style="display:flex; align-items:center; justify-content:center; padding: 28px 22px; border-bottom: 1px solid var(--border-color);">
+            <a href="/" style="text-decoration: none;">
+                @php
+                    $siteLogo = \App\Models\SiteSetting::getValue('site_logo', 'logo.png');
+                    $siteLogoLight = \App\Models\SiteSetting::getValue('site_logo_light');
+                @endphp
+                @if($siteLogoLight && file_exists(public_path('uploads/settings/'.$siteLogoLight)))
+                    <img src="{{ asset('uploads/settings/'.$siteLogoLight) }}" alt="Logo" class="logo-light" style="max-height: 55px; width: auto;">
+                    <img src="{{ asset('uploads/settings/'.$siteLogo) }}" alt="Logo" class="logo-dark" style="max-height: 55px; width: auto;">
+                @elseif(file_exists(public_path('uploads/settings/'.$siteLogo)))
+                    <img src="{{ asset('uploads/settings/'.$siteLogo) }}" alt="Logo" class="logo-single" style="max-height: 55px; width: auto;">
+                @else
+                    <span style="font-family:'Outfit';font-weight:800;color:#fff;font-size:1.4rem;">Innovate<span style="color:#f05223">IT</span></span>
+                @endif
+            </a>
         </div>
         <nav class="sb-nav">
             @yield('sidebar')
@@ -120,8 +140,11 @@
     </aside>
 
     <div class="main-wrapper">
-        <header class="top-navbar">
-            @yield('topbar')
+        <header class="top-navbar" style="justify-content: space-between;">
+            <h2 style="font-family:'Outfit'; font-weight:800; color:#f05223; margin:0; font-size:1.6rem; letter-spacing:-0.5px;">@yield('panel_type', 'Intern Panel')</h2>
+            <div class="d-flex align-items-center gap-3">
+                @yield('topbar')
+            </div>
         </header>
 
         <main class="main-content">

@@ -55,4 +55,44 @@ class InternManagementController extends Controller
         $account->update(['status' => $newStatus]);
         return back()->with('success', "Intern account {$newStatus}.");
     }
+
+    public function issueCertificate(InternshipAccount $account)
+    {
+        if ($account->certificate) {
+            return back()->with('error', 'Certificate already issued for this intern.');
+        }
+
+        // Generate certificate number: IITS-YEAR-RAND
+        $certNumber = 'IITS-' . date('Y') . '-' . strtoupper(bin2hex(random_bytes(3)));
+
+        // Determine performance grade based on score
+        $score = $account->performance_score;
+        $grade = 'Incomplete';
+        if ($score >= 80) $grade = 'Distinction';
+        elseif ($score >= 70) $grade = 'Excellent';
+        elseif ($score >= 60) $grade = 'Good';
+        elseif ($score >= 50) $grade = 'Average';
+
+        $account->certificate()->create([
+            'issued_by' => auth()->id(),
+            'certificate_number' => $certNumber,
+            'category_name' => $account->category->name,
+            'performance_grade' => $grade,
+            'issued_at' => now(),
+        ]);
+
+        return back()->with('success', 'Certificate issued successfully!');
+    }
+
+    public function viewCertificate(InternshipAccount $account)
+    {
+        if (!$account->certificate) {
+            return abort(404, 'Certificate not found.');
+        }
+
+        $user = $account->user;
+        $siteLogo = \App\Models\SiteSetting::getValue('site_logo', 'logo.png');
+
+        return view('intern.certificate-print', compact('user', 'account', 'siteLogo'));
+    }
 }
